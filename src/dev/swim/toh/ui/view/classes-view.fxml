@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+
+<TitledPane collapsible="false"
+            text="Beschreibung"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="dev.swim.toh.ui.controller.DescriptionCardController">
+    <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
+        <GridPane alignment="CENTER_LEFT" hgap="5.0">
+            <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="80.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0"/>
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="80.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0"/>
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="80.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0"/>
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="80.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+                <Label text="Volk">
+                    <GridPane.margin>
+                        <Insets/>
+                    </GridPane.margin>
+                </Label>
+                <ComboBox fx:id="raceCombo" prefWidth="150.0" GridPane.columnIndex="1"/>
+                <Label text="Gesinnung" GridPane.columnIndex="4">
+                    <GridPane.margin>
+                        <Insets/>
+                    </GridPane.margin>
+                </Label>
+                <ComboBox fx:id="alignmentCombo" prefWidth="150.0" GridPane.columnIndex="5"/>
+                <Label text="Gottheit" GridPane.columnIndex="6"/>
+                <ComboBox fx:id="deityCombo" prefWidth="150.0" GridPane.columnIndex="7"/>
+                <Label text="Geschlecht" GridPane.columnIndex="2"/>
+                <ComboBox fx:id="genderCombo" prefWidth="150.0" GridPane.columnIndex="3"/>
+            </children>
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            </padding>
+            <VBox.margin>
+                <Insets/>
+            </VBox.margin>
+        </GridPane>
+        <GridPane>
+            <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="70.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="70.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="70.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="70.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="70.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="70.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="70.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+                <Label text="Alter"/>
+                <Label text="Größe" GridPane.columnIndex="2"/>
+                <Label text="Größenkat." GridPane.columnIndex="4"/>
+                <Label text="Gewicht" GridPane.columnIndex="6"/>
+                <Label text="Augenfarbe" GridPane.columnIndex="8"/>
+                <Label text="Haarfarbe" GridPane.columnIndex="10"/>
+                <Label text="Hautfarbe" GridPane.columnIndex="12"/>
+                <TextField fx:id="ageTextField" alignment="CENTER_RIGHT" GridPane.columnIndex="1"/>
+                <TextField fx:id="sizeTextField" GridPane.columnIndex="3"/>
+                <TextField fx:id="sizeCategoryTextField" GridPane.columnIndex="5"/>
+                <TextField GridPane.columnIndex="7"/>
+                <TextField GridPane.columnIndex="9"/>
+                <TextField GridPane.columnIndex="11"/>
+                <TextField GridPane.columnIndex="13"/>
+            </children>
+        </GridPane>
+    </VBox>
+</TitledPane>
