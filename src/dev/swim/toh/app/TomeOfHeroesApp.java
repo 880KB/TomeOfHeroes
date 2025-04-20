@@ -7,11 +7,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application {
+public class TomeOfHeroesApp extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/dev/swim/toh/ui/view/hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        FXMLLoader fxmlLoader = new FXMLLoader(TomeOfHeroesApp.class.getResource("/dev/swim/toh/ui/view/character-sheet.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Tome of Heroes");
         stage.setScene(scene);
         stage.show();

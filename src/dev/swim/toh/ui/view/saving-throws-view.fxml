@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<TitledPane fx:id="savingThrowsCard" collapsible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Rettungswürfe" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.swim.toh.ui.controller.SavingThrowsCardController">
+<TitledPane fx:id="savingThrowsCard" collapsible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Rettungswürfe" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.swim.toh.ui.controller.SavingThrowsViewController">
     <GridPane>
         <columnConstraints>
             <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
@@ -38,19 +38,19 @@
         <Label text="Reflex" GridPane.rowIndex="2" />
         <Label text="Willen" GridPane.rowIndex="3" />
         <Label text="Zähigkeit" GridPane.rowIndex="4" />
-        <TextField alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-        <TextField alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-        <TextField alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+        <TextField fx:id="totalReflex" alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <TextField fx:id="totalWill" alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <TextField fx:id="totalFortitude" alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
         <TextField fx:id="baseSaveReflex" alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
         <TextField fx:id="baseSaveWill" alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
         <TextField fx:id="baseSaveFortitude" alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-        <TextField alignment="CENTER" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="9" GridPane.rowIndex="2" />
-        <TextField alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
+        <TextField fx:id="miscModReflex" alignment="CENTER" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="9" GridPane.rowIndex="2" />
+        <TextField fx:id="attrModReflex" alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
             <GridPane.margin>
                 <Insets />
             </GridPane.margin>
         </TextField>
-        <TextField alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+        <TextField fx:id="magicModReflex" alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="7" GridPane.rowIndex="2" />
         <Label text="=" GridPane.columnIndex="2" GridPane.rowIndex="2" />
         <Label text="=" GridPane.columnIndex="2" GridPane.rowIndex="3" />
         <Label text="=" GridPane.columnIndex="2" GridPane.rowIndex="4" />
@@ -99,12 +99,12 @@
                 <Font size="11.0" />
             </font>
         </Label>
-        <TextField alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-        <TextField alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
-        <TextField alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="7" GridPane.rowIndex="3" />
-        <TextField alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="7" GridPane.rowIndex="4" />
-        <TextField alignment="CENTER" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="9" GridPane.rowIndex="3" />
-        <TextField alignment="CENTER" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="9" GridPane.rowIndex="4" />
+        <TextField fx:id="attrModWill" alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+        <TextField fx:id="attrModFortitude" alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+        <TextField fx:id="magicModWill" alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="7" GridPane.rowIndex="3" />
+        <TextField fx:id="magicModFortitude" alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="7" GridPane.rowIndex="4" />
+        <TextField fx:id="miscModWill" alignment="CENTER" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="9" GridPane.rowIndex="3" />
+        <TextField fx:id="miscModFortitude" alignment="CENTER" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="9" GridPane.rowIndex="4" />
         <Label text="Attributs-" GridPane.columnIndex="5">
             <font>
                 <Font size="11.0" />

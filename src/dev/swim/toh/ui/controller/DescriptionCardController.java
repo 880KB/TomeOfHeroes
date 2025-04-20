@@ -1,4 +1,31 @@
 package dev.swim.toh.ui.controller;
 
-public class DescriptionCardController {
+import dev.swim.toh.model.data.race.Race;
+import dev.swim.toh.translation.SizeTranslator;
+import javafx.beans.binding.Bindings;
+import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
+
+public class DescriptionCardController extends CharacterModelAware {
+
+    public TextField ageTextField;
+    public TextField sizeTextField;
+    public TextField sizeCategoryTextField;
+    public ComboBox<Race> raceCombo;
+
+    @FXML
+    public void initialize() {
+    }
+
+    protected void bindFields() {
+        System.out.println(">>> Binding fields in " + this);
+        ageTextField.textProperty().bindBidirectional(characterModel.description.ageProperty());
+        sizeTextField.textProperty().bindBidirectional(characterModel.description.sizeProperty());
+        sizeCategoryTextField.textProperty().bind(Bindings.createStringBinding(
+                () -> SizeTranslator.toGerman(characterModel.description.sizeCategoryProperty().get()),
+                characterModel.description.sizeCategoryProperty()));
+        raceCombo.getItems().addAll(Race.values());
+        raceCombo.valueProperty().bindBidirectional(characterModel.description.raceProperty());
+    }
 }

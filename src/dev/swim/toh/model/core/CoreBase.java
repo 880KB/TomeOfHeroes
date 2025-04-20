@@ -1,4 +1,12 @@
 package dev.swim.toh.model.core;
 
-public class CoreBase {
+public abstract class CoreBase<T extends InputBase, U extends ComputedBase> {
+
+    protected T input;
+    protected U computed;
+
+    public void init(Character character) {
+        computed.setCharacter(character);
+        computed.addListeners();
+    }
 }
