@@ -17,23 +17,22 @@ public class Character {
     public final Classes classes;
 
     public Character() {
-        System.out.println(">>> Creating character");
         description = new Description();
         classes = new Classes();
         attributes = new Attributes();
         savingThrows = new SavingThrows();
-        System.out.println(">>> Character created");
         init();
     }
 
     public void init() {
-        System.out.println(">>> Init character");
-        classes.addClass(Clazz.FIGHTER, 1, true);
-        classes.addClass(Clazz.WIZARD, 1, false);
         description.init(this);
         classes.init(this);
         attributes.init(this);
         savingThrows.init(this);
+
+        // For testing purposes
+        classes.addClass(Clazz.FIGHTER, 3, true);
+        classes.addClass(Clazz.WIZARD, 2, false);
     }
 
     public void print() {

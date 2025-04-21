@@ -5,8 +5,8 @@ import javafx.beans.property.*;
 
 public class ChosenClass {
     private final ObjectProperty<Clazz> clazz;
-    private IntegerProperty level;
-    private BooleanProperty isFirstClass;
+    private final IntegerProperty level;
+    private final BooleanProperty isFirstClass;
 
     public ChosenClass(Clazz clazz, int level) {
         this(clazz, level, false);

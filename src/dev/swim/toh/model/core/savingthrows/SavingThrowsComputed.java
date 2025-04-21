@@ -2,10 +2,13 @@ package dev.swim.toh.model.core.savingthrows;
 
 import dev.swim.toh.model.calculation.SavingThrowCalculator;
 import dev.swim.toh.model.core.ComputedBase;
+import dev.swim.toh.model.core.classes.ChosenClass;
 import dev.swim.toh.model.data.attribute.Attribute;
+import dev.swim.toh.model.data.clazz.Clazz;
 import dev.swim.toh.model.data.savingthrow.SavingThrow;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.collections.ListChangeListener;
 
 import java.util.Map;
 
@@ -76,6 +79,25 @@ public class SavingThrowsComputed extends ComputedBase {
             character.attributes.getAttributeModProperty(attribute).addListener((obs, oldAttributeMod, newAttributeMod) ->
                     savingThrowAttributeModPropertyMap.get(savingThrow).set(newAttributeMod.intValue())
             );
+            // TODO: magic mods
         }
+        // Base Saving Throws
+        character.classes.getClassList().addListener((ListChangeListener<? super ChosenClass>) c -> {
+                    while (c.next()) {
+                        if (c.wasAdded()) {
+                            for (ChosenClass chosenClass : c.getAddedSubList())
+                                // add listener for level of added class
+                                chosenClass.levelProperty().addListener((obs, oldLevel, newLevel) -> updateSavingThrowBase());
+                        }
+                    }
+                    // set base saving throws for all saving throws
+                    updateSavingThrowBase();
+                }
+        );
+    }
+
+    private void updateSavingThrowBase() {
+        for (SavingThrow savingThrow : SavingThrow.values())
+            savingThrowBasePropertyMap.get(savingThrow).set(SavingThrowCalculator.getSavingThrowBase(character, savingThrow));
     }
 }

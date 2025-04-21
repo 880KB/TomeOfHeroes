@@ -7,6 +7,5 @@ public abstract class CoreBase<T extends InputBase, U extends ComputedBase> {
 
     public void init(Character character) {
         computed.setCharacter(character);
-        computed.addListeners();
     }
 }
