@@ -85,6 +85,5 @@ public class SavingThrowsViewController extends CharacterModelAware {
 
     public void handleTestButtonClicked(ActionEvent actionEvent) {
         characterModel.print();
-        characterModel.classes.addClass(Clazz.BARBARIAN, 10);
     }
 }

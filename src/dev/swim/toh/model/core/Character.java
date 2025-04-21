@@ -1,6 +1,7 @@
 package dev.swim.toh.model.core;
 
 import dev.swim.toh.model.core.attributes.Attributes;
+import dev.swim.toh.model.core.classes.ChosenClass;
 import dev.swim.toh.model.core.classes.Classes;
 import dev.swim.toh.model.core.description.Description;
 import dev.swim.toh.model.core.savingthrows.SavingThrows;
@@ -27,7 +28,8 @@ public class Character {
 
     public void init() {
         System.out.println(">>> Init character");
-        classes.addClass(Clazz.FIGHTER, 1);
+        classes.addClass(Clazz.FIGHTER, 1, true);
+        classes.addClass(Clazz.WIZARD, 1, false);
         description.init(this);
         classes.init(this);
         attributes.init(this);
@@ -39,6 +41,8 @@ public class Character {
         System.out.println("Character");
         for (Attribute attribute : Attribute.values())
             System.out.println(attribute + ": " + attributes.getAttributeBaseProperty(attribute).getValue() + " (" + attributes.getAttributeModProperty(attribute).getValue() + ")");
+        for (ChosenClass chosenClass : classes.getClassList())
+            System.out.println(chosenClass.clazzProperty().get() + " (" + chosenClass.levelProperty().get() + ")" + (chosenClass.isFirstClassProperty().get() ? " (First Class)" : ""));
         System.out.println(description.raceProperty().get());
         System.out.println(description.ageProperty().get());
         System.out.println(description.sizeProperty().get() + " (" + description.sizeCategoryProperty().get() + ")");
