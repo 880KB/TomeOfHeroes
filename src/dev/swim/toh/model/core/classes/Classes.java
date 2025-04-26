@@ -2,6 +2,7 @@ package dev.swim.toh.model.core.classes;
 
 import dev.swim.toh.model.core.CoreBase;
 import dev.swim.toh.model.data.clazz.Clazz;
+import javafx.beans.property.IntegerProperty;
 import javafx.collections.ObservableList;
 
 import java.util.List;
@@ -34,5 +35,9 @@ public class Classes extends CoreBase<ClassesInput, ClassesComputed> {
 
     public List<Clazz> getAvailableClasses() {
         return input.getAvailableClasses();
+    }
+
+    public IntegerProperty getCharacterLevelProperty() {
+        return computed.characterLevelProperty();
     }
 }

@@ -3,6 +3,8 @@ package dev.swim.toh.ui.controller;
 import dev.swim.toh.model.core.classes.ChosenClass;
 import dev.swim.toh.model.data.clazz.Clazz;
 import dev.swim.toh.model.rules.clazz.ClassRules;
+import dev.swim.toh.model.util.javafx.Bind;
+import dev.swim.toh.model.util.javafx.Format;
 import dev.swim.toh.model.util.javafx.Layout;
 import javafx.collections.ListChangeListener;
 import javafx.scene.control.*;
@@ -20,6 +22,7 @@ public class ClassesViewController extends CharacterModelAware {
     public TableColumn<ChosenClass, Boolean> isFirstClassTableColumn;
     public TableColumn<ChosenClass, Void> actionTableColumn;
     public Button addClassButton;
+    public TextField characterLevelTextField;
 
     public void bindFields() {
         // auto sizing of table
@@ -33,6 +36,7 @@ public class ClassesViewController extends CharacterModelAware {
         classTableColumn.setCellValueFactory(cellData -> cellData.getValue().clazzProperty());
         levelTableColumn.setCellValueFactory(cellData -> cellData.getValue().levelProperty().asObject());
         isFirstClassTableColumn.setCellValueFactory(cellData -> cellData.getValue().isFirstClassProperty());
+        Bind.bindIntegerPropertyToTextField(characterModel.classes.getCharacterLevelProperty(), characterLevelTextField, Format.getIntegerFilter());
 
         // make level editable
         levelTableColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));

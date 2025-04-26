@@ -2,9 +2,12 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 
 <BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.swim.toh.ui.controller.ClassesViewController">
    <center>
@@ -18,10 +21,15 @@
       </TableView>
    </center>
    <bottom>
-      <Button fx:id="addClassButton" mnemonicParsing="false" text="Klasse hinzufügen" BorderPane.alignment="CENTER_LEFT">
+      <HBox alignment="CENTER_LEFT" spacing="5.0" BorderPane.alignment="CENTER_LEFT">
          <BorderPane.margin>
             <Insets top="5.0" />
          </BorderPane.margin>
-      </Button>
+         <children>
+            <Label text="Charakter-Stufe" />
+            <TextField fx:id="characterLevelTextField" alignment="CENTER" editable="false" prefWidth="40.0" />
+            <Button fx:id="addClassButton" mnemonicParsing="false" text="Klasse hinzufügen" />
+         </children>
+      </HBox>
    </bottom>
 </BorderPane>

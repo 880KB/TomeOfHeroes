@@ -4,7 +4,6 @@ import dev.swim.toh.model.calculation.SavingThrowCalculator;
 import dev.swim.toh.model.core.ComputedBase;
 import dev.swim.toh.model.core.classes.ChosenClass;
 import dev.swim.toh.model.data.attribute.Attribute;
-import dev.swim.toh.model.data.clazz.Clazz;
 import dev.swim.toh.model.data.savingthrow.SavingThrow;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -86,7 +85,7 @@ public class SavingThrowsComputed extends ComputedBase {
                     while (c.next()) {
                         if (c.wasAdded()) {
                             for (ChosenClass chosenClass : c.getAddedSubList())
-                                // add listener for level of added class
+                                // add listener for changed level of added class
                                 chosenClass.levelProperty().addListener((obs, oldLevel, newLevel) -> updateSavingThrowBase());
                         }
                     }
