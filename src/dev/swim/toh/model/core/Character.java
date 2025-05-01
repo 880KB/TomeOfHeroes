@@ -4,9 +4,11 @@ import dev.swim.toh.model.core.attributes.Attributes;
 import dev.swim.toh.model.core.classes.ChosenClass;
 import dev.swim.toh.model.core.classes.Classes;
 import dev.swim.toh.model.core.description.Description;
+import dev.swim.toh.model.core.feats.Feats;
 import dev.swim.toh.model.core.savingthrows.SavingThrows;
 import dev.swim.toh.model.data.attribute.Attribute;
 import dev.swim.toh.model.data.clazz.Clazz;
+import dev.swim.toh.model.data.feat.FeatName;
 import dev.swim.toh.model.data.savingthrow.SavingThrow;
 
 public class Character {
@@ -15,12 +17,14 @@ public class Character {
     public final Attributes attributes;
     public final SavingThrows savingThrows;
     public final Classes classes;
+    public final Feats feats;
 
     public Character() {
         description = new Description();
         classes = new Classes();
         attributes = new Attributes();
         savingThrows = new SavingThrows();
+        feats = new Feats();
         init();
     }
 
@@ -29,10 +33,12 @@ public class Character {
         classes.init(this);
         attributes.init(this);
         savingThrows.init(this);
+        feats.init(this);
 
         // For testing purposes
         classes.addClass(Clazz.FIGHTER, 3, true);
         classes.addClass(Clazz.WIZARD, 2, false);
+        feats.addFeat(FeatName.ALERTNESS);
     }
 
     public void print() {

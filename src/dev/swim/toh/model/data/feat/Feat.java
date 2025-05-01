@@ -12,7 +12,7 @@ public class Feat {
     private final boolean isRepeatable;
     private final boolean isRepeatableWithDifferentOption;
     // private final List<FeatOption> validOptions;
-    private final List<Clazz> grantedByClasses;
+    private final List<Clazz> isGrantedByClasses;
 
     public Feat(FeatName name,
                 String description,
@@ -20,13 +20,13 @@ public class Feat {
                 boolean isRepeatable,
                 boolean isRepeatableWithDifferentOption,
                 // List<FeatOption> validOptions,
-                List<Clazz> grantedByClasses) {
+                List<Clazz> isGrantedByClasses) {
         this.name = name;
         this.description = description;
         this.prerequisites = List.of();
         this.isRepeatable = isRepeatable;
         this.isRepeatableWithDifferentOption = isRepeatableWithDifferentOption;
         // this.validOptions = validOptions;
-        this.grantedByClasses = grantedByClasses;
+        this.isGrantedByClasses = isGrantedByClasses;
     }
 }

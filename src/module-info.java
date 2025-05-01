@@ -19,6 +19,8 @@ module dev.swim.toh {
     opens dev.swim.toh.model.core.savingthrows to javafx.fxml;
     exports dev.swim.toh.model.core.classes;
     opens dev.swim.toh.model.core.classes to javafx.fxml;
+    exports dev.swim.toh.model.core.feats;
+    opens dev.swim.toh.model.core.feats to javafx.fxml;
 
     exports dev.swim.toh.model.data.clazz;
     opens dev.swim.toh.model.data.clazz to javafx.fxml;
@@ -32,4 +34,6 @@ module dev.swim.toh {
     opens dev.swim.toh.model.data.size to javafx.fxml;
     exports dev.swim.toh.model.data.savingthrow;
     opens dev.swim.toh.model.data.savingthrow to javafx.fxml;
+    exports dev.swim.toh.model.data.feat;
+    opens dev.swim.toh.model.data.feat to javafx.fxml;
 }

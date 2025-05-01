@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 class ClassesInput extends InputBase {
 
@@ -41,7 +42,7 @@ class ClassesInput extends InputBase {
     }
 
     protected List<Clazz> getAvailableClasses() {
-        return Arrays.stream(Clazz.values())
+        return Stream.of(Clazz.values())
                 .filter(clazz -> !this.hasClass(clazz))
                 .toList();
     }

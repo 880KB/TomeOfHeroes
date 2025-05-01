@@ -25,6 +25,7 @@ public class CharacterSheetController {
         loadCard("description-card");
         loadCard("attributes-view");
         loadCard("classes-view");
+        loadCard("feats-view");
         loadCard("saving-throws-view");
     }
 
