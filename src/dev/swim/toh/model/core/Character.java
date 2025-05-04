@@ -6,7 +6,7 @@ import dev.swim.toh.model.core.classes.Classes;
 import dev.swim.toh.model.core.description.Description;
 import dev.swim.toh.model.core.feats.Feats;
 import dev.swim.toh.model.core.savingthrows.SavingThrows;
-import dev.swim.toh.model.data.attribute.Attribute;
+import dev.swim.toh.model.data.attribute.AttributeName;
 import dev.swim.toh.model.data.clazz.Clazz;
 import dev.swim.toh.model.data.feat.FeatName;
 import dev.swim.toh.model.data.savingthrow.SavingThrow;
@@ -44,8 +44,8 @@ public class Character {
     public void print() {
         System.out.println("-----");
         System.out.println("Character");
-        for (Attribute attribute : Attribute.values())
-            System.out.println(attribute + ": " + attributes.getAttributeBaseProperty(attribute).getValue() + " (" + attributes.getAttributeModProperty(attribute).getValue() + ")");
+        for (AttributeName attributeName : AttributeName.values())
+            System.out.println(attributeName + ": " + attributes.getAttributeBaseProperty(attributeName).getValue() + " (" + attributes.getAttributeModProperty(attributeName).getValue() + ")");
         for (ChosenClass chosenClass : classes.getClassList())
             System.out.println(chosenClass.clazzProperty().get() + " (" + chosenClass.levelProperty().get() + ")" + (chosenClass.isFirstClassProperty().get() ? " (First Class)" : ""));
         System.out.println(description.raceProperty().get());

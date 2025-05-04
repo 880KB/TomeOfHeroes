@@ -20,15 +20,23 @@ public class Feats extends CoreBase<FeatsInput, FeatsComputed> {
         input.addFeat(featName);
     }
 
+    public void addFeatNoPrerequisitesCheck(FeatName featName) {
+        input.addFeatNoPrerequisitesCheck(featName);
+    }
+
     public void removeFeat(ChosenFeat chosenFeat) {
         input.removeFeat(chosenFeat);
     }
 
-    public boolean hasFeat(ChosenFeat chosenFeat) {
-        return input.hasFeat(chosenFeat);
+    public boolean hasFeat(FeatName featName) {
+        return input.hasFeat(featName);
     }
 
     public List<FeatName> getAvailableFeats() {
         return input.getAvailableFeats();
+    }
+
+    public List<FeatName> getNotSelectedFeats() {
+        return input.getNotSelectedFeats();
     }
 }

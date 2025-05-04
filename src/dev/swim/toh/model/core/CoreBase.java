@@ -6,6 +6,7 @@ public abstract class CoreBase<T extends InputBase, U extends ComputedBase> {
     protected U computed;
 
     public void init(Character character) {
+        input.setCharacter(character);
         computed.setCharacter(character);
     }
 }

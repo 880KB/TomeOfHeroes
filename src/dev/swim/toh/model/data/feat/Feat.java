@@ -1,6 +1,6 @@
 package dev.swim.toh.model.data.feat;
 
-import dev.swim.toh.model.core.feats.prerequisites.Prerequisite;
+import dev.swim.toh.model.rules.feat.prerequisites.Prerequisite;
 import dev.swim.toh.model.data.clazz.Clazz;
 
 import java.util.List;
@@ -23,10 +23,30 @@ public class Feat {
                 List<Clazz> isGrantedByClasses) {
         this.name = name;
         this.description = description;
-        this.prerequisites = List.of();
+        this.prerequisites = prerequisites;
         this.isRepeatable = isRepeatable;
         this.isRepeatableWithDifferentOption = isRepeatableWithDifferentOption;
         // this.validOptions = validOptions;
         this.isGrantedByClasses = isGrantedByClasses;
+    }
+
+    public FeatName getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public List<Prerequisite> getPrerequisites() {
+        return prerequisites;
+    }
+
+    public boolean isRepeatable() {
+        return isRepeatable;
+    }
+
+    public boolean isRepeatableWithDifferentOption() {
+        return isRepeatableWithDifferentOption;
     }
 }

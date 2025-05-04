@@ -3,7 +3,7 @@ package dev.swim.toh.model.core.savingthrows;
 import dev.swim.toh.model.calculation.SavingThrowCalculator;
 import dev.swim.toh.model.core.ComputedBase;
 import dev.swim.toh.model.core.classes.ChosenClass;
-import dev.swim.toh.model.data.attribute.Attribute;
+import dev.swim.toh.model.data.attribute.AttributeName;
 import dev.swim.toh.model.data.savingthrow.SavingThrow;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -74,8 +74,8 @@ public class SavingThrowsComputed extends ComputedBase {
                     savingThrowTotalPropertyMap.get(savingThrow).set(SavingThrowCalculator.getSavingThrowTotal(character, savingThrow))
             );
             // Attribute Mods
-            Attribute attribute = SavingThrowCalculator.getAttribute(savingThrow);
-            character.attributes.getAttributeModProperty(attribute).addListener((obs, oldAttributeMod, newAttributeMod) ->
+            AttributeName attributeName = SavingThrowCalculator.getAttribute(savingThrow);
+            character.attributes.getAttributeModProperty(attributeName).addListener((obs, oldAttributeMod, newAttributeMod) ->
                     savingThrowAttributeModPropertyMap.get(savingThrow).set(newAttributeMod.intValue())
             );
             // TODO: magic mods

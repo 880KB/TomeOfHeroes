@@ -1,6 +1,8 @@
 module dev.swim.toh {
     requires javafx.controls;
     requires javafx.fxml;
+    requires org.kordamp.ikonli.javafx;
+    requires org.kordamp.ikonli.fontawesome5;
 
 
     opens dev.swim.toh.app to javafx.fxml;
@@ -8,6 +10,8 @@ module dev.swim.toh {
 
     opens dev.swim.toh.ui.controller to javafx.fxml;
     exports dev.swim.toh.ui.controller;
+    opens dev.swim.toh.ui.controller.dialog to javafx.fxml;
+    exports dev.swim.toh.ui.controller.dialog;
 
     exports dev.swim.toh.model.core;
     opens dev.swim.toh.model.core to javafx.fxml;
@@ -21,6 +25,10 @@ module dev.swim.toh {
     opens dev.swim.toh.model.core.classes to javafx.fxml;
     exports dev.swim.toh.model.core.feats;
     opens dev.swim.toh.model.core.feats to javafx.fxml;
+    exports dev.swim.toh.model.rules.feat.prerequisites;
+    opens dev.swim.toh.model.rules.feat.prerequisites to javafx.fxml;
+    exports dev.swim.toh.model.calculation;
+    opens dev.swim.toh.model.calculation to javafx.fxml;
 
     exports dev.swim.toh.model.data.clazz;
     opens dev.swim.toh.model.data.clazz to javafx.fxml;

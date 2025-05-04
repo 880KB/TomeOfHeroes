@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.swim.toh.ui.controller.dialog.FeatSelectionDialogController">
+<center>
+    <TableView fx:id="featsTableView" editable="true" fixedCellSize="26">
+        <columns>
+            <TableColumn fx:id="isSelectedColumn" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" resizable="false" />
+            <TableColumn fx:id="nameColumn" prefWidth="200" text="Talent" />
+            <TableColumn fx:id="prerequisiteColumn" prefWidth="300" text="Voraussetzungen" />
+            <TableColumn fx:id="descriptionColumn" prefWidth="400" text="Beschreibung" />
+        </columns>
+    </TableView>
+</center>
+<bottom>
+    <HBox alignment="CENTER_RIGHT" spacing="5.0" BorderPane.alignment="CENTER_LEFT">
+        <BorderPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+        </BorderPane.margin>
+        <Button mnemonicParsing="false" onAction="#onCancel" text="Abbrechen" />
+        <Button mnemonicParsing="false" onAction="#onOk" text="OK" />
+    </HBox>
+</bottom>
+</BorderPane>

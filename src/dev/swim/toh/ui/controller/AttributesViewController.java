@@ -1,6 +1,6 @@
 package dev.swim.toh.ui.controller;
 
-import dev.swim.toh.model.data.attribute.Attribute;
+import dev.swim.toh.model.data.attribute.AttributeName;
 import dev.swim.toh.model.util.javafx.Bind;
 import dev.swim.toh.model.util.javafx.Format;
 import javafx.scene.control.TextField;
@@ -23,33 +23,33 @@ public class AttributesViewController extends CharacterModelAware {
     public TextField wisdomModTextField;
     public TextField charismaModTextField;
 
-    private Map<Attribute, TextField> attributeTextFieldMap;
-    private Map<Attribute, TextField> attributeModTextFieldMap;
+    private Map<AttributeName, TextField> attributeTextFieldMap;
+    private Map<AttributeName, TextField> attributeModTextFieldMap;
 
     protected void bindFields() {
         attributeTextFieldMap = Map.of(
-                Attribute.STRENGTH, strengthTextField,
-                Attribute.DEXTERITY, dexterityTextField,
-                Attribute.CONSTITUTION, constitutionTextField,
-                Attribute.INTELLIGENCE, intelligenceTextField,
-                Attribute.WISDOM, wisdomTextField,
-                Attribute.CHARISMA, charismaTextField
+                AttributeName.STRENGTH, strengthTextField,
+                AttributeName.DEXTERITY, dexterityTextField,
+                AttributeName.CONSTITUTION, constitutionTextField,
+                AttributeName.INTELLIGENCE, intelligenceTextField,
+                AttributeName.WISDOM, wisdomTextField,
+                AttributeName.CHARISMA, charismaTextField
         );
         attributeModTextFieldMap = Map.of(
-                Attribute.STRENGTH, strengthModTextField,
-                Attribute.DEXTERITY, dexterityModTextField,
-                Attribute.CONSTITUTION, constitutionModTextField,
-                Attribute.INTELLIGENCE, intelligenceModTextField,
-                Attribute.WISDOM, wisdomModTextField,
-                Attribute.CHARISMA, charismaModTextField
+                AttributeName.STRENGTH, strengthModTextField,
+                AttributeName.DEXTERITY, dexterityModTextField,
+                AttributeName.CONSTITUTION, constitutionModTextField,
+                AttributeName.INTELLIGENCE, intelligenceModTextField,
+                AttributeName.WISDOM, wisdomModTextField,
+                AttributeName.CHARISMA, charismaModTextField
         );
 
-        for (Attribute attribute : Attribute.values()) {
-            Bind.bindIntegerPropertyToTextField(characterModel.attributes.getAttributeBaseProperty(attribute),
-                    attributeTextFieldMap.get(attribute),
+        for (AttributeName attributeName : AttributeName.values()) {
+            Bind.bindIntegerPropertyToTextField(characterModel.attributes.getAttributeBaseProperty(attributeName),
+                    attributeTextFieldMap.get(attributeName),
                     Format.getAttributeIntegerFilter());
-            Bind.bindIntegerPropertyToTextField(characterModel.attributes.getAttributeModProperty(attribute),
-                    attributeModTextFieldMap.get(attribute),
+            Bind.bindIntegerPropertyToTextField(characterModel.attributes.getAttributeModProperty(attributeName),
+                    attributeModTextFieldMap.get(attributeName),
                     Format.getIntegerFilter());
         }
     }

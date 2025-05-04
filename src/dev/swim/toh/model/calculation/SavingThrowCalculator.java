@@ -2,17 +2,17 @@ package dev.swim.toh.model.calculation;
 
 import dev.swim.toh.model.core.Character;
 import dev.swim.toh.model.core.classes.ChosenClass;
-import dev.swim.toh.model.data.attribute.Attribute;
+import dev.swim.toh.model.data.attribute.AttributeName;
 import dev.swim.toh.model.data.clazz.Clazz;
 import dev.swim.toh.model.data.savingthrow.SavingThrow;
 
 public class SavingThrowCalculator {
 
-    public static Attribute getAttribute(SavingThrow savingThrow) {
+    public static AttributeName getAttribute(SavingThrow savingThrow) {
         return switch (savingThrow) {
-            case REFLEX -> Attribute.DEXTERITY;
-            case WILL -> Attribute.WISDOM;
-            case FORTITUDE -> Attribute.CONSTITUTION;
+            case REFLEX -> AttributeName.DEXTERITY;
+            case WILL -> AttributeName.WISDOM;
+            case FORTITUDE -> AttributeName.CONSTITUTION;
         };
     }
 

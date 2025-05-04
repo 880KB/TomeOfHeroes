@@ -17,7 +17,12 @@ public class FeatsInput extends InputBase {
     }
 
     protected void addFeat(FeatName featName) {
-        if (FeatRules.canAddFeat(featList, featName))
+        if (FeatRules.canAdd(character, featName))
+            featList.add(new ChosenFeat(featName));
+    }
+
+    protected void addFeatNoPrerequisitesCheck(FeatName featName) {
+        if (FeatRules.canAddNoPrerequisitesCheck(character, featName))
             featList.add(new ChosenFeat(featName));
     }
 
@@ -26,14 +31,21 @@ public class FeatsInput extends InputBase {
             featList.remove(chosenFeat);
     }
 
-    protected boolean hasFeat(ChosenFeat chosenFeat) {
+    protected boolean hasFeat(FeatName featName) {
         return featList.stream()
-                .anyMatch(feat -> feat.nameProperty().get() == chosenFeat.nameProperty().get());
+                .anyMatch(feat -> feat.nameProperty().get() == featName);
     }
 
     protected List<FeatName> getAvailableFeats() {
         return Stream.of(FeatName.values())
-                .filter(featName -> !this.hasFeat(new ChosenFeat(featName)))
+                .filter(featName -> FeatRules.canAdd(character, featName))
+                .toList();
+    }
+
+    protected List<FeatName> getNotSelectedFeats() {
+        return Stream.of(FeatName.values())
+                // TODO: also return multi selectable feats
+                .filter(featName -> !character.feats.hasFeat(featName))
                 .toList();
     }
 }

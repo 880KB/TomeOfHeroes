@@ -1,7 +1,8 @@
 package dev.swim.toh.model.data.feat;
 
-import dev.swim.toh.model.core.feats.prerequisites.FeatPrerequisite;
-import dev.swim.toh.model.data.clazz.Clazz;
+import dev.swim.toh.model.rules.feat.prerequisites.AttributePrerequisite;
+import dev.swim.toh.model.rules.feat.prerequisites.FeatPrerequisite;
+import dev.swim.toh.model.data.attribute.AttributeName;
 
 import java.util.*;
 
@@ -20,27 +21,36 @@ public class FeatRegistry {
                 List.of()
         ));
 
-        FEAT_MAP.put(FeatName.WEAPON_FOCUS, new Feat(
-                FeatName.WEAPON_FOCUS,
-                "Beschreibung",
+        FEAT_MAP.put(FeatName.COMBAT_EXPERTISE, new Feat(
+                FeatName.COMBAT_EXPERTISE,
+                "Angriffsbonus gegen RK",
                 List.of(
-                        new FeatPrerequisite(FeatName.WEAPON_SPECIALIZATION)
+                        new AttributePrerequisite(AttributeName.INTELLIGENCE, 13)
                 ),
-                true,
-                true,
+                false,
+                false,
                 // new ArrayList<>(List.of(WeaponType.values())), // Optionen: alle Waffen
                 List.of()
         ));
 
-        FEAT_MAP.put(FeatName.SCRIBE_SCROLL, new Feat(
-                FeatName.SCRIBE_SCROLL,
-                "auch Beschreibung",
-                List.of(),
+        FEAT_MAP.put(FeatName.IMPROVED_DISARM, new Feat(
+                FeatName.IMPROVED_DISARM,
+                "+4 auf Entwaffnen",
+                List.of(
+                        new AttributePrerequisite(AttributeName.INTELLIGENCE, 13),
+                        new FeatPrerequisite(FeatName.COMBAT_EXPERTISE)
+                ),
                 false,
                 false,
                 // List.of(),
-                List.of(Clazz.WIZARD)
+                List.of()
         ));
+
+//        FEAT_MAP.put(FeatName.IMPROVED_CRITICAL, new Feat(
+//                FeatName.IMPROVED_CRITICAL,
+//                "Verbesserter kritischer Treffer",
+//
+//        ))
     }
 
     public static Feat getFeat(FeatName name) {
@@ -49,5 +59,11 @@ public class FeatRegistry {
 
     public static Collection<Feat> getAllFeats() {
         return FEAT_MAP.values();
+    }
+
+    public static Collection<Feat> getFeats(Collection<FeatName> featNames) {
+        return featNames.stream()
+                .filter(FEAT_MAP::containsKey)
+                .map(FEAT_MAP::get).toList();
     }
 }
