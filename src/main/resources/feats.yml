@@ -1,0 +1,27 @@
+feats:
+  feats:
+    - name: ALERTNESS
+      description: "You gain a +2 bonus on Listen and Spot checks."
+      repeatable: false
+      repeatableWithDifferentOption: false
+      prerequisites: []
+
+    - name: COMBAT_EXPERTISE
+      description: "You can trade attack bonus for AC."
+      repeatable: false
+      repeatableWithDifferentOption: false
+      prerequisites:
+        - type: ATTRIBUTE
+          attribute: INTELLIGENCE
+          min: 13
+
+    - name: IMPROVED_DISARM
+      description: "+4 bonus on disarm attempts."
+      repeatable: false
+      repeatableWithDifferentOption: false
+      prerequisites:
+        - type: ATTRIBUTE
+          attribute: INTELLIGENCE
+          min: 13
+        - type: FEAT
+          feat: COMBAT_EXPERTISE
