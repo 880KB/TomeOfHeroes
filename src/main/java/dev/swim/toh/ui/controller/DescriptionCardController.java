@@ -2,11 +2,13 @@ package dev.swim.toh.ui.controller;
 
 import dev.swim.toh.model.core.CharacterModel;
 import dev.swim.toh.model.data.race.Race;
+import dev.swim.toh.translation.RaceTranslator;
 import dev.swim.toh.translation.SizeTranslator;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.util.StringConverter;
 
 public class DescriptionCardController extends CharacterModelAware {
 
@@ -25,13 +27,24 @@ public class DescriptionCardController extends CharacterModelAware {
     }
 
     protected void bindFields() {
-        System.out.println(">>> Binding fields in " + this);
         ageTextField.textProperty().bindBidirectional(characterModel.description.ageProperty());
         sizeTextField.textProperty().bindBidirectional(characterModel.description.sizeProperty());
         sizeCategoryTextField.textProperty().bind(Bindings.createStringBinding(
                 () -> SizeTranslator.toGerman(characterModel.description.sizeCategoryProperty().get()),
                 characterModel.description.sizeCategoryProperty()));
+
         raceCombo.getItems().addAll(Race.values());
+        raceCombo.setConverter(new StringConverter<>() {
+            @Override
+            public String toString(Race race) {
+                return race == null ? "" : RaceTranslator.toGerman(race);
+            }
+
+            @Override
+            public Race fromString(String string) {
+                throw new UnsupportedOperationException("raceCombo is not user-editable text");
+            }
+        });
         raceCombo.valueProperty().bindBidirectional(characterModel.description.raceProperty());
     }
 }

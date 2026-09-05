@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+
+<HBox alignment="CENTER_LEFT" spacing="15.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.swim.toh.ui.controller.CharacterHeaderController">
+    <padding>
+        <Insets bottom="10.0" left="0.0" right="0.0" top="0.0" />
+    </padding>
+    <TextField fx:id="nameTextField" prefWidth="220.0" promptText="Charaktername" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+    <Label fx:id="classAndLevelLabel" style="-fx-font-size: 14px;" />
+    <Region HBox.hgrow="ALWAYS" />
+</HBox>

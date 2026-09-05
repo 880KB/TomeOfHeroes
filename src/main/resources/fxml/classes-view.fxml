@@ -27,7 +27,7 @@
          </BorderPane.margin>
          <children>
             <Label text="Charakter-Stufe" />
-            <TextField fx:id="characterLevelTextField" alignment="CENTER" editable="false" prefWidth="40.0" />
+            <TextField fx:id="characterLevelTextField" alignment="CENTER" editable="false" prefWidth="40.0" styleClass="field-computed" />
             <Button fx:id="addClassButton" mnemonicParsing="false" text="Klasse hinzufügen" />
          </children>
       </HBox>

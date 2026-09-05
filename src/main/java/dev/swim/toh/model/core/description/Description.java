@@ -13,6 +13,10 @@ public class Description extends CoreBase<DescriptionInput, DescriptionComputed>
         computed = new DescriptionComputed();
     }
 
+    public StringProperty nameProperty() {
+        return input.nameProperty();
+    }
+
     public ObjectProperty<Race> raceProperty() {
         return input.raceProperty();
     }

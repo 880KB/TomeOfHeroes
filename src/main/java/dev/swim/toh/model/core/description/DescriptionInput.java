@@ -9,9 +9,14 @@ import javafx.beans.property.StringProperty;
 
 public class DescriptionInput extends InputBase {
 
+    private final StringProperty name = new SimpleStringProperty("Neuer Charakter");
     private final ObjectProperty<Race> race = new SimpleObjectProperty<>(Race.HUMAN);
     private final StringProperty age = new SimpleStringProperty("20");
     private final StringProperty size = new SimpleStringProperty("170");
+
+    public StringProperty nameProperty() {
+        return name;
+    }
 
     public ObjectProperty<Race> raceProperty() {
         return race;

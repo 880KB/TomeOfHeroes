@@ -1,0 +1,16 @@
+/* Marks fields that show a computed/derived value the user cannot type into,
+   so they read visibly different from fields the user can actually edit. */
+.field-computed {
+    -fx-background-color: #e9ecef;
+    -fx-text-fill: #495057;
+}
+
+/* ComboBoxes are always user-editable (a selection), so they should read the same
+   as an editable text field rather than the platform's default grey-ish look. */
+.combo-box {
+    -fx-background-color: white;
+}
+.combo-box .list-cell {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+}

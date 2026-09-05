@@ -4,16 +4,12 @@ import dev.swim.toh.model.core.CharacterModel;
 import dev.swim.toh.model.data.savingthrow.SavingThrow;
 import dev.swim.toh.model.util.javafx.Bind;
 import dev.swim.toh.model.util.javafx.Format;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 import java.util.Map;
 
 public class SavingThrowsViewController extends CharacterModelAware {
-
-    public Button testButton;
 
     public TextField totalReflex;
     public TextField totalWill;
@@ -90,9 +86,5 @@ public class SavingThrowsViewController extends CharacterModelAware {
                     savingThrowMiscModTextFieldMap.get(savingThrow),
                     Format.getIntegerFilter());
         }
-    }
-
-    public void handleTestButtonClicked(ActionEvent actionEvent) {
-        characterModel.print();
     }
 }

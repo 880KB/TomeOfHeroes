@@ -22,11 +22,11 @@
          </BorderPane.margin>
          <children>
             <Label text="Max Klasse" />
-            <TextField fx:id="maxClassFeatsTextField" alignment="CENTER" prefWidth="40.0" />
+            <TextField fx:id="maxClassFeatsTextField" alignment="CENTER" editable="false" prefWidth="40.0" styleClass="field-computed" />
             <Label text="Max Kämpfer" />
-            <TextField fx:id="maxFighterFeatsTextField" alignment="CENTER" prefWidth="40.0" />
+            <TextField fx:id="maxFighterFeatsTextField" alignment="CENTER" editable="false" prefWidth="40.0" styleClass="field-computed" />
             <Label text="verfügbar" />
-            <TextField fx:id="availableFeatsCountTextField" alignment="CENTER" editable="false" prefWidth="40.0" />
+            <TextField fx:id="availableFeatsCountTextField" alignment="CENTER" editable="false" prefWidth="40.0" styleClass="field-computed" />
             <Button fx:id="addFeatButton" mnemonicParsing="false" text="Talente hinzufügen" />
          </children>
       </HBox>

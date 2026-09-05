@@ -7,6 +7,7 @@ import dev.swim.toh.model.rules.ClassRules;
 import dev.swim.toh.model.util.javafx.Bind;
 import dev.swim.toh.model.util.javafx.Format;
 import dev.swim.toh.model.util.javafx.Layout;
+import dev.swim.toh.translation.ClazzTranslator;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -45,6 +46,13 @@ public class ClassesViewController extends CharacterModelAware {
         // bind items
         classesTableView.setItems(characterModel.classes.getClassList());
         classTableColumn.setCellValueFactory(cellData -> cellData.getValue().clazzProperty());
+        classTableColumn.setCellFactory(col -> new TableCell<>() {
+            @Override
+            protected void updateItem(Clazz clazz, boolean empty) {
+                super.updateItem(clazz, empty);
+                setText(empty || clazz == null ? null : ClazzTranslator.toGerman(clazz));
+            }
+        });
         levelTableColumn.setCellValueFactory(cellData -> cellData.getValue().levelProperty().asObject());
         isFirstClassTableColumn.setCellValueFactory(cellData -> cellData.getValue().isFirstClassProperty());
         Bind.bindIntegerPropertyToTextField(characterModel.classes.getCharacterLevelProperty(), characterLevelTextField, Format.getIntegerFilter());

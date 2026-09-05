@@ -5,6 +5,7 @@ import dev.swim.toh.ui.controller.dialog.FeatSelectionDialogController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
@@ -14,7 +15,9 @@ import java.io.IOException;
 public class CharacterSheetController {
 
     @FXML
-    public VBox cardsContainer;
+    public VBox headerContainer;
+    @FXML
+    public VBox sectionsContainer;
 
     private final CharacterModel characterModel;
 
@@ -24,27 +27,21 @@ public class CharacterSheetController {
 
     @FXML
     public void initialize() {
-        loadCard("description-card");
-        loadCard("attributes-view");
-        loadCard("saving-throws-view");
-        Node classNode = getNode("classes-view");
-        Node featsView = getNode("feats-view");
-        HBox hBox = new HBox();
-        hBox.getChildren().addAll(classNode, featsView);
-        hBox.setSpacing(10);
-        cardsContainer.getChildren().add(hBox);
+        headerContainer.getChildren().addAll(getNode("character-header"), getNode("description-card"));
+
+        HBox kampf = new HBox(15, getNode("attributes-view"), getNode("saving-throws-view"));
+
+        VBox classesBox = new VBox(5, sectionLabel("Klassen"), getNode("classes-view"));
+        VBox featsBox = new VBox(5, sectionLabel("Talente"), getNode("feats-view"));
+        HBox talente = new HBox(15, classesBox, featsBox);
+
+        sectionsContainer.getChildren().addAll(kampf, talente);
     }
 
-    private void loadCard(String cardName) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/" + cardName + ".fxml"));
-            loader.setControllerFactory(controllerFactory());
-            Node node = loader.load();
-            cardsContainer.getChildren().add(node);
-        }
-        catch (IOException e) {
-            throw new RuntimeException("Failed to load " + cardName, e);
-        }
+    private Label sectionLabel(String text) {
+        Label label = new Label(text);
+        label.setStyle("-fx-font-weight: bold; -fx-font-size: 13px;");
+        return label;
     }
 
     private Node getNode(String cardName) {
@@ -59,12 +56,14 @@ public class CharacterSheetController {
     }
 
     /**
-     * Every card controller only needs this tab's CharacterModel, so they are constructed
+     * Every card controller only needs this character's CharacterModel, so they are constructed
      * directly here instead of being resolved as Spring-managed singletons - each open character
-     * tab needs its own independent set of controller instances.
+     * needs its own independent set of controller instances.
      */
     private Callback<Class<?>, Object> controllerFactory() {
         return controllerClass -> {
+            if (controllerClass == CharacterHeaderController.class)
+                return new CharacterHeaderController(characterModel);
             if (controllerClass == DescriptionCardController.class)
                 return new DescriptionCardController(characterModel);
             if (controllerClass == AttributesViewController.class)

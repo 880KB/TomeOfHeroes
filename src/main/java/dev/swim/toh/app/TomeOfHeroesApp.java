@@ -18,8 +18,11 @@ public class TomeOfHeroesApp extends Application {
         fxmlLoader.setControllerFactory(controllerClass -> new MainWindowController(characterModelFactory));
 
         Parent root = fxmlLoader.load();
+        Scene scene = new Scene(root, 1400, 1000);
+        scene.getStylesheets().add(getClass().getResource("/css/app.css").toExternalForm());
+
         stage.setTitle("Tome of Heroes");
-        stage.setScene(new Scene(root, 1400, 1000));
+        stage.setScene(scene);
         stage.show();
     }
 }

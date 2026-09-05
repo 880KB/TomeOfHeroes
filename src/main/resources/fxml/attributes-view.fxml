@@ -5,8 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<TitledPane fx:id="attributesView" collapsible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Attribute" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.swim.toh.ui.controller.AttributesViewController">
-    <GridPane>
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.swim.toh.ui.controller.AttributesViewController">
         <columnConstraints>
             <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="30.0" />
             <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="50.0" />
@@ -46,11 +45,10 @@
       <TextField fx:id="intelligenceTextField" alignment="CENTER" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
       <TextField fx:id="wisdomTextField" alignment="CENTER" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
       <TextField fx:id="charismaTextField" alignment="CENTER" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-        <TextField fx:id="strengthModTextField" alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-        <TextField fx:id="dexterityModTextField" alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-        <TextField fx:id="constitutionModTextField" alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-      <TextField fx:id="intelligenceModTextField" alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-      <TextField fx:id="wisdomModTextField" alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-      <TextField fx:id="charismaModTextField" alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-    </GridPane>
-</TitledPane>
+        <TextField fx:id="strengthModTextField" alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" styleClass="field-computed" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+        <TextField fx:id="dexterityModTextField" alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" styleClass="field-computed" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+        <TextField fx:id="constitutionModTextField" alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" styleClass="field-computed" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+      <TextField fx:id="intelligenceModTextField" alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" styleClass="field-computed" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+      <TextField fx:id="wisdomModTextField" alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" styleClass="field-computed" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+      <TextField fx:id="charismaModTextField" alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" styleClass="field-computed" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+</GridPane>
