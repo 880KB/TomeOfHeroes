@@ -10,6 +10,6 @@ public record FeatPrerequisite(String requiredFeat) implements Prerequisite {
 
     @Override
     public String toString() {
-        return requiredFeat == null ? "" : "TODO " + requiredFeat;
+        return requiredFeat == null ? "" : requiredFeat;
     }
 }

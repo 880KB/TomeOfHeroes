@@ -1,11 +1,9 @@
 package dev.swim.toh.ui.controller;
 
 import dev.swim.toh.model.core.CharacterModel;
-import dev.swim.toh.ui.controller.dialog.FeatSelectionDialogController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
@@ -30,18 +28,9 @@ public class CharacterSheetController {
         headerContainer.getChildren().addAll(getNode("character-header"), getNode("description-card"));
 
         HBox kampf = new HBox(15, getNode("attributes-view"), getNode("saving-throws-view"));
-
-        VBox classesBox = new VBox(5, sectionLabel("Klassen"), getNode("classes-view"));
-        VBox featsBox = new VBox(5, sectionLabel("Talente"), getNode("feats-view"));
-        HBox talente = new HBox(15, classesBox, featsBox);
+        HBox talente = new HBox(15, getNode("classes-view"), getNode("feats-view"));
 
         sectionsContainer.getChildren().addAll(kampf, talente);
-    }
-
-    private Label sectionLabel(String text) {
-        Label label = new Label(text);
-        label.setStyle("-fx-font-weight: bold; -fx-font-size: 13px;");
-        return label;
     }
 
     private Node getNode(String cardName) {
@@ -74,8 +63,6 @@ public class CharacterSheetController {
                 return new ClassesViewController(characterModel);
             if (controllerClass == FeatsViewController.class)
                 return new FeatsViewController(characterModel);
-            if (controllerClass == FeatSelectionDialogController.class)
-                return new FeatSelectionDialogController();
             try {
                 return controllerClass.getDeclaredConstructor().newInstance();
             } catch (ReflectiveOperationException e) {

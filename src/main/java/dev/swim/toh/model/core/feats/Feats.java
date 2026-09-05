@@ -55,6 +55,10 @@ public class Feats extends CoreBase<FeatsInput, FeatsComputed> {
         return input.hasFeat(feat);
     }
 
+    public Feat getFeatById(String id) {
+        return featRepository.getFeat(id);
+    }
+
     public List<String> getAvailableFeats() {
         return input.getAvailableFeats();
     }

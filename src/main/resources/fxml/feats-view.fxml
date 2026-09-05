@@ -5,12 +5,23 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.swim.toh.ui.controller.FeatsViewController">
+   <top>
+      <HBox alignment="CENTER_LEFT" spacing="5.0" BorderPane.alignment="CENTER_LEFT">
+         <BorderPane.margin>
+            <Insets bottom="5.0" />
+         </BorderPane.margin>
+         <children>
+            <Label style="-fx-font-weight: bold; -fx-font-size: 13px;" text="Talente" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button fx:id="addFeatButton" mnemonicParsing="false" styleClass="icon-button" />
+         </children>
+      </HBox>
+   </top>
    <center>
-      <TableView fx:id="featsTableView" editable="true" fixedCellSize="28.0" maxHeight="140.0">
+      <TableView fx:id="featsTableView" editable="true" fixedCellSize="28.0">
         <columns>
-            <TableColumn fx:id="nameColumn" editable="false" prefWidth="200.0" text="Talent" />
-            <TableColumn fx:id="isRepeatableTableColumn" prefWidth="75.0" sortType="DESCENDING" text="mehrfach" />
-            <TableColumn fx:id="isGrantedByClassTableColumn" prefWidth="86.0" text="durch Klasse" />
+            <TableColumn fx:id="nameColumn" editable="false" minWidth="120.0" prefWidth="200.0" text="Talent" />
+            <TableColumn fx:id="isRepeatableTableColumn" editable="false" prefWidth="75.0" resizable="false" text="mehrfach" />
             <TableColumn fx:id="removeFeatTableColumn" maxWidth="35.0" minWidth="35.0" prefWidth="35.0" resizable="false" />
         </columns>
       </TableView>
@@ -27,7 +38,6 @@
             <TextField fx:id="maxFighterFeatsTextField" alignment="CENTER" editable="false" prefWidth="40.0" styleClass="field-computed" />
             <Label text="verfügbar" />
             <TextField fx:id="availableFeatsCountTextField" alignment="CENTER" editable="false" prefWidth="40.0" styleClass="field-computed" />
-            <Button fx:id="addFeatButton" mnemonicParsing="false" text="Talente hinzufügen" />
          </children>
       </HBox>
    </bottom>

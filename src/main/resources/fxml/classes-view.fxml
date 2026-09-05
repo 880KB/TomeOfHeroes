@@ -8,14 +8,27 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 
 <BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.swim.toh.ui.controller.ClassesViewController">
+   <top>
+      <HBox alignment="CENTER_LEFT" spacing="5.0" BorderPane.alignment="CENTER_LEFT">
+         <BorderPane.margin>
+            <Insets bottom="5.0" />
+         </BorderPane.margin>
+         <children>
+            <Label style="-fx-font-weight: bold; -fx-font-size: 13px;" text="Klassen" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button fx:id="addClassButton" mnemonicParsing="false" styleClass="icon-button" />
+         </children>
+      </HBox>
+   </top>
    <center>
-      <TableView fx:id="classesTableView" editable="true" fixedCellSize="28.0" maxHeight="140.0">
+      <TableView fx:id="classesTableView" editable="true" fixedCellSize="28.0">
         <columns>
-          <TableColumn fx:id="classTableColumn" editable="false" prefWidth="75.0" text="Klasse" />
-          <TableColumn fx:id="levelTableColumn" prefWidth="75.0" sortType="DESCENDING" text="Stufe" />
-            <TableColumn fx:id="isFirstClassTableColumn" prefWidth="75.0" text="1. Klasse" />
+          <TableColumn fx:id="classTableColumn" editable="false" minWidth="100.0" prefWidth="100.0" text="Klasse" />
+          <TableColumn fx:id="levelTableColumn" prefWidth="75.0" resizable="false" sortType="DESCENDING" text="Stufe" />
+            <TableColumn fx:id="isFirstClassTableColumn" prefWidth="75.0" resizable="false" text="1. Klasse" />
             <TableColumn fx:id="actionTableColumn" prefWidth="40.0" resizable="false" />
         </columns>
       </TableView>
@@ -28,7 +41,6 @@
          <children>
             <Label text="Charakter-Stufe" />
             <TextField fx:id="characterLevelTextField" alignment="CENTER" editable="false" prefWidth="40.0" styleClass="field-computed" />
-            <Button fx:id="addClassButton" mnemonicParsing="false" text="Klasse hinzufügen" />
          </children>
       </HBox>
    </bottom>

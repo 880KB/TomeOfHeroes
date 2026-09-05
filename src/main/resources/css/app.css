@@ -14,3 +14,20 @@
     -fx-background-color: white;
     -fx-text-fill: black;
 }
+
+/* Transparent, minimally-padded button used for a small icon-only action
+   (add/delete row) inside a table cell or section header. */
+.icon-button {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-padding: 2 4 2 4;
+    -fx-alignment: CENTER;
+}
+
+/* Table cell text sits visually a touch high within its row; nudge every cell down 1px.
+   Icon-button cells counteract this with their own -1px icon offset (see FontIcon.setTranslateY
+   in ClassesViewController/FeatsViewController), so the two together cancel out for icons and
+   only the text cells actually move. */
+.table-cell {
+    -fx-translate-y: 1;
+}

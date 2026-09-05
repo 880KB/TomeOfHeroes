@@ -22,8 +22,29 @@ class ClassesInput extends InputBase {
     }
 
     protected void addClass(Clazz clazz, int level, boolean isFirstClass) {
-        if (ClassRules.canAddClass(classList, clazz))
-            classList.add(new ChosenClass(clazz, level, isFirstClass));
+        if (ClassRules.canAddClass(classList, clazz)) {
+            ChosenClass chosenClass = new ChosenClass(clazz, level, isFirstClass);
+            enforceExactlyOneFirstClass(chosenClass);
+            classList.add(chosenClass);
+        }
+    }
+
+    /**
+     * Keeps "first class" acting like a radio button: marking one class as first unmarks every
+     * other class, and unmarking the only first class immediately re-marks it (there is always
+     * exactly one first class as long as the list isn't empty) - this also makes the checkbox in
+     * the UI behave correctly without the view needing to know about this rule.
+     */
+    private void enforceExactlyOneFirstClass(ChosenClass chosenClass) {
+        chosenClass.isFirstClassProperty().addListener((obs, oldValue, newValue) -> {
+            if (newValue) {
+                for (ChosenClass other : classList)
+                    if (other != chosenClass)
+                        other.isFirstClassProperty().set(false);
+            } else if (!classList.isEmpty() && classList.stream().noneMatch(c -> c.isFirstClassProperty().get())) {
+                classList.getFirst().isFirstClassProperty().set(true);
+            }
+        });
     }
 
     protected void removeClass(ChosenClass chosenClass) {

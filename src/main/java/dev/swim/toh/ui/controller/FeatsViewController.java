@@ -6,7 +6,9 @@ import dev.swim.toh.model.data.attribute.AttributeName;
 import dev.swim.toh.model.data.feat.Feat;
 import dev.swim.toh.model.util.javafx.Bind;
 import dev.swim.toh.model.util.javafx.Layout;
-import dev.swim.toh.ui.controller.dialog.FeatSelectionDialogController;
+import dev.swim.toh.translation.PrerequisiteFormatter;
+import dev.swim.toh.ui.controller.dialog.SelectionDialogController;
+import dev.swim.toh.ui.controller.dialog.SelectionItem;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,12 +23,12 @@ import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.IOException;
+import java.util.stream.Collectors;
 
 public class FeatsViewController extends CharacterModelAware {
     public TableView<SelectedFeat> featsTableView;
     public TableColumn<SelectedFeat, Feat> nameColumn;
-    public TableColumn isRepeatableTableColumn;
-    public TableColumn isGrantedByClassTableColumn;
+    public TableColumn<SelectedFeat, Feat> isRepeatableTableColumn;
     public TableColumn<SelectedFeat, Void> removeFeatTableColumn;
     public Button addFeatButton;
     public TextField maxClassFeatsTextField;
@@ -49,6 +51,12 @@ public class FeatsViewController extends CharacterModelAware {
                         Layout.updateTableHeight(featsTableView));
         characterModel.feats.getFeatList().addListener((ListChangeListener<SelectedFeat>) c -> Layout.updateTableHeight(featsTableView));
 
+        // the other two columns are fixed-width (resizable="false" in FXML), so JavaFX's own
+        // constrained resize policy gives 100% of whatever width is left to the only resizable
+        // column (feat name) - correctly, since it accounts for the table's real available
+        // width itself, unlike a manually computed subtraction
+        featsTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
         // bind items
         featsTableView.setItems(characterModel.feats.getFeatList());
         nameColumn.setCellValueFactory(cellData -> cellData.getValue().featProperty());
@@ -65,9 +73,22 @@ public class FeatsViewController extends CharacterModelAware {
                 }
             }
         });
-        // TODO: not only for INT
-        characterModel.attributes.getAttributeBaseProperty(AttributeName.INTELLIGENCE)
-                .addListener((obs, oldBase, newBase) -> featsTableView.refresh());
+        isRepeatableTableColumn.setCellValueFactory(cellData -> cellData.getValue().featProperty());
+        isRepeatableTableColumn.setCellFactory(cellData -> new TableCell<>() {
+            @Override
+            protected void updateItem(Feat feat, boolean empty) {
+                super.updateItem(feat, empty);
+                setText(empty || feat == null ? null : (feat.getRepeatType().isRepeatable() ? "Ja" : "Nein"));
+            }
+        });
+
+        // re-check the red/black prerequisite highlighting whenever anything a prerequisite could
+        // depend on changes: any attribute (not just INT) or the set of selected feats itself
+        // (e.g. removing a feat that another feat's FeatPrerequisite depends on)
+        for (AttributeName attributeName : AttributeName.values())
+            characterModel.attributes.getAttributeBaseProperty(attributeName)
+                    .addListener((obs, oldBase, newBase) -> featsTableView.refresh());
+        characterModel.feats.getFeatList().addListener((ListChangeListener<SelectedFeat>) c -> featsTableView.refresh());
 
         // delete button in each row
         removeFeatTableColumn.setCellFactory(col -> new TableCell<>() {
@@ -76,9 +97,10 @@ public class FeatsViewController extends CharacterModelAware {
                 FontIcon deleteIcon = new FontIcon(FontAwesomeSolid.TRASH_ALT);
                 deleteIcon.setIconSize(14);
                 deleteIcon.setIconColor(Paint.valueOf("gray"));
+                deleteIcon.setTranslateY(-1);
                 deleteButton.setGraphic(deleteIcon);
                 deleteButton.setOnAction(event -> characterModel.feats.removeFeat(getTableRow().getItem()));
-                deleteButton.setStyle("-fx-background-color: transparent; -fx-cursor: hand;");
+                deleteButton.getStyleClass().add("icon-button");
             }
 
             @Override
@@ -99,11 +121,16 @@ public class FeatsViewController extends CharacterModelAware {
         Bind.bindIntegerPropertyToTextField(characterModel.feats.maxFighterBonusFeatsProperty(), maxFighterFeatsTextField);
 
         // "add feat" button
+        FontIcon addIcon = new FontIcon(FontAwesomeSolid.PLUS);
+        addIcon.setIconSize(14);
+        addIcon.setIconColor(Paint.valueOf("gray"));
+        addIcon.setTranslateY(-1);
+        addFeatButton.setGraphic(addIcon);
         addFeatButton.setOnAction(event -> showFeatSelectionDialog());
     }
 
     private void showFeatSelectionDialog() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/dialog/feat-selection-dialog.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/dialog/selection-dialog.fxml"));
         try {
             Parent page = loader.load();
             Stage dialogStage = new Stage();
@@ -112,17 +139,28 @@ public class FeatsViewController extends CharacterModelAware {
             dialogStage.initOwner(this.featsTableView.getScene().getWindow());
             dialogStage.setScene(new Scene(page));
 
-            FeatSelectionDialogController dialogController = loader.getController();
+            SelectionDialogController<Feat> dialogController = loader.getController();
             dialogController.setDialogStage(dialogStage);
-            dialogController.setSelectableFeats(characterModel.feats.getNotSelectedFeats());
+            dialogController.setItems(characterModel.feats.getNotSelectedFeats().stream()
+                    .map(this::toSelectionItem)
+                    .toList());
 
             dialogStage.showAndWait();
 
-            dialogController.getSelectedFeats().forEach(characterModel.feats::addFeatNoPrerequisitesCheck);
+            dialogController.getSelectedValues().forEach(characterModel.feats::addFeatNoPrerequisitesCheck);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private SelectionItem<Feat> toSelectionItem(Feat feat) {
+        boolean satisfied = characterModel.feats.prerequisitesSatisfied(feat);
+        String reason = satisfied ? null : feat.getPrerequisites().stream()
+                .filter(prerequisite -> !prerequisite.isSatisfiedBy(characterModel))
+                .map(prerequisite -> PrerequisiteFormatter.toGerman(prerequisite, characterModel.feats))
+                .collect(Collectors.joining(", "));
+        return new SelectionItem<>(feat, feat.getName(), satisfied, reason);
     }
 }
 

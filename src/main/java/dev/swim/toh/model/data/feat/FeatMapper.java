@@ -17,8 +17,7 @@ public class FeatMapper {
                 def.getType(),
                 def.getRepeatType(),
                 def.getShortDescription(),
-                mapPrerequisites(def.getPrerequisites()),
-                List.of()
+                mapPrerequisites(def.getPrerequisites())
         );
     }
 
