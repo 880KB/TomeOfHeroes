@@ -40,7 +40,7 @@ public class CharacterSheetController {
 
     private void loadCard(String cardName) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/resources/fxml/" + cardName + ".fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/" + cardName + ".fxml"));
             loader.setControllerFactory(context::getBean);
             Node node = loader.load();
             cardsContainer.getChildren().add(node);
@@ -52,7 +52,7 @@ public class CharacterSheetController {
 
     private Node getNode(String cardName) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/resources/fxml/" + cardName + ".fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/" + cardName + ".fxml"));
             loader.setControllerFactory(context::getBean);
             return loader.load();
         }

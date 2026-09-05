@@ -15,6 +15,10 @@ class ClassesComputed extends ComputedBase {
 
     @Override
     public void addListeners() {
+        // add listener for changed level of already-present classes
+        for (ChosenClass chosenClass : characterModel.classes.getClassList())
+            chosenClass.levelProperty().addListener((obs, oldLevel, newLevel) -> updateCharacterLevel());
+
         characterModel.classes.getClassList().addListener((ListChangeListener<? super ChosenClass>) c -> {
                     while (c.next()) {
                         if (c.wasAdded()) {
@@ -27,6 +31,8 @@ class ClassesComputed extends ComputedBase {
                     updateCharacterLevel();
                 }
         );
+        // set initial character level
+        updateCharacterLevel();
     }
 
     public IntegerProperty characterLevelProperty() {

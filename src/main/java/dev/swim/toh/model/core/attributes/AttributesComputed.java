@@ -32,6 +32,9 @@ public class AttributesComputed extends ComputedBase {
             characterModel.attributes.getAttributeBaseProperty(attributeName).addListener((obs, oldAttribute, newAttribute) ->
                     attributeModPropertyMap.get(attributeName).set(AttributeCalculator.getAttributeMod(newAttribute.intValue()))
             );
+            attributeModPropertyMap.get(attributeName).set(
+                    AttributeCalculator.getAttributeMod(characterModel.attributes.getAttributeBaseProperty(attributeName).get())
+            );
         }
     }
 }

@@ -78,9 +78,14 @@ public class SavingThrowsComputed extends ComputedBase {
             characterModel.attributes.getAttributeModProperty(attributeName).addListener((obs, oldAttributeMod, newAttributeMod) ->
                     savingThrowAttributeModPropertyMap.get(savingThrow).set(newAttributeMod.intValue())
             );
+            savingThrowAttributeModPropertyMap.get(savingThrow).set(characterModel.attributes.getAttributeModProperty(attributeName).get());
             // TODO: magic mods
         }
         // Base Saving Throws
+        for (ChosenClass chosenClass : characterModel.classes.getClassList())
+            // add listener for changed level of already-present class
+            chosenClass.levelProperty().addListener((obs, oldLevel, newLevel) -> updateSavingThrowBase());
+
         characterModel.classes.getClassList().addListener((ListChangeListener<? super ChosenClass>) c -> {
                     while (c.next()) {
                         if (c.wasAdded()) {
@@ -93,10 +98,14 @@ public class SavingThrowsComputed extends ComputedBase {
                     updateSavingThrowBase();
                 }
         );
+        // set initial base and total saving throws (attribute mod above must be set first)
+        updateSavingThrowBase();
     }
 
     private void updateSavingThrowBase() {
-        for (SavingThrow savingThrow : SavingThrow.values())
+        for (SavingThrow savingThrow : SavingThrow.values()) {
             savingThrowBasePropertyMap.get(savingThrow).set(SavingThrowCalculator.getSavingThrowBase(characterModel, savingThrow));
+            savingThrowTotalPropertyMap.get(savingThrow).set(SavingThrowCalculator.getSavingThrowTotal(characterModel, savingThrow));
+        }
     }
 }

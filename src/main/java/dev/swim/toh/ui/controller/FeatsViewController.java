@@ -105,7 +105,7 @@ public class FeatsViewController extends CharacterModelAware {
     }
 
     private void showFeatSelectionDialog() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/resources/fxml/dialog/feat-selection-dialog.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/dialog/feat-selection-dialog.fxml"));
         try {
             Parent page = loader.load();
             Stage dialogStage = new Stage();

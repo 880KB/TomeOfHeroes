@@ -20,6 +20,16 @@ public class FeatsComputed extends ComputedBase {
         characterModel.classes.getCharacterLevelProperty().addListener((obs, oldLevel, newLevel) ->
                 maxClassFeats.set(FeatCalculator.getMaxClassFeats(newLevel.intValue()))
         );
+        maxClassFeats.set(FeatCalculator.getMaxClassFeats(characterModel.classes.getCharacterLevelProperty().get()));
+
+        // max fighter bonus feats for already-present classes
+        for (ChosenClass chosenClass : characterModel.classes.getClassList()) {
+            if (chosenClass.clazzProperty().get() == Clazz.FIGHTER) {
+                chosenClass.levelProperty().addListener((obs, oldLevel, newLevel) ->
+                        updateMaxFighterBonusFeats(newLevel.intValue()));
+                updateMaxFighterBonusFeats(chosenClass.levelProperty().get());
+            }
+        }
 
         // TODO: max fighter bonus feats
         characterModel.classes.getClassList().addListener((ListChangeListener<? super ChosenClass>) c -> {
@@ -50,6 +60,7 @@ public class FeatsComputed extends ComputedBase {
         maxFighterBonusFeats.addListener((obs, oldMaxFighterBonusFeats, newMaxFighterBonusFeats) ->
                 maxFeats.set(maxClassFeats.intValue() + newMaxFighterBonusFeats.intValue())
         );
+        maxFeats.set(maxClassFeats.get() + maxFighterBonusFeats.get());
     };
 
     protected IntegerProperty maxFeatsProperty() {
