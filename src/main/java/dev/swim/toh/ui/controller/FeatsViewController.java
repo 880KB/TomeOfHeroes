@@ -19,11 +19,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
 import org.kordamp.ikonli.javafx.FontIcon;
-import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
-@Component
 public class FeatsViewController extends CharacterModelAware {
     public TableView<SelectedFeat> featsTableView;
     public TableColumn<SelectedFeat, Feat> nameColumn;

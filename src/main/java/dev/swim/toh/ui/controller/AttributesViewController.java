@@ -6,11 +6,9 @@ import dev.swim.toh.model.util.javafx.Bind;
 import dev.swim.toh.model.util.javafx.Format;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
-@Component
 public class AttributesViewController extends CharacterModelAware {
 
     public TextField strengthTextField;

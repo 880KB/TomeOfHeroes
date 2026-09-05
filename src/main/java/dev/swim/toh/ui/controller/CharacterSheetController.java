@@ -1,27 +1,24 @@
 package dev.swim.toh.ui.controller;
 
 import dev.swim.toh.model.core.CharacterModel;
+import dev.swim.toh.ui.controller.dialog.FeatSelectionDialogController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import org.springframework.context.ApplicationContext;
-import org.springframework.stereotype.Component;
+import javafx.util.Callback;
 
 import java.io.IOException;
 
-@Component
 public class CharacterSheetController {
 
     @FXML
     public VBox cardsContainer;
 
-    private final ApplicationContext context;
     private final CharacterModel characterModel;
 
-    public CharacterSheetController(ApplicationContext context, CharacterModel characterModel) {
-        this.context = context;
+    public CharacterSheetController(CharacterModel characterModel) {
         this.characterModel = characterModel;
     }
 
@@ -41,7 +38,7 @@ public class CharacterSheetController {
     private void loadCard(String cardName) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/" + cardName + ".fxml"));
-            loader.setControllerFactory(context::getBean);
+            loader.setControllerFactory(controllerFactory());
             Node node = loader.load();
             cardsContainer.getChildren().add(node);
         }
@@ -53,12 +50,39 @@ public class CharacterSheetController {
     private Node getNode(String cardName) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/" + cardName + ".fxml"));
-            loader.setControllerFactory(context::getBean);
+            loader.setControllerFactory(controllerFactory());
             return loader.load();
         }
         catch (IOException e) {
             throw new RuntimeException("Failed to load " + cardName, e);
         }
+    }
+
+    /**
+     * Every card controller only needs this tab's CharacterModel, so they are constructed
+     * directly here instead of being resolved as Spring-managed singletons - each open character
+     * tab needs its own independent set of controller instances.
+     */
+    private Callback<Class<?>, Object> controllerFactory() {
+        return controllerClass -> {
+            if (controllerClass == DescriptionCardController.class)
+                return new DescriptionCardController(characterModel);
+            if (controllerClass == AttributesViewController.class)
+                return new AttributesViewController(characterModel);
+            if (controllerClass == SavingThrowsViewController.class)
+                return new SavingThrowsViewController(characterModel);
+            if (controllerClass == ClassesViewController.class)
+                return new ClassesViewController(characterModel);
+            if (controllerClass == FeatsViewController.class)
+                return new FeatsViewController(characterModel);
+            if (controllerClass == FeatSelectionDialogController.class)
+                return new FeatSelectionDialogController();
+            try {
+                return controllerClass.getDeclaredConstructor().newInstance();
+            } catch (ReflectiveOperationException e) {
+                throw new RuntimeException("No factory registered for controller " + controllerClass, e);
+            }
+        };
     }
 
     public CharacterModel getCharacterModel() {

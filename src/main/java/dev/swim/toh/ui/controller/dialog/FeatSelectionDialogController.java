@@ -11,13 +11,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-@Component
 public class FeatSelectionDialogController {
     public TableView<FeatSelection> featsTableView;
     public TableColumn<FeatSelection, Boolean> isSelectedColumn;

@@ -3,20 +3,19 @@ package dev.swim.toh.model.core.feats;
 import dev.swim.toh.model.core.CoreBase;
 import dev.swim.toh.model.data.feat.Feat;
 import dev.swim.toh.model.data.feat.FeatRepository;
+import dev.swim.toh.model.rules.FeatRules;
 import javafx.beans.property.IntegerProperty;
 import javafx.collections.ObservableList;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
 public class Feats extends CoreBase<FeatsInput, FeatsComputed> {
 
     private final FeatRepository featRepository;
 
-    public Feats(FeatRepository featRepository, FeatsInput input) {
+    public Feats(FeatRepository featRepository, FeatRules featRules) {
         this.featRepository = featRepository;
-        this.input = input;
+        this.input = new FeatsInput(featRules);
         this.computed = new FeatsComputed();
     }
 

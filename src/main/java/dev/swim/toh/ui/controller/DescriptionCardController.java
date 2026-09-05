@@ -7,9 +7,7 @@ import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import org.springframework.stereotype.Component;
 
-@Component
 public class DescriptionCardController extends CharacterModelAware {
 
     @FXML public TextField ageTextField;

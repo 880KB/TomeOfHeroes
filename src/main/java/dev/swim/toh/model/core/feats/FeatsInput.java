@@ -5,11 +5,9 @@ import dev.swim.toh.model.data.feat.Feat;
 import dev.swim.toh.model.rules.FeatRules;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
 public class FeatsInput extends InputBase {
 
     private final FeatRules featRules;

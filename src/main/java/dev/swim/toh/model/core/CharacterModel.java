@@ -8,10 +8,10 @@ import dev.swim.toh.model.core.feats.Feats;
 import dev.swim.toh.model.core.savingthrows.SavingThrows;
 import dev.swim.toh.model.data.attribute.AttributeName;
 import dev.swim.toh.model.data.clazz.Clazz;
+import dev.swim.toh.model.data.feat.FeatRepository;
 import dev.swim.toh.model.data.savingthrow.SavingThrow;
-import org.springframework.stereotype.Component;
+import dev.swim.toh.model.rules.FeatRules;
 
-@Component
 public class CharacterModel {
 
     public final Description description = new Description();
@@ -20,12 +20,12 @@ public class CharacterModel {
     public final Classes classes  = new Classes();
     public final Feats feats;
 
-    public CharacterModel(Feats feats) {
+    public CharacterModel(FeatRepository featRepository, FeatRules featRules) {
         description.init(this);
         classes.init(this);
         attributes.init(this);
         savingThrows.init(this);
-        this.feats = feats;
+        this.feats = new Feats(featRepository, featRules);
         feats.init(this);
 
         initTestData();
