@@ -8,7 +8,6 @@ import dev.swim.toh.model.core.feats.Feats;
 import dev.swim.toh.model.core.savingthrows.SavingThrows;
 import dev.swim.toh.model.data.attribute.AttributeName;
 import dev.swim.toh.model.data.clazz.Clazz;
-import dev.swim.toh.model.data.feat.FeatName;
 import dev.swim.toh.model.data.savingthrow.SavingThrow;
 import org.springframework.stereotype.Component;
 
@@ -35,7 +34,7 @@ public class CharacterModel {
     public void initTestData() {
         classes.addClass(Clazz.FIGHTER, 3, true);
         classes.addClass(Clazz.WIZARD, 2, false);
-        feats.addFeat(FeatName.ALERTNESS);
+        feats.addFeat("ALERTNESS");
     }
 
     public void print() {

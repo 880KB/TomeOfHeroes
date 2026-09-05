@@ -1,4 +1,4 @@
-package dev.swim.toh.model.rules.clazz;
+package dev.swim.toh.model.rules;
 
 import dev.swim.toh.model.core.classes.ChosenClass;
 import dev.swim.toh.model.data.clazz.Clazz;

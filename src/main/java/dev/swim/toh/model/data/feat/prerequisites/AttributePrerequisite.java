@@ -1,4 +1,4 @@
-package dev.swim.toh.model.rules.feat.prerequisites;
+package dev.swim.toh.model.data.feat.prerequisites;
 
 import dev.swim.toh.model.core.CharacterModel;
 import dev.swim.toh.model.data.attribute.AttributeName;

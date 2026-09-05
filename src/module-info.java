@@ -7,6 +7,7 @@ module dev.swim.toh {
     requires spring.beans;
     requires spring.boot;
     requires spring.boot.autoconfigure;
+    requires jakarta.validation;
 
     // --- App Package ---
     opens dev.swim.toh.app to javafx.fxml, spring.core, spring.beans;
@@ -41,8 +42,8 @@ module dev.swim.toh {
     opens dev.swim.toh.model.core.feats to javafx.fxml, spring.core, spring.beans;
     exports dev.swim.toh.model.core.feats;
 
-    opens dev.swim.toh.model.rules.feat.prerequisites to javafx.fxml, spring.core, spring.beans;
-    exports dev.swim.toh.model.rules.feat.prerequisites;
+    opens dev.swim.toh.model.data.feat.prerequisites to javafx.fxml, spring.core, spring.beans;
+    exports dev.swim.toh.model.data.feat.prerequisites;
 
     opens dev.swim.toh.model.calculation to javafx.fxml, spring.core, spring.beans;
     exports dev.swim.toh.model.calculation;
@@ -70,6 +71,6 @@ module dev.swim.toh {
     exports dev.swim.toh.model.data.feat;
 
     // --- Rules Packages ---
-    opens dev.swim.toh.model.rules.feat to javafx.fxml, spring.core, spring.beans;
-    exports dev.swim.toh.model.rules.feat;
+    opens dev.swim.toh.model.rules to javafx.fxml, spring.core, spring.beans;
+    exports dev.swim.toh.model.rules;
 }

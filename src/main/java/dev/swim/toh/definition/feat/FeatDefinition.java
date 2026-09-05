@@ -1,47 +1,57 @@
 package dev.swim.toh.definition.feat;
 
-import dev.swim.toh.model.data.feat.FeatName;
+import dev.swim.toh.model.data.feat.FeatType;
+import dev.swim.toh.model.data.feat.RepeatType;
 
 import java.util.List;
 
 public class FeatDefinition {
-    private FeatName name;
-    private String description;
-    private boolean repeatable;
-    private boolean repeatableWithDifferentOption;
+    private String id;
+    private String name;
+    private FeatType type;
+    private RepeatType repeatType;
+    private String shortDescription;
     private List<PrerequisiteDefinition> prerequisites;
 
     // getters / setters
-    public FeatName getName() {
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
         return name;
     }
 
-    public void setName(FeatName name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public FeatType getType() {
+        return type;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setType(FeatType type) {
+        this.type = type;
     }
 
-    public boolean isRepeatable() {
-        return repeatable;
+    public RepeatType getRepeatType() {
+        return repeatType;
     }
 
-    public void setRepeatable(boolean repeatable) {
-        this.repeatable = repeatable;
+    public void setRepeatType(RepeatType repeatType) {
+        this.repeatType = repeatType;
     }
 
-    public boolean isRepeatableWithDifferentOption() {
-        return repeatableWithDifferentOption;
+    public String getShortDescription() {
+        return shortDescription;
     }
 
-    public void setRepeatableWithDifferentOption(boolean repeatableWithDifferentOption) {
-        this.repeatableWithDifferentOption = repeatableWithDifferentOption;
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
     }
 
     public List<PrerequisiteDefinition> getPrerequisites() {

@@ -1,7 +1,6 @@
 package dev.swim.toh.definition.feat;
 
 import dev.swim.toh.model.data.attribute.AttributeName;
-import dev.swim.toh.model.data.feat.FeatName;
 
 public class PrerequisiteDefinition {
 
@@ -18,7 +17,7 @@ public class PrerequisiteDefinition {
     private Integer min;
 
     // FEAT
-    private FeatName feat;
+    private String feat;
 
     // getters / setters
     public Type getType() {
@@ -45,11 +44,11 @@ public class PrerequisiteDefinition {
         this.min = min;
     }
 
-    public FeatName getFeat() {
+    public String getFeat() {
         return feat;
     }
 
-    public void setFeat(FeatName feat) {
+    public void setFeat(String feat) {
         this.feat = feat;
     }
 }

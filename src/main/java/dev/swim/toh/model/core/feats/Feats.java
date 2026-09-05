@@ -2,7 +2,6 @@ package dev.swim.toh.model.core.feats;
 
 import dev.swim.toh.model.core.CoreBase;
 import dev.swim.toh.model.data.feat.Feat;
-import dev.swim.toh.model.data.feat.FeatName;
 import dev.swim.toh.model.data.feat.FeatRepository;
 import javafx.beans.property.IntegerProperty;
 import javafx.collections.ObservableList;
@@ -21,7 +20,7 @@ public class Feats extends CoreBase<FeatsInput, FeatsComputed> {
         this.computed = new FeatsComputed();
     }
 
-    public ObservableList<ChosenFeat> getFeatList() {
+    public ObservableList<SelectedFeat> getFeatList() {
         return input.getFeatList();
     }
 
@@ -37,33 +36,35 @@ public class Feats extends CoreBase<FeatsInput, FeatsComputed> {
         return computed.maxFighterBonusFeatsProperty();
     }
 
-    public void addFeat(FeatName featName) {
-        input.addFeat(featName);
+    public void addFeat(String id) {
+        input.addFeat(featRepository.getFeat(id));
     }
 
-    public void addFeatNoPrerequisitesCheck(FeatName featName) {
-        input.addFeatNoPrerequisitesCheck(featName);
+    public void addFeatNoPrerequisitesCheck(Feat feat) {
+        input.addFeatNoPrerequisitesCheck(feat);
     }
 
-    public void removeFeat(ChosenFeat chosenFeat) {
-        input.removeFeat(chosenFeat);
+    public void removeFeat(SelectedFeat selectedFeat) {
+        input.removeFeat(selectedFeat);
     }
 
-    public boolean hasFeat(FeatName featName) {
-        return input.hasFeat(featName);
+    public boolean hasFeat(String id) {
+        return input.hasFeat(featRepository.getFeat(id));
     }
 
-    public List<FeatName> getAvailableFeats() {
+    public boolean hasFeat(Feat feat) {
+        return input.hasFeat(feat);
+    }
+
+    public List<String> getAvailableFeats() {
         return input.getAvailableFeats();
     }
 
-    public boolean prerequisitesSatisfied(FeatName featName) {
-        return input.prerequisitesSatisfied(featName);
+    public boolean prerequisitesSatisfied(Feat feat) {
+        return input.prerequisitesSatisfied(feat);
     }
 
     public List<Feat> getNotSelectedFeats() {
-        return input.getNotSelectedFeats().stream()
-                .map(featRepository::getFeat)
-                .toList();
+        return input.getNotSelectedFeats();
     }
 }

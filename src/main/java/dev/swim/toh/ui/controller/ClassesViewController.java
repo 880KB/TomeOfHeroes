@@ -3,7 +3,7 @@ package dev.swim.toh.ui.controller;
 import dev.swim.toh.model.core.CharacterModel;
 import dev.swim.toh.model.core.classes.ChosenClass;
 import dev.swim.toh.model.data.clazz.Clazz;
-import dev.swim.toh.model.rules.clazz.ClassRules;
+import dev.swim.toh.model.rules.ClassRules;
 import dev.swim.toh.model.util.javafx.Bind;
 import dev.swim.toh.model.util.javafx.Format;
 import dev.swim.toh.model.util.javafx.Layout;

@@ -1,14 +1,13 @@
 package dev.swim.toh.model.core.feats;
 
 import dev.swim.toh.model.core.InputBase;
-import dev.swim.toh.model.data.feat.FeatName;
-import dev.swim.toh.model.rules.feat.FeatRules;
+import dev.swim.toh.model.data.feat.Feat;
+import dev.swim.toh.model.rules.FeatRules;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 @Component
 public class FeatsInput extends InputBase {
@@ -19,48 +18,41 @@ public class FeatsInput extends InputBase {
         this.featRules = featRules;
     }
 
-    private final ObservableList<ChosenFeat> featList = FXCollections.observableArrayList();
+    private final ObservableList<SelectedFeat> featList = FXCollections.observableArrayList();
 
-    protected ObservableList<ChosenFeat> getFeatList() {
+    protected ObservableList<SelectedFeat> getFeatList() {
         return featList;
     }
 
-    protected void addFeat(FeatName featName) {
-        if (featRules.canAdd(characterModel, featName))
-            featList.add(new ChosenFeat(featName));
+    protected void addFeat(Feat feat) {
+        if (featRules.canAdd(characterModel, feat))
+            featList.add(new SelectedFeat(feat));
     }
 
-    protected void addFeatNoPrerequisitesCheck(FeatName featName) {
-        if (featRules.canAddNoPrerequisitesCheck(characterModel, featName))
-            featList.add(new ChosenFeat(featName));
+    protected void addFeatNoPrerequisitesCheck(Feat feat) {
+        if (featRules.canAddNoPrerequisitesCheck(characterModel, feat))
+            featList.add(new SelectedFeat(feat));
     }
 
-    protected void removeFeat(ChosenFeat chosenFeat) {
-        if (chosenFeat != null)
-            featList.remove(chosenFeat);
+    protected void removeFeat(SelectedFeat selectedFeat) {
+        if (selectedFeat != null)
+            featList.remove(selectedFeat);
     }
 
-    protected boolean hasFeat(FeatName featName) {
+    protected boolean hasFeat(Feat feat) {
         return featList.stream()
-                .anyMatch(feat -> feat.nameProperty().get() == featName);
+                .anyMatch(selected -> selected.featProperty().get().getId().equals(feat.getId()));
     }
 
-    // TODO: move check to FeatRules
-    protected List<FeatName> getAvailableFeats() {
-        return Stream.of(FeatName.values())
-                .filter(featName -> featRules.canAdd(characterModel, featName))
-                .toList();
+    protected List<String> getAvailableFeats() {
+        return featRules.getAvailableFeats(characterModel);
     }
 
-    // TODO: move check to FeatRules
-    protected List<FeatName> getNotSelectedFeats() {
-        return Stream.of(FeatName.values())
-                // TODO: also return multi selectable feats
-                .filter(featName -> !characterModel.feats.hasFeat(featName))
-                .toList();
+    protected List<Feat> getNotSelectedFeats() {
+        return featRules.getNotSelectedFeats(characterModel);
     }
 
-    protected boolean prerequisitesSatisfied(FeatName featName) {
-        return featRules.prerequisitesSatisfied(characterModel, featName);
+    protected boolean prerequisitesSatisfied(Feat feat) {
+        return featRules.prerequisitesSatisfied(characterModel, feat);
     }
 }

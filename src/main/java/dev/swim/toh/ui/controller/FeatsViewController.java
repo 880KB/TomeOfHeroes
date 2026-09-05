@@ -1,9 +1,9 @@
 package dev.swim.toh.ui.controller;
 
 import dev.swim.toh.model.core.CharacterModel;
-import dev.swim.toh.model.core.feats.ChosenFeat;
+import dev.swim.toh.model.core.feats.SelectedFeat;
 import dev.swim.toh.model.data.attribute.AttributeName;
-import dev.swim.toh.model.data.feat.FeatName;
+import dev.swim.toh.model.data.feat.Feat;
 import dev.swim.toh.model.util.javafx.Bind;
 import dev.swim.toh.model.util.javafx.Layout;
 import dev.swim.toh.ui.controller.dialog.FeatSelectionDialogController;
@@ -25,11 +25,11 @@ import java.io.IOException;
 
 @Component
 public class FeatsViewController extends CharacterModelAware {
-    public TableView<ChosenFeat> featsTableView;
-    public TableColumn<ChosenFeat, FeatName> nameColumn;
+    public TableView<SelectedFeat> featsTableView;
+    public TableColumn<SelectedFeat, Feat> nameColumn;
     public TableColumn isRepeatableTableColumn;
     public TableColumn isGrantedByClassTableColumn;
-    public TableColumn<ChosenFeat, Void> removeFeatTableColumn;
+    public TableColumn<SelectedFeat, Void> removeFeatTableColumn;
     public Button addFeatButton;
     public TextField maxClassFeatsTextField;
     public TextField maxFighterFeatsTextField;
@@ -49,20 +49,20 @@ public class FeatsViewController extends CharacterModelAware {
         featsTableView.itemsProperty()
                 .addListener((observable, oldList, newList) ->
                         Layout.updateTableHeight(featsTableView));
-        characterModel.feats.getFeatList().addListener((ListChangeListener<ChosenFeat>) c -> Layout.updateTableHeight(featsTableView));
+        characterModel.feats.getFeatList().addListener((ListChangeListener<SelectedFeat>) c -> Layout.updateTableHeight(featsTableView));
 
         // bind items
         featsTableView.setItems(characterModel.feats.getFeatList());
-        nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+        nameColumn.setCellValueFactory(cellData -> cellData.getValue().featProperty());
         nameColumn.setCellFactory(cellData -> new TableCell<>() {
             @Override
-            protected void updateItem(FeatName item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || item == null) {
+            protected void updateItem(Feat feat, boolean empty) {
+                super.updateItem(feat, empty);
+                if (empty || feat == null) {
                     setText(null);
                 } else {
-                    setText(item.toString());
-                    boolean prerequisitesSatisfied = characterModel.feats.prerequisitesSatisfied(item);
+                    setText(feat.getName());
+                    boolean prerequisitesSatisfied = characterModel.feats.prerequisitesSatisfied(feat);
                     setTextFill(prerequisitesSatisfied ? Color.BLACK : Color.RED);
                 }
             }
@@ -94,6 +94,8 @@ public class FeatsViewController extends CharacterModelAware {
             }
         });
 
+        featsTableView.sort();
+
         // int values
         Bind.bindIntegerPropertyToTextField(characterModel.feats.maxClassFeatsProperty(), maxClassFeatsTextField);
         Bind.bindIntegerPropertyToTextField(characterModel.feats.maxFighterBonusFeatsProperty(), maxFighterFeatsTextField);
@@ -118,7 +120,7 @@ public class FeatsViewController extends CharacterModelAware {
 
             dialogStage.showAndWait();
 
-            dialogController.getSelectedFeats().forEach(feat -> characterModel.feats.addFeatNoPrerequisitesCheck(feat.getName()));
+            dialogController.getSelectedFeats().forEach(characterModel.feats::addFeatNoPrerequisitesCheck);
 
         } catch (IOException e) {
             e.printStackTrace();

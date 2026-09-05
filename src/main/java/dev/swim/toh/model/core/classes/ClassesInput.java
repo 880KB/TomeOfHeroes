@@ -2,7 +2,7 @@ package dev.swim.toh.model.core.classes;
 
 import dev.swim.toh.model.core.InputBase;
 import dev.swim.toh.model.data.clazz.Clazz;
-import dev.swim.toh.model.rules.clazz.ClassRules;
+import dev.swim.toh.model.rules.ClassRules;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

@@ -2,9 +2,9 @@ package dev.swim.toh.model.data.feat;
 
 import dev.swim.toh.definition.feat.FeatDefinition;
 import dev.swim.toh.definition.feat.PrerequisiteDefinition;
-import dev.swim.toh.model.rules.feat.prerequisites.AttributePrerequisite;
-import dev.swim.toh.model.rules.feat.prerequisites.FeatPrerequisite;
-import dev.swim.toh.model.rules.feat.prerequisites.Prerequisite;
+import dev.swim.toh.model.data.feat.prerequisites.AttributePrerequisite;
+import dev.swim.toh.model.data.feat.prerequisites.FeatPrerequisite;
+import dev.swim.toh.model.data.feat.prerequisites.Prerequisite;
 
 import java.util.List;
 
@@ -12,11 +12,12 @@ public class FeatMapper {
 
     public static Feat toFeat(FeatDefinition def) {
         return new Feat(
+                def.getId(),
                 def.getName(),
-                def.getDescription(),
+                def.getType(),
+                def.getRepeatType(),
+                def.getShortDescription(),
                 mapPrerequisites(def.getPrerequisites()),
-                def.isRepeatable(),
-                def.isRepeatableWithDifferentOption(),
                 List.of()
         );
     }
