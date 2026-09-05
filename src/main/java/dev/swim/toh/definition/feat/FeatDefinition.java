@@ -12,6 +12,7 @@ public class FeatDefinition {
     private RepeatType repeatType;
     private String shortDescription;
     private List<PrerequisiteDefinition> prerequisites;
+    private List<BenefitDefinition> benefits;
 
     // getters / setters
     public String getId() {
@@ -60,5 +61,13 @@ public class FeatDefinition {
 
     public void setPrerequisites(List<PrerequisiteDefinition> prerequisites) {
         this.prerequisites = prerequisites;
+    }
+
+    public List<BenefitDefinition> getBenefits() {
+        return benefits;
+    }
+
+    public void setBenefits(List<BenefitDefinition> benefits) {
+        this.benefits = benefits;
     }
 }

@@ -11,7 +11,7 @@ public class Feat {
     private final RepeatType repeatType;
     private final String shortDescription;
     private final List<Prerequisite> prerequisites;
-    // private final List<Benefit> benefits;
+    private final List<Benefit> benefits;
     // private final List<FeatOption> validOptions;
 
     public Feat(String id,
@@ -19,7 +19,8 @@ public class Feat {
                 FeatType type,
                 RepeatType repeatType,
                 String shortDescription,
-                List<Prerequisite> prerequisites
+                List<Prerequisite> prerequisites,
+                List<Benefit> benefits
                 // List<FeatOption> validOptions
     ) {
         this.id = id;
@@ -28,6 +29,7 @@ public class Feat {
         this.repeatType = repeatType;
         this.shortDescription = shortDescription;
         this.prerequisites = prerequisites;
+        this.benefits = benefits;
         // this.validOptions = validOptions;
     }
 
@@ -53,5 +55,9 @@ public class Feat {
 
     public List<Prerequisite> getPrerequisites() {
         return prerequisites;
+    }
+
+    public List<Benefit> getBenefits() {
+        return benefits;
     }
 }

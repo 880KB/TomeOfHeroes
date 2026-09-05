@@ -1,11 +1,17 @@
 package dev.swim.toh.model.core;
 
+import dev.swim.toh.model.core.armorclass.ArmorClass;
 import dev.swim.toh.model.core.attributes.Attributes;
+import dev.swim.toh.model.core.bonus.BonusPool;
 import dev.swim.toh.model.core.classes.ChosenClass;
 import dev.swim.toh.model.core.classes.Classes;
 import dev.swim.toh.model.core.description.Description;
 import dev.swim.toh.model.core.feats.Feats;
+import dev.swim.toh.model.core.feats.FeatsValidation;
+import dev.swim.toh.model.core.hitpoints.HitPoints;
+import dev.swim.toh.model.core.initiative.Initiative;
 import dev.swim.toh.model.core.savingthrows.SavingThrows;
+import dev.swim.toh.model.core.spellresistance.SpellResistance;
 import dev.swim.toh.model.data.attribute.AttributeName;
 import dev.swim.toh.model.data.clazz.Clazz;
 import dev.swim.toh.model.data.feat.FeatRepository;
@@ -19,14 +25,24 @@ public class CharacterModel {
     public final SavingThrows savingThrows = new SavingThrows();
     public final Classes classes  = new Classes();
     public final Feats feats;
+    public final FeatsValidation featsValidation = new FeatsValidation();
+    public final ArmorClass armorClass = new ArmorClass();
+    public final Initiative initiative = new Initiative();
+    public final HitPoints hitPoints = new HitPoints();
+    public final SpellResistance spellResistance = new SpellResistance();
+    public final BonusPool bonusPool = new BonusPool();
 
     public CharacterModel(FeatRepository featRepository, FeatRules featRules) {
         description.init(this);
         classes.init(this);
         attributes.init(this);
         savingThrows.init(this);
+        armorClass.init(this);
+        initiative.init(this);
+        hitPoints.init(this);
         this.feats = new Feats(featRepository, featRules);
         feats.init(this);
+        featsValidation.setCharacter(this);
 
         initTestData();
     }

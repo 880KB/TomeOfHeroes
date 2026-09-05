@@ -24,17 +24,26 @@ public class FeatsInput extends InputBase {
 
     protected void addFeat(Feat feat) {
         if (featRules.canAdd(characterModel, feat))
-            featList.add(new SelectedFeat(feat));
+            addSelectedFeat(feat);
     }
 
     protected void addFeatNoPrerequisitesCheck(Feat feat) {
         if (featRules.canAddNoPrerequisitesCheck(characterModel, feat))
-            featList.add(new SelectedFeat(feat));
+            addSelectedFeat(feat);
     }
 
     protected void removeFeat(SelectedFeat selectedFeat) {
-        if (selectedFeat != null)
+        if (selectedFeat != null) {
             featList.remove(selectedFeat);
+            selectedFeat.featProperty().get().getBenefits()
+                    .forEach(benefit -> benefit.remove(characterModel, selectedFeat));
+        }
+    }
+
+    private void addSelectedFeat(Feat feat) {
+        SelectedFeat selectedFeat = new SelectedFeat(feat);
+        featList.add(selectedFeat);
+        feat.getBenefits().forEach(benefit -> benefit.apply(characterModel, selectedFeat));
     }
 
     protected boolean hasFeat(Feat feat) {

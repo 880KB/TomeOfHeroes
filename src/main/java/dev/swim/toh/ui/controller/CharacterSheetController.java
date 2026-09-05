@@ -27,10 +27,12 @@ public class CharacterSheetController {
     public void initialize() {
         headerContainer.getChildren().addAll(getNode("character-header"), getNode("description-card"));
 
-        HBox kampf = new HBox(15, getNode("attributes-view"), getNode("saving-throws-view"));
+        VBox combatValues = new VBox(10, getNode("hit-points-view"), getNode("armor-class-view"), getNode("initiative-view"));
+        HBox kampf = new HBox(15, getNode("attributes-view"), combatValues);
+        Node savingThrows = getNode("saving-throws-view");
         HBox talente = new HBox(15, getNode("classes-view"), getNode("feats-view"));
 
-        sectionsContainer.getChildren().addAll(kampf, talente);
+        sectionsContainer.getChildren().addAll(kampf, savingThrows, talente);
     }
 
     private Node getNode(String cardName) {
@@ -57,6 +59,12 @@ public class CharacterSheetController {
                 return new DescriptionCardController(characterModel);
             if (controllerClass == AttributesViewController.class)
                 return new AttributesViewController(characterModel);
+            if (controllerClass == HitPointsViewController.class)
+                return new HitPointsViewController(characterModel);
+            if (controllerClass == ArmorClassViewController.class)
+                return new ArmorClassViewController(characterModel);
+            if (controllerClass == InitiativeViewController.class)
+                return new InitiativeViewController(characterModel);
             if (controllerClass == SavingThrowsViewController.class)
                 return new SavingThrowsViewController(characterModel);
             if (controllerClass == ClassesViewController.class)

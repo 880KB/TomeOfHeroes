@@ -18,7 +18,7 @@
       </HBox>
    </top>
    <center>
-      <TableView fx:id="featsTableView" editable="true" fixedCellSize="28.0">
+      <TableView fx:id="featsTableView" editable="true" fixedCellSize="28.0" BorderPane.alignment="TOP_CENTER">
         <columns>
             <TableColumn fx:id="nameColumn" editable="false" minWidth="120.0" prefWidth="200.0" text="Talent" />
             <TableColumn fx:id="isRepeatableTableColumn" editable="false" prefWidth="75.0" resizable="false" text="mehrfach" />

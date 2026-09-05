@@ -25,8 +25,7 @@ public class FeatRules {
 
     public List<Feat> getNotSelectedFeats(CharacterModel characterModel) {
         return featRepository.getAll().stream()
-                // TODO: also return multi selectable feats
-                .filter(feat -> !characterModel.feats.hasFeat(feat))
+                .filter(feat -> notSelectedOrRepeatable(characterModel, feat))
                 .toList();
     }
 

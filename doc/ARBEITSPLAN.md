@@ -30,22 +30,42 @@ Stand: siehe letzten Commit. Diese Datei hält fest, was in den letzten Claude-C
 - "+"-Buttons zum Hinzufügen sitzen jetzt neben der Abschnittsüberschrift statt in der Kennzahlen-Zeile.
 - Icon-Konsistenz zwischen Tabellen (einheitliches FontAwesome-Icon-Set statt Icon/Emoji-Mix).
 
+**Regelkonformitäts-Anzeige (Violation-Konzept)**
+- `dev.swim.toh.model.validation.Violation`/`Severity`: generisches Format für "Charakter verletzt gerade eine Regel", mit Nachricht + Bezug auf das betroffene Objekt.
+- `FeatsValidation` (in `model.core.feats`) prüft kontinuierlich (nicht nur beim Hinzufügen) alle gewählten Talente gegen `FeatRules.prerequisitesSatisfied()` — reagiert auf Änderungen an Attributen und der Talentliste selbst.
+- `FeatsViewController` zeigt nicht mehr nur rote Schrift bei unerfüllter Voraussetzung, sondern auch einen Tooltip mit der konkreten Begründung.
+
+**Kampfwerte: TP, RK, Initiative**
+- Neue Domänen ins Modell aufgenommen: `HitPoints` (TP aktuell/max), `ArmorClass` (RK mit voller Formel: Basis 10 + Rüstungs-/Schild-/Ablenkungsbonus + natürl. Rüstung + GE-Mod. + Größen-Mod. + Sonst., dazu RK Berührung und Auf dem falschen Fuß als abgeleitete Teilmengen derselben Formel), `Initiative` (GE-Mod. + Sonst.), `SpellResistance` (manueller Platzhalter, noch ohne Formel).
+- UI: eigene Karten pro Wert, alle vier untereinander neben der Attribute-Tabelle platziert (`hit-points-view`, `armor-class-view`, `initiative-view`); Rettungswürfe dafür in eine eigene Zeile darunter verschoben.
+- `SizeCalculator.getAcModifier(Size)` neu für den Größen-Modifikator auf die RK.
+
+**Bonus-Aggregator (erster Schnitt)**
+- `dev.swim.toh.model.core.bonus`: `BonusPool` (pro Charakter, nach `BonusTarget` partitioniert), `Bonus`-Record (Typ, Wert, Quelle), `BonusType`-Enum mit den D&D-3.5-Bonustypen und ihrer Stacking-Regel (`stacks()` — nur Dodge/Untyped stacken mit sich selbst).
+- `BonusCalculator.getTotal()`: reine Funktion, gruppiert nach Typ, nicht-stackende Typen nehmen das Maximum, stackende Typen die Summe.
+- Verankert an TP-Max (`HitPointsComputed` liest `bonusPool.getBonuses(HpBonusTarget.MAX_HIT_POINTS)`), noch nicht an RK/Rettungswürfen.
+- `Feat.benefits` reaktiviert: `BonusBenefit` trägt beim Hinzufügen eines Talents einen Bonus in den Pool ein und entfernt ihn beim Löschen wieder (`FeatsInput`). `feats.yml` hat dafür ein `benefits:`-Schema bekommen; Toughness gibt jetzt tatsächlich +3 TP und stackt korrekt bei mehrfacher Wahl.
+- Bugfix dabei gefunden: `FeatRules.getNotSelectedFeats()` blendete jedes bereits gewählte Talent aus dem Auswahldialog aus, auch wiederholbare (`STACKS`/`MULTIPLE`) — Toughness ließ sich dadurch nur einmal wählen. Nutzt jetzt dieselbe `notSelectedOrRepeatable()`-Prüfung wie `canAdd()`.
+- Bugfix: Klassen-/Talente-Tabellen standen in ihrem `BorderPane` vertikal zentriert statt oben, sobald die jeweils andere Tabelle höher wurde (`BorderPane`-Center-Default) — `BorderPane.alignment="TOP_CENTER"` auf beiden `TableView`s ergänzt.
+
 ## Nächste Schritte (priorisiert)
 
 1. **Persistenz (Speichern/Laden)** — aktuell geht jeder Charakter beim Schließen des Tabs/der App verloren. `jackson-databind` liegt schon ungenutzt in der `pom.xml`. Größter Hebel für tatsächliche Nutzbarkeit.
-2. **Trefferpunkte (HP) & Rüstungsklasse (AC)** — fehlen im Modell komplett, die zwei grundlegendsten Kampfwerte. Vorschlag: erstmal ohne volles Ausrüstungssystem, mit manuellen Bonusfeldern (Muster wie der "Sonst."-Modifikator bei Rettungswürfen).
-3. **Tests** für `AttributeCalculator`/`FeatCalculator`/`ClassRules`/`FeatRules` — reine Funktionen, aktuell keine Testabdeckung, lohnt sich vor weiterem Ausbau der Regellogik.
-4. **Kleinere offene Fäden** (siehe auch CLAUDE.md "Bekannte, bewusst unfertige Stellen"):
-   - Magie-Mod bei Rettungswürfen ist fest auf 0 (kein Ausrüstungs-/Zaubersystem dahinter).
+2. **Bonus-Aggregator erweitern** — bisher nur an TP-Max verankert. Als Nächstes: RK-Teilkomponenten (Rüstungs-/Schild-/Ablenkungsbonus etc. sollen ebenfalls Bonus-Ziele werden, nicht nur reine Eingabefelder) und der "Sonstiges"-Modifikator bei Rettungswürfen.
+3. **Violation-Konzept auf weitere Bereiche ausweiten** — aktuell nur Talente. Kandidaten: Klassen (z. B. Multiklassen-Regeln), sobald mehr Regellogik existiert.
+4. **Trefferpunkte/HP-Berechnung vertiefen** — TP-Basis ist noch ein reines manuelles Eingabefeld (kein Trefferwürfel-System, kein KO-Mod. pro Stufe). RK/Initiative/Zauberresistenz ebenso: alle Teilwerte (Rüstungsbonus, Naturrüstung, …) sind manuelle Felder ohne Ausrüstungs- oder Zaubersystem dahinter — bewusst so, siehe CLAUDE.md.
+5. **Tests** für `AttributeCalculator`/`FeatCalculator`/`ClassRules`/`FeatRules`/`BonusCalculator`/`ArmorClassCalculator` — reine Funktionen, aktuell keine Testabdeckung, lohnt sich vor weiterem Ausbau der Regellogik.
+6. **Kleinere offene Fäden** (siehe auch CLAUDE.md "Bekannte, bewusst unfertige Stellen"):
    - "verfügbar"-Feld bei Talenten zeigt nie etwas (nie verdrahtet).
    - "Talent durch Klasse gewährt"-Konzept fehlt komplett (bräuchte Talent-Slot-Buchhaltung: welcher gewählte Talent kam aus einem normalen Slot vs. einem Klassen-Bonusslot).
-   - Talentregeln aus `doc/rules-feats.md` nur teilweise umgesetzt: Rassen-Bonustalent (Menschen, Stufe 1), Kämpfer-Bonustalentliste als eigene Filterregel, tatsächliche mechanische Auswirkungen ("Benefits") eines Talents — aktuell nur Beschreibungstext, keine Wirkung.
+   - Rassen-Bonustalent (Menschen, Stufe 1) und Kämpfer-Bonustalentliste als eigene Filterregel fehlen noch.
    - Nur 4 Talente in `feats.yml` — Dateninhalt ist noch sehr dünn.
-5. **Später, auf Rückstellung:** Sprachumschalter DE/EN (echtes i18n-Setup nötig, aktueller Text noch zu instabil, um sich zu lohnen).
+7. **Später, auf Rückstellung:** Sprachumschalter DE/EN (echtes i18n-Setup nötig, aktueller Text noch zu instabil, um sich zu lohnen).
 
 ## Arbeitsweise, die sich bewährt hat
 
 - Bei jeder FXML/Layout-Änderung: App über `mvn javafx:run` im Hintergrund starten und auf Fehler im Log prüfen, bevor der Nutzer es sieht.
-- Bei nicht direkt sichtbaren Layout-Bugs (Scrollbalken, Größenberechnung): lieber ein kleines Diagnose-Programm schreiben, das echte Werte misst (`Platform.runLater` + `Node.lookup(...)`), statt Pixelwerte zu raten oder mit Puffern zu arbeiten — Letzteres wurde vom Nutzer explizit und zu Recht abgelehnt.
 - Änderungen werden erst nach ausdrücklicher Bestätigung committet, nicht automatisch.
 - Der Nutzer bevorzugt klare, direkte Kritik/Rückfragen ("sieht bescheuert aus") — darauf mit echter Ursachenanalyse reagieren, nicht mit weiteren Trial-and-Error-Anpassungen.
+- Neue Architekturkonzepte (z. B. Violation, Bonus-Aggregator) erst als kleinen, für sich nutzbaren ersten Schnitt bauen, dann erst verallgemeinern — nicht gleich die volle Abstraktion für alle künftigen Anwendungsfälle vorwegnehmen.
+- Der Charakterbogen soll perspektivisch nicht nur zum Charakterbau, sondern auch fürs eigentliche Spielen taugen (z. B. TP aktuell vs. max) — bei neuen Werten prüfen, ob sie diese "Baustein vs. Spielzustand"-Unterscheidung auch brauchen.

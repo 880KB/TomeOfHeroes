@@ -6,6 +6,7 @@ feats:
       repeatType: SINGLE
       shortDescription: "+2 bonus on Listen and Spot checks"
       prerequisites: []
+      benefits: []
 
     - id: COMBAT_EXPERTISE
       name: Combat Expertise
@@ -16,6 +17,7 @@ feats:
         - type: ATTRIBUTE
           attribute: INTELLIGENCE
           min: 13
+      benefits: []
 
     - id: IMPROVED_DISARM
       name: Improved Disarm
@@ -28,6 +30,7 @@ feats:
           min: 13
         - type: FEAT
           feat: COMBAT_EXPERTISE
+      benefits: []
 
     - id: TOUGHNESS
       name: Toughness
@@ -35,4 +38,9 @@ feats:
       repeatType: STACKS
       shortDescription: "+3 hit points"
       prerequisites: []
+      benefits:
+        - type: BONUS
+          target: MAX_HIT_POINTS
+          bonusType: UNTYPED
+          value: 3
 

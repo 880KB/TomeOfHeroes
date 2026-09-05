@@ -12,4 +12,18 @@ public class SizeCalculator {
         };
     }
 
+    public static int getAcModifier(Size size) {
+        return switch (size) {
+            case FINE -> 8;
+            case DIMINUTIVE -> 4;
+            case TINY -> 2;
+            case SMALL -> 1;
+            case MEDIUM -> 0;
+            case LARGE -> -1;
+            case HUGE -> -2;
+            case GARGANTUAN -> -4;
+            case COLOSSAL -> -8;
+        };
+    }
+
 }

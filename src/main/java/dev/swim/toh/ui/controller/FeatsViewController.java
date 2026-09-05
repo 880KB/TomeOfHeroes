@@ -2,10 +2,10 @@ package dev.swim.toh.ui.controller;
 
 import dev.swim.toh.model.core.CharacterModel;
 import dev.swim.toh.model.core.feats.SelectedFeat;
-import dev.swim.toh.model.data.attribute.AttributeName;
 import dev.swim.toh.model.data.feat.Feat;
 import dev.swim.toh.model.util.javafx.Bind;
 import dev.swim.toh.model.util.javafx.Layout;
+import dev.swim.toh.model.validation.Violation;
 import dev.swim.toh.translation.PrerequisiteFormatter;
 import dev.swim.toh.ui.controller.dialog.SelectionDialogController;
 import dev.swim.toh.ui.controller.dialog.SelectionItem;
@@ -66,10 +66,12 @@ public class FeatsViewController extends CharacterModelAware {
                 super.updateItem(feat, empty);
                 if (empty || feat == null) {
                     setText(null);
+                    setTooltip(null);
                 } else {
                     setText(feat.getName());
-                    boolean prerequisitesSatisfied = characterModel.feats.prerequisitesSatisfied(feat);
-                    setTextFill(prerequisitesSatisfied ? Color.BLACK : Color.RED);
+                    Violation violation = findViolation(getTableRow().getItem());
+                    setTextFill(violation == null ? Color.BLACK : Color.RED);
+                    setTooltip(violation == null ? null : new Tooltip(violation.message()));
                 }
             }
         });
@@ -82,13 +84,8 @@ public class FeatsViewController extends CharacterModelAware {
             }
         });
 
-        // re-check the red/black prerequisite highlighting whenever anything a prerequisite could
-        // depend on changes: any attribute (not just INT) or the set of selected feats itself
-        // (e.g. removing a feat that another feat's FeatPrerequisite depends on)
-        for (AttributeName attributeName : AttributeName.values())
-            characterModel.attributes.getAttributeBaseProperty(attributeName)
-                    .addListener((obs, oldBase, newBase) -> featsTableView.refresh());
-        characterModel.feats.getFeatList().addListener((ListChangeListener<SelectedFeat>) c -> featsTableView.refresh());
+        // re-check the red/black prerequisite highlighting whenever the validation result changes
+        characterModel.featsValidation.violationsProperty().addListener((ListChangeListener<Violation>) c -> featsTableView.refresh());
 
         // delete button in each row
         removeFeatTableColumn.setCellFactory(col -> new TableCell<>() {
@@ -152,6 +149,13 @@ public class FeatsViewController extends CharacterModelAware {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private Violation findViolation(SelectedFeat selectedFeat) {
+        return characterModel.featsValidation.violationsProperty().stream()
+                .filter(violation -> violation.source() == selectedFeat)
+                .findFirst()
+                .orElse(null);
     }
 
     private SelectionItem<Feat> toSelectionItem(Feat feat) {

@@ -24,7 +24,7 @@
       </HBox>
    </top>
    <center>
-      <TableView fx:id="classesTableView" editable="true" fixedCellSize="28.0">
+      <TableView fx:id="classesTableView" editable="true" fixedCellSize="28.0" BorderPane.alignment="TOP_CENTER">
         <columns>
           <TableColumn fx:id="classTableColumn" editable="false" minWidth="100.0" prefWidth="100.0" text="Klasse" />
           <TableColumn fx:id="levelTableColumn" prefWidth="75.0" resizable="false" sortType="DESCENDING" text="Stufe" />

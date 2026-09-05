@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="10.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.swim.toh.ui.controller.ArmorClassViewController">
+
+    <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
+        <columnConstraints>
+            <ColumnConstraints halignment="RIGHT" hgrow="NEVER" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="50.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="50.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="50.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="50.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="50.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="50.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="50.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="50.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="-Infinity" minHeight="10.0" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" minHeight="10.0" vgrow="NEVER" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+        </rowConstraints>
+        <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+        </padding>
+
+        <Label text="RK" GridPane.rowIndex="2" />
+        <TextField fx:id="totalAcTextField" alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" styleClass="field-computed" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Label text="=" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+        <Label text="10" alignment="CENTER" maxWidth="-Infinity" prefWidth="30.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+        <Label text="+" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+        <TextField fx:id="armorBonusTextField" alignment="CENTER" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+        <Label text="+" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+        <TextField fx:id="shieldBonusTextField" alignment="CENTER" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+        <Label text="+" GridPane.columnIndex="8" GridPane.rowIndex="2" />
+        <TextField fx:id="dexModTextField" alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" styleClass="field-computed" GridPane.columnIndex="9" GridPane.rowIndex="2" />
+        <Label text="+" GridPane.columnIndex="10" GridPane.rowIndex="2" />
+        <TextField fx:id="naturalArmorTextField" alignment="CENTER" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="11" GridPane.rowIndex="2" />
+        <Label text="+" GridPane.columnIndex="12" GridPane.rowIndex="2" />
+        <TextField fx:id="sizeModTextField" alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" styleClass="field-computed" GridPane.columnIndex="13" GridPane.rowIndex="2" />
+        <Label text="+" GridPane.columnIndex="14" GridPane.rowIndex="2" />
+        <TextField fx:id="deflectionBonusTextField" alignment="CENTER" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="15" GridPane.rowIndex="2" />
+        <Label text="+" GridPane.columnIndex="16" GridPane.rowIndex="2" />
+        <TextField fx:id="miscModTextField" alignment="CENTER" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="17" GridPane.rowIndex="2" />
+
+        <Label text="Rüstungs-" GridPane.columnIndex="5">
+            <font><Font size="11.0" /></font>
+        </Label>
+        <Label text="bonus" GridPane.columnIndex="5" GridPane.rowIndex="1">
+            <font><Font size="11.0" /></font>
+        </Label>
+        <Label text="Schild-" GridPane.columnIndex="7">
+            <font><Font size="11.0" /></font>
+        </Label>
+        <Label text="bonus" GridPane.columnIndex="7" GridPane.rowIndex="1">
+            <font><Font size="11.0" /></font>
+        </Label>
+        <Label text="GE-" GridPane.columnIndex="9">
+            <font><Font size="11.0" /></font>
+        </Label>
+        <Label text="Mod." GridPane.columnIndex="9" GridPane.rowIndex="1">
+            <font><Font size="11.0" /></font>
+        </Label>
+        <Label text="natürl." GridPane.columnIndex="11">
+            <font><Font size="11.0" /></font>
+        </Label>
+        <Label text="Rüstung" GridPane.columnIndex="11" GridPane.rowIndex="1">
+            <font><Font size="11.0" /></font>
+        </Label>
+        <Label text="Größen-" GridPane.columnIndex="13">
+            <font><Font size="11.0" /></font>
+        </Label>
+        <Label text="Mod." GridPane.columnIndex="13" GridPane.rowIndex="1">
+            <font><Font size="11.0" /></font>
+        </Label>
+        <Label text="Ablenk.-" GridPane.columnIndex="15">
+            <font><Font size="11.0" /></font>
+        </Label>
+        <Label text="bonus" GridPane.columnIndex="15" GridPane.rowIndex="1">
+            <font><Font size="11.0" /></font>
+        </Label>
+        <Label text="Sonst." GridPane.columnIndex="17">
+            <font><Font size="11.0" /></font>
+        </Label>
+        <Label text="Mod." GridPane.columnIndex="17" GridPane.rowIndex="1">
+            <font><Font size="11.0" /></font>
+        </Label>
+    </GridPane>
+
+    <HBox alignment="CENTER_LEFT" spacing="20.0">
+        <padding>
+            <Insets left="5.0" right="5.0" />
+        </padding>
+        <HBox alignment="CENTER_LEFT" spacing="5.0">
+            <Label text="RK Berührung" />
+            <TextField fx:id="touchAcTextField" alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" styleClass="field-computed" />
+        </HBox>
+        <HBox alignment="CENTER_LEFT" spacing="5.0">
+            <Label text="Auf dem falschen Fuß" />
+            <TextField fx:id="flatFootedAcTextField" alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" styleClass="field-computed" />
+        </HBox>
+        <HBox alignment="CENTER_LEFT" spacing="5.0">
+            <Label text="Zauberresistenz" />
+            <TextField fx:id="spellResistanceTextField" alignment="CENTER" maxWidth="-Infinity" prefWidth="40.0" />
+        </HBox>
+    </HBox>
+
+</VBox>
