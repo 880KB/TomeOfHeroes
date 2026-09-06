@@ -67,7 +67,9 @@ Stand: siehe letzten Commit. Diese Datei hält fest, was in den letzten Claude-C
    - "Talent durch Klasse gewährt"-Konzept fehlt komplett (bräuchte Talent-Slot-Buchhaltung: welcher gewählte Talent kam aus einem normalen Slot vs. einem Klassen-Bonusslot).
    - Rassen-Bonustalent (Menschen, Stufe 1) und Kämpfer-Bonustalentliste als eigene Filterregel fehlen noch.
    - Nur 4 Talente in `feats.yml` — Dateninhalt ist noch sehr dünn.
-6. **Später, auf Rückstellung:** Sprachumschalter DE/EN (echtes i18n-Setup nötig, aktueller Text noch zu instabil, um sich zu lohnen).
+6. **Später, auf Rückstellung:**
+   - Sprachumschalter DE/EN (echtes i18n-Setup nötig, aktueller Text noch zu instabil, um sich zu lohnen).
+   - Windows-Portierung + natives macOS-App-Bundling zusammen als ein Paket: `jpackage`-Setup für beide Plattformen. Löst nebenbei auch, dass die Mac-Menüleiste aktuell "java" statt "Tome of Heroes" zeigt und es keine echten "Über …"/"Einstellungen…"-Einträge gibt — das kommt aus `CFBundleName`/Info.plist einer echten `.app`-Bundle und lässt sich im Dev-Modus (`mvn javafx:run`) nicht zuverlässig per JVM-Property fixen. "Ausblenden"/"Beenden" funktionieren schon automatisch, nur falsch beschriftet.
 
 ## Arbeitsweise, die sich bewährt hat
 
