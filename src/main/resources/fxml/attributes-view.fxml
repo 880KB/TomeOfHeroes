@@ -7,7 +7,7 @@
 
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.swim.toh.ui.controller.AttributesViewController">
         <columnConstraints>
-            <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="38.0" />
             <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="50.0" />
             <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="50.0" />
         </columnConstraints>
@@ -33,12 +33,12 @@
                 <Font size="11.0" />
             </font>
         </Label>
-        <Label text="ST" GridPane.rowIndex="1" />
-        <Label text="GE" GridPane.rowIndex="2" />
-        <Label text="KO" GridPane.rowIndex="3" />
-      <Label text="IN" GridPane.rowIndex="4" />
-      <Label text="WE" GridPane.rowIndex="5" />
-      <Label text="CH" GridPane.rowIndex="6" />
+        <Label text="ST" styleClass="label-badge" maxWidth="Infinity" alignment="CENTER" GridPane.rowIndex="1" />
+        <Label text="GE" styleClass="label-badge" maxWidth="Infinity" alignment="CENTER" GridPane.rowIndex="2" />
+        <Label text="KO" styleClass="label-badge" maxWidth="Infinity" alignment="CENTER" GridPane.rowIndex="3" />
+      <Label text="IN" styleClass="label-badge" maxWidth="Infinity" alignment="CENTER" GridPane.rowIndex="4" />
+      <Label text="WE" styleClass="label-badge" maxWidth="Infinity" alignment="CENTER" GridPane.rowIndex="5" />
+      <Label text="CH" styleClass="label-badge" maxWidth="Infinity" alignment="CENTER" GridPane.rowIndex="6" />
         <TextField fx:id="strengthTextField" alignment="CENTER" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
         <TextField fx:id="dexterityTextField" alignment="CENTER" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
         <TextField fx:id="constitutionTextField" alignment="CENTER" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />

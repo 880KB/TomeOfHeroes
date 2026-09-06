@@ -31,9 +31,9 @@
         <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
         </padding>
-        <Label text="Reflex" GridPane.rowIndex="2" />
-        <Label text="Willen" GridPane.rowIndex="3" />
-        <Label text="Zähigkeit" GridPane.rowIndex="4" />
+        <Label text="Reflex" styleClass="label-badge" maxWidth="Infinity" alignment="CENTER" GridPane.rowIndex="2" />
+        <Label text="Willen" styleClass="label-badge" maxWidth="Infinity" alignment="CENTER" GridPane.rowIndex="3" />
+        <Label text="Zähigkeit" styleClass="label-badge" maxWidth="Infinity" alignment="CENTER" GridPane.rowIndex="4" />
         <TextField fx:id="totalReflex" alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" styleClass="field-computed" GridPane.columnIndex="1" GridPane.rowIndex="2" />
         <TextField fx:id="totalWill" alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" styleClass="field-computed" GridPane.columnIndex="1" GridPane.rowIndex="3" />
         <TextField fx:id="totalFortitude" alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" styleClass="field-computed" GridPane.columnIndex="1" GridPane.rowIndex="4" />

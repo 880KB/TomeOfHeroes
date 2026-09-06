@@ -5,6 +5,17 @@
     -fx-text-fill: #495057;
 }
 
+/* Short attribute/stat abbreviation labels (ST, GE, RK, Initiative, ...), styled like
+   the dark label bars on the paper character sheet so they stand out from the values
+   next to them. Color is a placeholder navy — revisit once the overall palette is settled. */
+.label-badge {
+    -fx-background-color: #1b2a4a;
+    -fx-text-fill: white;
+    -fx-padding: 2 6 2 6;
+    -fx-background-radius: 3;
+    -fx-alignment: CENTER;
+}
+
 /* ComboBoxes are always user-editable (a selection), so they should read the same
    as an editable text field rather than the platform's default grey-ish look. */
 .combo-box {

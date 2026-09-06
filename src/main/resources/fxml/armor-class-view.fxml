@@ -14,7 +14,7 @@
 
     <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
         <columnConstraints>
-            <ColumnConstraints halignment="RIGHT" hgrow="NEVER" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints halignment="RIGHT" hgrow="NEVER" minWidth="10.0" prefWidth="38.0" />
             <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="50.0" />
             <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" />
             <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="30.0" />
@@ -42,7 +42,7 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
         </padding>
 
-        <Label text="RK" GridPane.rowIndex="2" />
+        <Label text="RK" styleClass="label-badge" maxWidth="Infinity" alignment="CENTER" GridPane.rowIndex="2" />
         <TextField fx:id="totalAcTextField" alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" styleClass="field-computed" GridPane.columnIndex="1" GridPane.rowIndex="2" />
         <Label text="=" GridPane.columnIndex="2" GridPane.rowIndex="2" />
         <Label text="10" alignment="CENTER" maxWidth="-Infinity" prefWidth="30.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
@@ -110,15 +110,15 @@
             <Insets left="5.0" right="5.0" />
         </padding>
         <HBox alignment="CENTER_LEFT" spacing="5.0">
-            <Label text="RK Berührung" />
+            <Label text="RK Berührung" styleClass="label-badge" />
             <TextField fx:id="touchAcTextField" alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" styleClass="field-computed" />
         </HBox>
         <HBox alignment="CENTER_LEFT" spacing="5.0">
-            <Label text="Auf dem falschen Fuß" />
+            <Label text="Auf dem falschen Fuß" styleClass="label-badge" />
             <TextField fx:id="flatFootedAcTextField" alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" styleClass="field-computed" />
         </HBox>
         <HBox alignment="CENTER_LEFT" spacing="5.0">
-            <Label text="Zauberresistenz" />
+            <Label text="Zauberresistenz" styleClass="label-badge" />
             <TextField fx:id="spellResistanceTextField" alignment="CENTER" maxWidth="-Infinity" prefWidth="40.0" />
         </HBox>
     </HBox>

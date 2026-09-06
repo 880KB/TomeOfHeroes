@@ -10,7 +10,7 @@
 
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.swim.toh.ui.controller.InitiativeViewController">
     <columnConstraints>
-        <ColumnConstraints halignment="RIGHT" hgrow="NEVER" minWidth="10.0" prefWidth="70.0" />
+        <ColumnConstraints halignment="RIGHT" hgrow="NEVER" minWidth="10.0" prefWidth="80.0" />
         <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="50.0" />
         <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" />
         <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="50.0" />
@@ -26,7 +26,7 @@
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
     </padding>
 
-    <Label text="Initiative" GridPane.rowIndex="2" />
+    <Label text="Initiative" styleClass="label-badge" maxWidth="Infinity" alignment="CENTER" GridPane.rowIndex="2" />
     <TextField fx:id="totalTextField" alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" styleClass="field-computed" GridPane.columnIndex="1" GridPane.rowIndex="2" />
     <Label text="=" GridPane.columnIndex="2" GridPane.rowIndex="2" />
     <TextField fx:id="dexModTextField" alignment="CENTER" editable="false" maxWidth="-Infinity" prefWidth="40.0" styleClass="field-computed" GridPane.columnIndex="3" GridPane.rowIndex="2" />
