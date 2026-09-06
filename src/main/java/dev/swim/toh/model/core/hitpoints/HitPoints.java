@@ -18,6 +18,10 @@ public class HitPoints extends CoreBase<HitPointsInput, HitPointsComputed> {
         return input.getCurrentHitPointsProperty();
     }
 
+    public IntegerProperty getBonusMaxHitPointsProperty() {
+        return computed.getBonusMaxHitPointsProperty();
+    }
+
     public IntegerProperty getTotalMaxHitPointsProperty() {
         return computed.getTotalMaxHitPointsProperty();
     }

@@ -9,7 +9,12 @@ import javafx.collections.ListChangeListener;
 
 public class HitPointsComputed extends ComputedBase {
 
+    private final IntegerProperty bonusMaxHitPoints = new SimpleIntegerProperty(0);
     private final IntegerProperty totalMaxHitPoints = new SimpleIntegerProperty(0);
+
+    public IntegerProperty getBonusMaxHitPointsProperty() {
+        return bonusMaxHitPoints;
+    }
 
     public IntegerProperty getTotalMaxHitPointsProperty() {
         return totalMaxHitPoints;
@@ -26,6 +31,7 @@ public class HitPointsComputed extends ComputedBase {
     private void updateTotal() {
         int base = characterModel.hitPoints.getBaseMaxHitPointsProperty().get();
         int bonus = BonusCalculator.getTotal(characterModel.bonusPool.getBonuses(HpBonusTarget.MAX_HIT_POINTS));
+        bonusMaxHitPoints.set(bonus);
         totalMaxHitPoints.set(base + bonus);
     }
 }
