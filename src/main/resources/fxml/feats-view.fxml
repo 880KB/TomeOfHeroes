@@ -18,10 +18,10 @@
       </HBox>
    </top>
    <center>
-      <TableView fx:id="featsTableView" editable="true" fixedCellSize="28.0" BorderPane.alignment="TOP_CENTER">
+      <TableView fx:id="featsTableView" editable="true" fixedCellSize="28.0" styleClass="no-header-table" BorderPane.alignment="TOP_CENTER">
         <columns>
             <TableColumn fx:id="nameColumn" editable="false" minWidth="120.0" prefWidth="200.0" text="Talent" />
-            <TableColumn fx:id="isRepeatableTableColumn" editable="false" prefWidth="75.0" resizable="false" text="mehrfach" />
+            <TableColumn fx:id="infoTableColumn" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" resizable="false" />
             <TableColumn fx:id="removeFeatTableColumn" maxWidth="35.0" minWidth="35.0" prefWidth="35.0" resizable="false" />
         </columns>
       </TableView>

@@ -14,13 +14,32 @@ public class SelectionItem<T> {
     private final String name;
     private final boolean available;
     private final String unavailableReason;
+    private final String infoTitle;
+    private final String infoBody;
     private final SimpleBooleanProperty selected = new SimpleBooleanProperty(false);
+    // nesting depth for display, e.g. a feat shown indented under the feat it builds on - 0
+    // (the default) means "top level", set by the caller after construction since it depends on
+    // where the item ends up among the other items, not on the item itself
+    private int depth = 0;
 
     public SelectionItem(T value, String name, boolean available, String unavailableReason) {
+        this(value, name, available, unavailableReason, null, null);
+    }
+
+    /**
+     * @param infoTitle short lead-in text for the "more info" popup, e.g. a feat's short
+     *                  description; {@code null} (together with infoBody) hides the info button
+     *                  for values that don't have anything to show, e.g. classes today.
+     * @param infoBody  the full text shown below infoTitle in the popup.
+     */
+    public SelectionItem(T value, String name, boolean available, String unavailableReason,
+                          String infoTitle, String infoBody) {
         this.value = value;
         this.name = name;
         this.available = available;
         this.unavailableReason = unavailableReason;
+        this.infoTitle = infoTitle;
+        this.infoBody = infoBody;
     }
 
     public T getValue() {
@@ -37,6 +56,26 @@ public class SelectionItem<T> {
 
     public String getUnavailableReason() {
         return unavailableReason;
+    }
+
+    public boolean hasInfo() {
+        return infoTitle != null && infoBody != null;
+    }
+
+    public String getInfoTitle() {
+        return infoTitle;
+    }
+
+    public String getInfoBody() {
+        return infoBody;
+    }
+
+    public int getDepth() {
+        return depth;
+    }
+
+    public void setDepth(int depth) {
+        this.depth = depth;
     }
 
     public boolean isSelected() {

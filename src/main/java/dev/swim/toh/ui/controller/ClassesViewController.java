@@ -7,6 +7,7 @@ import dev.swim.toh.model.rules.ClassRules;
 import dev.swim.toh.model.util.javafx.Bind;
 import dev.swim.toh.model.util.javafx.Format;
 import dev.swim.toh.model.util.javafx.Layout;
+import dev.swim.toh.model.util.javafx.Styles;
 import dev.swim.toh.translation.ClazzTranslator;
 import dev.swim.toh.ui.controller.dialog.SelectionDialogController;
 import dev.swim.toh.ui.controller.dialog.SelectionItem;
@@ -24,6 +25,7 @@ import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.IOException;
+import java.util.Comparator;
 
 public class ClassesViewController extends CharacterModelAware {
 
@@ -158,12 +160,15 @@ public class ClassesViewController extends CharacterModelAware {
             dialogStage.setTitle("Klassen auswählen");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(this.classesTableView.getScene().getWindow());
-            dialogStage.setScene(new Scene(page));
+            Scene scene = new Scene(page);
+            Styles.applyAppStylesheet(scene);
+            dialogStage.setScene(scene);
 
             SelectionDialogController<Clazz> dialogController = loader.getController();
             dialogController.setDialogStage(dialogStage);
             dialogController.setItems(characterModel.classes.getAvailableClasses().stream()
                     .map(clazz -> new SelectionItem<>(clazz, ClazzTranslator.toGerman(clazz), true, null))
+                    .sorted(Comparator.comparing(SelectionItem::getName))
                     .toList());
 
             dialogStage.showAndWait();

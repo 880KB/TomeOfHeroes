@@ -6,8 +6,14 @@ import dev.swim.toh.definition.feat.PrerequisiteDefinition;
 import dev.swim.toh.model.core.bonus.BonusTarget;
 import dev.swim.toh.model.core.hitpoints.HpBonusTarget;
 import dev.swim.toh.model.data.feat.prerequisites.AttributePrerequisite;
+import dev.swim.toh.model.data.feat.prerequisites.BaseAttackBonusPrerequisite;
+import dev.swim.toh.model.data.feat.prerequisites.CasterLevelPrerequisite;
+import dev.swim.toh.model.data.feat.prerequisites.CharacterLevelPrerequisite;
+import dev.swim.toh.model.data.feat.prerequisites.ClassLevelPrerequisite;
 import dev.swim.toh.model.data.feat.prerequisites.FeatPrerequisite;
 import dev.swim.toh.model.data.feat.prerequisites.Prerequisite;
+import dev.swim.toh.model.data.feat.prerequisites.ProficiencyWithWeaponPrerequisite;
+import dev.swim.toh.model.data.feat.prerequisites.SkillPrerequisite;
 
 import java.util.List;
 
@@ -20,6 +26,7 @@ public class FeatMapper {
                 def.getType(),
                 def.getRepeatType(),
                 def.getShortDescription(),
+                def.getDescription(),
                 mapPrerequisites(def.getPrerequisites()),
                 mapBenefits(def.getBenefits())
         );
@@ -38,6 +45,12 @@ public class FeatMapper {
                     def.getMin()
             );
             case FEAT -> new FeatPrerequisite(def.getFeat());
+            case CHARACTER_LEVEL -> new CharacterLevelPrerequisite(def.getMin());
+            case CLASS_LEVEL -> new ClassLevelPrerequisite(def.getClasses(), def.getMin());
+            case BASE_ATTACK_BONUS -> new BaseAttackBonusPrerequisite(def.getMin());
+            case SKILL -> new SkillPrerequisite(def.getSkill());
+            case WEAPON_PROFICIENCY -> new ProficiencyWithWeaponPrerequisite();
+            case CASTER_LEVEL -> new CasterLevelPrerequisite(def.getMin());
         };
     }
 

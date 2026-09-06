@@ -8,9 +8,10 @@
 <center>
     <TableView fx:id="itemsTableView" editable="true" fixedCellSize="26">
         <columns>
-            <TableColumn fx:id="isSelectedColumn" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" resizable="false" />
-            <TableColumn fx:id="nameColumn" prefWidth="200" text="Name" />
-            <TableColumn fx:id="reasonColumn" prefWidth="400" text="Hinweis" />
+            <TableColumn fx:id="isSelectedColumn" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" resizable="false" sortable="false" />
+            <TableColumn fx:id="nameColumn" prefWidth="200" sortable="false" text="Name" />
+            <TableColumn fx:id="infoColumn" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" resizable="false" sortable="false" />
+            <TableColumn fx:id="reasonColumn" prefWidth="400" sortable="false" text="Voraussetzungen" />
         </columns>
     </TableView>
 </center>

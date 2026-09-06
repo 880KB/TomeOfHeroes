@@ -1,18 +1,191 @@
 feats:
   feats:
-    - id: ALERTNESS
-      name: Alertness
+    - id: TOUGHNESS
+      name: "Abhärtung"
+      type: GENERAL
+      repeatType: STACKS
+      shortDescription: "+3 Trefferpunkte"
+      description: >
+        Du bist widerstandsfähiger als andere. Du erhältst 3 zusätzliche
+        Trefferpunkte. Dieses Talent kann mehrfach erworben werden; sein
+        Effekt ist jedes Mal kumulativ.
+      prerequisites: []
+      benefits:
+        - type: BONUS
+          target: MAX_HIT_POINTS
+          bonusType: UNTYPED
+          value: 3
+
+    - id: ANFUEHREN
+      name: "Anführen"
       type: GENERAL
       repeatType: SINGLE
-      shortDescription: "+2 bonus on Listen and Spot checks"
+      shortDescription:
+      description:
+      prerequisites:
+        - type: CHARACTER_LEVEL
+          min: 6
+      benefits: []
+
+    - id: AUSDAUER
+      name: "Ausdauer"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites: []
+      benefits: []
+
+    - id: AUSWEICHEN
+      name: "Ausweichen"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites:
+        - type: ATTRIBUTE
+          attribute: DEXTERITY
+          min: 13
+      benefits: []
+
+    - id: BEWEGLICHKEIT
+      name: "Beweglichkeit"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites:
+        - type: ATTRIBUTE
+          attribute: DEXTERITY
+          min: 13
+        - type: FEAT
+          feat: AUSWEICHEN
+      benefits: []
+
+    - id: TAENZELNDER_ANGRIFF
+      name: "Tänzelnder Angriff"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites:
+        - type: ATTRIBUTE
+          attribute: DEXTERITY
+          min: 13
+        - type: FEAT
+          feat: AUSWEICHEN
+        - type: FEAT
+          feat: BEWEGLICHKEIT
+        - type: BASE_ATTACK_BONUS
+          min: 4
+      benefits: []
+
+    - id: BEIDHAENDIGKEIT
+      name: "Beidhändigkeit"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites:
+        - type: ATTRIBUTE
+          attribute: DEXTERITY
+          min: 15
+      benefits: []
+
+    - id: BERITTENER_KAMPF
+      name: "Berittener Kampf"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites:
+        - type: SKILL
+          skill: "Reiten"
+      benefits: []
+
+    - id: ANGRIFF_IM_VORBEIREITEN
+      name: "Angriff im Vorbeireiten"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites:
+        - type: SKILL
+          skill: "Reiten"
+        - type: FEAT
+          feat: BERITTENER_KAMPF
+      benefits: []
+
+    - id: BERITTENER_FERNKAMPF
+      name: "Berittener Fernkampf"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites:
+        - type: SKILL
+          skill: "Reiten"
+        - type: FEAT
+          feat: BERITTENER_KAMPF
+      benefits: []
+
+    - id: NIEDERREITEN
+      name: "Niederreiten"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites:
+        - type: SKILL
+          skill: "Reiten"
+        - type: FEAT
+          feat: BERITTENER_KAMPF
+      benefits: []
+
+    - id: BEHERZTER_STURMANGRIFF
+      name: "Beherzter Sturmangriff"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites:
+        - type: SKILL
+          skill: "Reiten"
+        - type: FEAT
+          feat: BERITTENER_KAMPF
+        - type: FEAT
+          feat: ANGRIFF_IM_VORBEIREITEN
+      benefits: []
+
+    - id: BLIND_KAEMPFEN
+      name: "Blind kämpfen"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites: []
+      benefits: []
+
+    - id: BLITZSCHNELLE_REFLEXE
+      name: "Blitzschnelle Reflexe"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
       prerequisites: []
       benefits: []
 
     - id: COMBAT_EXPERTISE
-      name: Combat Expertise
-      type: FIGHTER
+      name: "Defensive Kampfweise"
+      type: GENERAL
       repeatType: SINGLE
-      shortDescription: "Trade attack bonus for AC (max 5 points)"
+      shortDescription: "Angriffsbonus gegen RK eintauschen (max. 5 Punkte)"
+      description: >
+        Du kannst einen Teil deines Angriffs zur Verteidigung nutzen. Zu
+        Beginn deines Zuges legst du einen Wert von mindestens 1 fest, um den
+        sich dein Angriffsbonus verringert (höchstens dein Grundangriffsbonus,
+        maximal 5); um denselben Wert erhöht sich deine Rüstungsklasse bis zu
+        deinem nächsten Zug.
       prerequisites:
         - type: ATTRIBUTE
           attribute: INTELLIGENCE
@@ -20,10 +193,14 @@ feats:
       benefits: []
 
     - id: IMPROVED_DISARM
-      name: Improved Disarm
-      type: FIGHTER
+      name: "Verbessertes Entwaffnen"
+      type: GENERAL
       repeatType: SINGLE
-      shortDescription: "+4 bonus on disarm attempts; no attack of opportunity"
+      shortDescription: "+4 auf Entwaffnen-Versuche; kein Gelegenheitsangriff"
+      description: >
+        Du bist darin geübt, Gegnern die Waffe aus der Hand zu schlagen. Bei
+        einem Entwaffnen-Versuch erhältst du einen Bonus von +4 auf die
+        Oppositionsprobe und provozierst dabei keinen Gelegenheitsangriff.
       prerequisites:
         - type: ATTRIBUTE
           attribute: INTELLIGENCE
@@ -32,15 +209,656 @@ feats:
           feat: COMBAT_EXPERTISE
       benefits: []
 
-    - id: TOUGHNESS
-      name: Toughness
+    - id: VERBESSERTES_ZU_FALL_BRINGEN
+      name: "Verbessertes „Zu Fall bringen“"
       type: GENERAL
-      repeatType: STACKS
-      shortDescription: "+3 hit points"
-      prerequisites: []
-      benefits:
-        - type: BONUS
-          target: MAX_HIT_POINTS
-          bonusType: UNTYPED
-          value: 3
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites:
+        - type: ATTRIBUTE
+          attribute: INTELLIGENCE
+          min: 13
+        - type: FEAT
+          feat: COMBAT_EXPERTISE
+      benefits: []
 
+    - id: WIRBELWINDANGRIFF
+      name: "Wirbelwindangriff"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites:
+        - type: ATTRIBUTE
+          attribute: INTELLIGENCE
+          min: 13
+        - type: FEAT
+          feat: COMBAT_EXPERTISE
+        - type: ATTRIBUTE
+          attribute: DEXTERITY
+          min: 13
+        - type: FEAT
+          feat: AUSWEICHEN
+        - type: FEAT
+          feat: BEWEGLICHKEIT
+        - type: BASE_ATTACK_BONUS
+          min: 4
+        - type: FEAT
+          feat: TAENZELNDER_ANGRIFF
+      benefits: []
+
+    - id: DURCHSCHLAGENDE_ZAUBER
+      name: "Durchschlagende Zauber"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites: []
+      benefits: []
+
+    - id: EISERNER_WILLE
+      name: "Eiserner Wille"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites: []
+      benefits: []
+
+    - id: FERTIGKEITSFOKUS
+      name: "Fertigkeitsfokus"
+      type: GENERAL
+      repeatType: MULTIPLE
+      shortDescription:
+      description:
+      prerequisites: []
+      benefits: []
+
+    - id: GROSSE_ZAEHIGKEIT
+      name: "Große Zähigkeit"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites: []
+      benefits: []
+
+    - id: HEFTIGER_ANGRIFF
+      name: "Heftiger Angriff"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites:
+        - type: ATTRIBUTE
+          attribute: STRENGTH
+          min: 13
+      benefits: []
+
+    - id: DOPPELSCHLAG
+      name: "Doppelschlag"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites:
+        - type: ATTRIBUTE
+          attribute: STRENGTH
+          min: 13
+        - type: FEAT
+          feat: HEFTIGER_ANGRIFF
+      benefits: []
+
+    - id: VERBESSERTER_ANSTURM
+      name: "Verbesserter Ansturm"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites:
+        - type: ATTRIBUTE
+          attribute: STRENGTH
+          min: 13
+        - type: FEAT
+          feat: HEFTIGER_ANGRIFF
+      benefits: []
+
+    - id: WAFFE_ZERSCHMETTERN
+      name: "Waffe zerschmettern"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites:
+        - type: ATTRIBUTE
+          attribute: STRENGTH
+          min: 13
+        - type: FEAT
+          feat: HEFTIGER_ANGRIFF
+      benefits: []
+
+    - id: RUNDUMSCHLAG
+      name: "Rundumschlag"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites:
+        - type: ATTRIBUTE
+          attribute: STRENGTH
+          min: 13
+        - type: FEAT
+          feat: DOPPELSCHLAG
+        - type: FEAT
+          feat: HEFTIGER_ANGRIFF
+        - type: BASE_ATTACK_BONUS
+          min: 4
+      benefits: []
+
+    - id: IM_KAMPF_ZAUBERN
+      name: "Im Kampf zaubern"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites: []
+      benefits: []
+
+    - id: KAMPF_MIT_ZWEI_WAFFEN
+      name: "Kampf mit zwei Waffen"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites: []
+      benefits: []
+
+    - id: VERBESSERTER_KAMPF_MIT_ZWEI_WAFFEN
+      name: "Verbesserter Kampf mit zwei Waffen"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites:
+        - type: FEAT
+          feat: KAMPF_MIT_ZWEI_WAFFEN
+        - type: FEAT
+          feat: BEIDHAENDIGKEIT
+        - type: BASE_ATTACK_BONUS
+          min: 9
+      benefits: []
+
+    - id: KAMPFREFLEXE
+      name: "Kampfreflexe"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites: []
+      benefits: []
+
+    - id: KERNSCHUSS
+      name: "Kernschuss"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites: []
+      benefits: []
+
+    - id: FERNSCHUSS
+      name: "Fernschuss"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites:
+        - type: FEAT
+          feat: KERNSCHUSS
+      benefits: []
+
+    - id: PRAEZISIONSSCHUSS
+      name: "Präzisionsschuss"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites:
+        - type: FEAT
+          feat: KERNSCHUSS
+      benefits: []
+
+    - id: SCHNELLES_SCHIESSEN
+      name: "Schnelles schießen"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites:
+        - type: FEAT
+          feat: KERNSCHUSS
+        - type: ATTRIBUTE
+          attribute: DEXTERITY
+          min: 13
+      benefits: []
+
+    - id: AUS_VOLLEM_LAUF_SCHIESSEN
+      name: "Aus vollem Lauf schießen"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites:
+        - type: FEAT
+          feat: KERNSCHUSS
+        - type: ATTRIBUTE
+          attribute: DEXTERITY
+          min: 13
+        - type: FEAT
+          feat: AUSWEICHEN
+        - type: FEAT
+          feat: BEWEGLICHKEIT
+      benefits: []
+
+    - id: RENNEN
+      name: "Rennen"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites: []
+      benefits: []
+
+    - id: SCHNELLE_WAFFENBEREITSCHAFT
+      name: "Schnelle Waffenbereitschaft"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites:
+        - type: BASE_ATTACK_BONUS
+          min: 1
+      benefits: []
+
+    - id: SPUREN_LESEN
+      name: "Spuren lesen"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites: []
+      benefits: []
+
+    - id: UMGANG_MIT_EINFACHEN_WAFFEN
+      name: "Umgang mit einfachen Waffen"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites: []
+      benefits: []
+
+    - id: UMGANG_MIT_EXOTISCHEN_WAFFEN
+      name: "Umgang mit exotischen Waffen"
+      type: GENERAL
+      repeatType: MULTIPLE
+      shortDescription:
+      description:
+      prerequisites:
+        - type: BASE_ATTACK_BONUS
+          min: 1
+      benefits: []
+
+    - id: UMGANG_MIT_KRIEGSWAFFEN
+      name: "Umgang mit Kriegswaffen"
+      type: GENERAL
+      repeatType: MULTIPLE
+      shortDescription:
+      description:
+      prerequisites: []
+      benefits: []
+
+    - id: UMGANG_MIT_RUESTUNGEN_LEICHTE
+      name: "Umgang mit Rüstungen (leichte)"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites: []
+      benefits: []
+
+    - id: UMGANG_MIT_RUESTUNGEN_MITTELSCHWERE
+      name: "Umgang mit Rüstungen (mittelschwere)"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites:
+        - type: FEAT
+          feat: UMGANG_MIT_RUESTUNGEN_LEICHTE
+      benefits: []
+
+    - id: UMGANG_MIT_RUESTUNGEN_SCHWERE
+      name: "Umgang mit Rüstungen (schwere)"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites:
+        - type: FEAT
+          feat: UMGANG_MIT_RUESTUNGEN_LEICHTE
+        - type: FEAT
+          feat: UMGANG_MIT_RUESTUNGEN_MITTELSCHWERE
+      benefits: []
+
+    - id: UMGANG_MIT_SCHILDEN
+      name: "Umgang mit Schilden"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites: []
+      benefits: []
+
+    - id: VERBESSERTE_INITIATIVE
+      name: "Verbesserte Initiative"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites: []
+      benefits: []
+
+    - id: VERBESSERTER_KRITISCHER_TREFFER
+      name: "Verbesserter Kritischer Treffer"
+      type: GENERAL
+      repeatType: MULTIPLE
+      shortDescription:
+      description:
+      prerequisites:
+        - type: WEAPON_PROFICIENCY
+        - type: BASE_ATTACK_BONUS
+          min: 8
+      benefits: []
+
+    - id: VERBESSERTER_WAFFENLOSER_SCHLAG
+      name: "Verbesserter Waffenloser Schlag"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites: []
+      benefits: []
+
+    - id: GESCHOSSE_ABWEHREN
+      name: "Geschosse abwehren"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites:
+        - type: ATTRIBUTE
+          attribute: DEXTERITY
+          min: 13
+        - type: FEAT
+          feat: VERBESSERTER_WAFFENLOSER_SCHLAG
+      benefits: []
+
+    - id: BETAEUBENDER_SCHLAG
+      name: "Betäubender Schlag"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites:
+        - type: ATTRIBUTE
+          attribute: DEXTERITY
+          min: 13
+        - type: FEAT
+          feat: VERBESSERTER_WAFFENLOSER_SCHLAG
+        - type: ATTRIBUTE
+          attribute: WISDOM
+          min: 13
+        - type: BASE_ATTACK_BONUS
+          min: 8
+      benefits: []
+
+    - id: ALERTNESS
+      name: "Wachsamkeit"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription: "+2 auf Zuhören- und Entdecken-Proben"
+      description: >
+        Du bist aufmerksamer als die meisten und schenkst deiner Umgebung mehr
+        Beachtung. Du erhältst einen Bonus von +2 auf Zuhören- und
+        Entdecken-Proben.
+      prerequisites: []
+      benefits: []
+
+    - id: WAFFENFINESSE
+      name: "Waffenfinesse"
+      type: GENERAL
+      repeatType: MULTIPLE
+      shortDescription:
+      description:
+      prerequisites:
+        - type: WEAPON_PROFICIENCY
+      benefits: []
+
+    - id: WAFFENFOKUS
+      name: "Waffenfokus"
+      type: GENERAL
+      repeatType: MULTIPLE
+      shortDescription:
+      description:
+      prerequisites:
+        - type: WEAPON_PROFICIENCY
+        - type: BASE_ATTACK_BONUS
+          min: 1
+      benefits: []
+
+    - id: ZAUBERFOKUS
+      name: "Zauberfokus"
+      type: GENERAL
+      repeatType: MULTIPLE
+      shortDescription:
+      description:
+      prerequisites: []
+      benefits: []
+
+    - id: MAGISCHE_WAFFEN_UND_RUESTUNGEN_HERSTELLEN
+      name: "Magische Waffen und Rüstungen herstellen"
+      type: ITEM_CREATION
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites:
+        - type: CASTER_LEVEL
+          min: 5
+      benefits: []
+
+    - id: RING_SCHMIEDEN
+      name: "Ring schmieden"
+      type: ITEM_CREATION
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites:
+        - type: CASTER_LEVEL
+          min: 12
+      benefits: []
+
+    - id: SCHRIFTROLLE_ANFERTIGEN
+      name: "Schriftrolle anfertigen"
+      type: ITEM_CREATION
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites:
+        - type: CASTER_LEVEL
+          min: 1
+      benefits: []
+
+    - id: TRANK_BRAUEN
+      name: "Trank brauen"
+      type: ITEM_CREATION
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites:
+        - type: CASTER_LEVEL
+          min: 3
+      benefits: []
+
+    - id: WUNDERSAMEN_GEGENSTAND_HERSTELLEN
+      name: "Wundersamen Gegenstand herstellen"
+      type: ITEM_CREATION
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites:
+        - type: CASTER_LEVEL
+          min: 3
+      benefits: []
+
+    - id: ZAUBERSTAB_HERSTELLEN
+      name: "Zauberstab herstellen"
+      type: ITEM_CREATION
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites:
+        - type: CASTER_LEVEL
+          min: 5
+      benefits: []
+
+    - id: ZAUBERSTECKEN_HERSTELLEN
+      name: "Zauberstecken herstellen"
+      type: ITEM_CREATION
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites:
+        - type: CASTER_LEVEL
+          min: 12
+      benefits: []
+
+    - id: ZAUBERZEPTER_HERSTELLEN
+      name: "Zauberzepter herstellen"
+      type: ITEM_CREATION
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites:
+        - type: CASTER_LEVEL
+          min: 9
+      benefits: []
+
+    - id: GESTENLOS_ZAUBERN
+      name: "Gestenlos zaubern"
+      type: METAMAGIC
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites: []
+      benefits: []
+
+    - id: LAUTLOS_ZAUBERN
+      name: "Lautlos zaubern"
+      type: METAMAGIC
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites: []
+      benefits: []
+
+    - id: SCHNELL_ZAUBERN
+      name: "Schnell zaubern"
+      type: METAMAGIC
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites: []
+      benefits: []
+
+    - id: ZAUBER_AUSDEHNEN
+      name: "Zauber ausdehnen"
+      type: METAMAGIC
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites: []
+      benefits: []
+
+    - id: ZAUBER_VERSTAERKEN
+      name: "Zauber verstärken"
+      type: METAMAGIC
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites: []
+      benefits: []
+
+    - id: ZAUBEREFFEKT_MAXIMIEREN
+      name: "Zaubereffekt maximieren"
+      type: METAMAGIC
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites: []
+      benefits: []
+
+    - id: ZAUBERGRAD_ERHOEHEN
+      name: "Zaubergrad erhöhen"
+      type: METAMAGIC
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites: []
+      benefits: []
+
+    - id: ZAUBERREICHWEITE_ERHOEHEN
+      name: "Zauberreichweite erhöhen"
+      type: METAMAGIC
+      repeatType: SINGLE
+      shortDescription:
+      description:
+      prerequisites: []
+      benefits: []
+
+    - id: WAFFENSPEZIALISIERUNG
+      name: "Waffenspezialisierung"
+      type: SPECIAL
+      repeatType: MULTIPLE
+      shortDescription:
+      description:
+      prerequisites:
+        - type: CLASS_LEVEL
+          classes: [FIGHTER]
+          min: 4
+      benefits: []
+
+    - id: ZAUBERMEISTERSCHAFT
+      name: "Zaubermeisterschaft"
+      type: SPECIAL
+      repeatType: MULTIPLE
+      shortDescription:
+      description:
+      prerequisites:
+        - type: CLASS_LEVEL
+          classes: [WIZARD]
+          min: 1
+      benefits: []
+
+    - id: ZUSAETZLICHES_VERTREIBEN
+      name: "Zusätzliches Vertreiben"
+      type: SPECIAL
+      repeatType: STACKS
+      shortDescription:
+      description:
+      prerequisites:
+        - type: CLASS_LEVEL
+          classes: [CLERIC, PALADIN]
+          min: 1
+      benefits: []

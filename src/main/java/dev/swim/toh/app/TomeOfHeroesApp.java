@@ -1,6 +1,7 @@
 package dev.swim.toh.app;
 
 import dev.swim.toh.model.core.CharacterModelFactory;
+import dev.swim.toh.model.util.javafx.Styles;
 import dev.swim.toh.persistence.CharacterFileService;
 import dev.swim.toh.ui.controller.MainWindowController;
 import javafx.application.Application;
@@ -21,7 +22,7 @@ public class TomeOfHeroesApp extends Application {
 
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root, 1400, 1000);
-        scene.getStylesheets().add(getClass().getResource("/css/app.css").toExternalForm());
+        Styles.applyAppStylesheet(scene);
 
         stage.setTitle("Tome of Heroes");
         stage.setScene(scene);

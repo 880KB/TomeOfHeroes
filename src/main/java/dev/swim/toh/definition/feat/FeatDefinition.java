@@ -11,6 +11,7 @@ public class FeatDefinition {
     private FeatType type;
     private RepeatType repeatType;
     private String shortDescription;
+    private String description;
     private List<PrerequisiteDefinition> prerequisites;
     private List<BenefitDefinition> benefits;
 
@@ -53,6 +54,14 @@ public class FeatDefinition {
 
     public void setShortDescription(String shortDescription) {
         this.shortDescription = shortDescription;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public List<PrerequisiteDefinition> getPrerequisites() {

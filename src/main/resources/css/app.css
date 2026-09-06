@@ -42,3 +42,28 @@
 .table-cell {
     -fx-translate-y: 1;
 }
+
+/* Hides a TableView's header row - for single-column tables where the column header would
+   only repeat the section title above it (e.g. "Talent" under "Talente"). Layout.updateTableHeight
+   still works unchanged: it measures the real (now zero) header height instead of assuming one. */
+.no-header-table .column-header-background {
+    -fx-max-height: 0;
+    -fx-pref-height: 0;
+    -fx-min-height: 0;
+    visibility: hidden;
+}
+
+/* Card-like framing for InfoPopup content, so it reads as a distinct floating element rather
+   than blending into whatever is behind it. */
+.info-popup {
+    -fx-background-color: white;
+    -fx-padding: 10;
+    -fx-background-radius: 4;
+    -fx-border-color: #ced4da;
+    -fx-border-radius: 4;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 8, 0, 0, 2);
+}
+.info-popup-title {
+    -fx-font-weight: bold;
+}
