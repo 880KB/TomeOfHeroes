@@ -1,4 +1,4 @@
-package dev.swim.toh.model.data.feat.prerequisites;
+package dev.swim.toh.model.data.prerequisites;
 
 import dev.swim.toh.model.core.CharacterModel;
 import dev.swim.toh.model.data.clazz.Clazz;

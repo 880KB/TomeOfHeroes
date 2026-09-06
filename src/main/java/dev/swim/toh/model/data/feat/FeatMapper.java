@@ -5,15 +5,15 @@ import dev.swim.toh.definition.feat.FeatDefinition;
 import dev.swim.toh.definition.feat.PrerequisiteDefinition;
 import dev.swim.toh.model.core.bonus.BonusTarget;
 import dev.swim.toh.model.core.hitpoints.HpBonusTarget;
-import dev.swim.toh.model.data.feat.prerequisites.AttributePrerequisite;
-import dev.swim.toh.model.data.feat.prerequisites.BaseAttackBonusPrerequisite;
-import dev.swim.toh.model.data.feat.prerequisites.CasterLevelPrerequisite;
-import dev.swim.toh.model.data.feat.prerequisites.CharacterLevelPrerequisite;
-import dev.swim.toh.model.data.feat.prerequisites.ClassLevelPrerequisite;
-import dev.swim.toh.model.data.feat.prerequisites.FeatPrerequisite;
-import dev.swim.toh.model.data.feat.prerequisites.Prerequisite;
-import dev.swim.toh.model.data.feat.prerequisites.ProficiencyWithWeaponPrerequisite;
-import dev.swim.toh.model.data.feat.prerequisites.SkillPrerequisite;
+import dev.swim.toh.model.data.prerequisites.AttributePrerequisite;
+import dev.swim.toh.model.data.prerequisites.BaseAttackBonusPrerequisite;
+import dev.swim.toh.model.data.prerequisites.CasterLevelPrerequisite;
+import dev.swim.toh.model.data.prerequisites.CharacterLevelPrerequisite;
+import dev.swim.toh.model.data.prerequisites.ClassLevelPrerequisite;
+import dev.swim.toh.model.data.prerequisites.FeatPrerequisite;
+import dev.swim.toh.model.data.prerequisites.Prerequisite;
+import dev.swim.toh.model.data.prerequisites.ProficiencyWithWeaponPrerequisite;
+import dev.swim.toh.model.data.prerequisites.SkillPrerequisite;
 
 import java.util.List;
 

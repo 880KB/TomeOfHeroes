@@ -1,6 +1,6 @@
 package dev.swim.toh.model.data.feat;
 
-import dev.swim.toh.model.data.feat.prerequisites.Prerequisite;
+import dev.swim.toh.model.data.prerequisites.Prerequisite;
 
 import java.util.List;
 

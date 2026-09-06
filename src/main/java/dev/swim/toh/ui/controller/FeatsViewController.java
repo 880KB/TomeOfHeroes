@@ -3,7 +3,7 @@ package dev.swim.toh.ui.controller;
 import dev.swim.toh.model.core.CharacterModel;
 import dev.swim.toh.model.core.feats.SelectedFeat;
 import dev.swim.toh.model.data.feat.Feat;
-import dev.swim.toh.model.data.feat.prerequisites.FeatPrerequisite;
+import dev.swim.toh.model.data.prerequisites.FeatPrerequisite;
 import dev.swim.toh.model.util.javafx.Bind;
 import dev.swim.toh.model.util.javafx.InfoPopup;
 import dev.swim.toh.model.util.javafx.Layout;
