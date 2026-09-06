@@ -3,21 +3,39 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 
 <BorderPane focusTraversable="true" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.swim.toh.ui.controller.MainWindowController">
     <top>
-        <HBox alignment="CENTER_LEFT" spacing="10.0" BorderPane.alignment="CENTER">
-            <padding>
-                <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
-            </padding>
-            <Label style="-fx-font-size: 24px;" text="Tome of Heroes" />
-            <Region HBox.hgrow="ALWAYS" />
-            <Button onAction="#onNewCharacterButtonClicked" text="Neuer Charakter" />
-        </HBox>
+        <VBox BorderPane.alignment="CENTER">
+            <MenuBar>
+                <Menu text="Datei">
+                    <MenuItem onAction="#onNewCharacterButtonClicked" text="Neuer Charakter" accelerator="Shortcut+N" />
+                    <SeparatorMenuItem />
+                    <MenuItem onAction="#onOpenButtonClicked" text="Öffnen…" accelerator="Shortcut+O" />
+                    <MenuItem onAction="#onSaveButtonClicked" text="Speichern" accelerator="Shortcut+S" />
+                    <MenuItem onAction="#onSaveAsButtonClicked" text="Speichern unter…" accelerator="Shortcut+Shift+S" />
+                </Menu>
+            </MenuBar>
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+                <padding>
+                    <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                </padding>
+                <Label style="-fx-font-size: 24px;" text="Tome of Heroes" />
+                <Region HBox.hgrow="ALWAYS" />
+                <Button onAction="#onOpenButtonClicked" text="Öffnen" />
+                <Button onAction="#onSaveButtonClicked" text="Speichern" />
+                <Button onAction="#onNewCharacterButtonClicked" text="Neuer Charakter" />
+            </HBox>
+        </VBox>
     </top>
     <center>
         <TabPane fx:id="characterTabPane" tabClosingPolicy="ALL_TABS" />

@@ -1,0 +1,58 @@
+package dev.swim.toh.persistence;
+
+import dev.swim.toh.model.data.attribute.AttributeName;
+import dev.swim.toh.model.data.clazz.Clazz;
+import dev.swim.toh.model.data.race.Race;
+import dev.swim.toh.model.data.savingthrow.SavingThrow;
+
+import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Plain, Jackson-friendly snapshot of everything a saved character file needs to restore a
+ * {@link dev.swim.toh.model.core.CharacterModel}. Holds only Input values - Computed values are
+ * re-derived on load, the same way they are for any other change to the model.
+ */
+public class CharacterData {
+
+    public static final int CURRENT_SCHEMA_VERSION = 1;
+
+    public int schemaVersion = CURRENT_SCHEMA_VERSION;
+    public DescriptionData description = new DescriptionData();
+    public Map<AttributeName, Integer> attributes = new EnumMap<>(AttributeName.class);
+    public Map<SavingThrow, Integer> savingThrowMiscMods = new EnumMap<>(SavingThrow.class);
+    public List<ChosenClassData> classes = new ArrayList<>();
+    public List<String> featIds = new ArrayList<>();
+    public ArmorClassData armorClass = new ArmorClassData();
+    public int initiativeMiscMod;
+    public HitPointsData hitPoints = new HitPointsData();
+    public int spellResistance;
+
+    public static class DescriptionData {
+        public String name;
+        public Race race;
+        public String age;
+        public String size;
+    }
+
+    public static class ChosenClassData {
+        public Clazz clazz;
+        public int level;
+        public boolean firstClass;
+    }
+
+    public static class ArmorClassData {
+        public int armorBonus;
+        public int shieldBonus;
+        public int naturalArmor;
+        public int deflectionBonus;
+        public int miscMod;
+    }
+
+    public static class HitPointsData {
+        public int baseMax;
+        public int current;
+    }
+}

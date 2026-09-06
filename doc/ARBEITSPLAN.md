@@ -48,19 +48,26 @@ Stand: siehe letzten Commit. Diese Datei hält fest, was in den letzten Claude-C
 - Bugfix dabei gefunden: `FeatRules.getNotSelectedFeats()` blendete jedes bereits gewählte Talent aus dem Auswahldialog aus, auch wiederholbare (`STACKS`/`MULTIPLE`) — Toughness ließ sich dadurch nur einmal wählen. Nutzt jetzt dieselbe `notSelectedOrRepeatable()`-Prüfung wie `canAdd()`.
 - Bugfix: Klassen-/Talente-Tabellen standen in ihrem `BorderPane` vertikal zentriert statt oben, sobald die jeweils andere Tabelle höher wurde (`BorderPane`-Center-Default) — `BorderPane.alignment="TOP_CENTER"` auf beiden `TableView`s ergänzt.
 
+**Persistenz (Speichern/Laden)**
+- Neues Package `dev.swim.toh.persistence`: `CharacterData` (reines, Jackson-freundliches Snapshot-DTO nur der Input-Werte — Computed wird beim Laden neu hergeleitet statt mitgespeichert), `CharacterDataMapper` (`toData`/`applyTo`), `CharacterFileService` (Spring-Bean, liest/schreibt `.json` über `jackson-databind`).
+- Ein Charakter = eine `.json`-Datei, die der Nutzer selbst per `FileChooser` ablegt (kein impliziter App-Speicherordner) — passt zum Papier-Vorbild "ein Bogen = eine Datei".
+- `CharacterModelFactory` unterscheidet jetzt `createCharacter()` (mit Testdaten, für "Neuer Charakter") und `createEmptyCharacter()` (ohne, fürs Laden — `CharacterModel` selbst ruft `initTestData()` nicht mehr automatisch im Konstruktor auf).
+- `MainWindowController` merkt sich pro Tab die zuletzt geladene/gespeicherte Datei (`Tab.setUserData(...)`), damit "Speichern" ohne Dialog überschreibt und nur "Speichern unter" den Dialog zeigt.
+- UI: Menüleiste ("Datei" → Neuer Charakter/Öffnen/Speichern/Speichern unter, mit Tastenkürzeln) plus Buttons in der Kopfzeile.
+- Beim Laden werden Klassen/Talente über die normalen `addClass`/`addFeatNoPrerequisitesCheck`-Wege wiederhergestellt (nicht direkt in die Liste geschrieben), damit Seiteneffekte wie Talent-Boni (Bonus-Aggregator) und "genau eine Erstklasse" weiterhin greifen. Per Standalone-Skript verifiziert: Speichern → Laden liefert identische Werte, inklusive korrekt neu angewandtem Toughness-Bonus auf die Max-TP.
+
 ## Nächste Schritte (priorisiert)
 
-1. **Persistenz (Speichern/Laden)** — aktuell geht jeder Charakter beim Schließen des Tabs/der App verloren. `jackson-databind` liegt schon ungenutzt in der `pom.xml`. Größter Hebel für tatsächliche Nutzbarkeit.
-2. **Bonus-Aggregator erweitern** — bisher nur an TP-Max verankert. Als Nächstes: RK-Teilkomponenten (Rüstungs-/Schild-/Ablenkungsbonus etc. sollen ebenfalls Bonus-Ziele werden, nicht nur reine Eingabefelder) und der "Sonstiges"-Modifikator bei Rettungswürfen.
-3. **Violation-Konzept auf weitere Bereiche ausweiten** — aktuell nur Talente. Kandidaten: Klassen (z. B. Multiklassen-Regeln), sobald mehr Regellogik existiert.
-4. **Trefferpunkte/HP-Berechnung vertiefen** — TP-Basis ist noch ein reines manuelles Eingabefeld (kein Trefferwürfel-System, kein KO-Mod. pro Stufe). RK/Initiative/Zauberresistenz ebenso: alle Teilwerte (Rüstungsbonus, Naturrüstung, …) sind manuelle Felder ohne Ausrüstungs- oder Zaubersystem dahinter — bewusst so, siehe CLAUDE.md.
-5. **Tests** für `AttributeCalculator`/`FeatCalculator`/`ClassRules`/`FeatRules`/`BonusCalculator`/`ArmorClassCalculator` — reine Funktionen, aktuell keine Testabdeckung, lohnt sich vor weiterem Ausbau der Regellogik.
-6. **Kleinere offene Fäden** (siehe auch CLAUDE.md "Bekannte, bewusst unfertige Stellen"):
+1. **Bonus-Aggregator erweitern** — bisher nur an TP-Max verankert. Als Nächstes: RK-Teilkomponenten (Rüstungs-/Schild-/Ablenkungsbonus etc. sollen ebenfalls Bonus-Ziele werden, nicht nur reine Eingabefelder) und der "Sonstiges"-Modifikator bei Rettungswürfen.
+2. **Violation-Konzept auf weitere Bereiche ausweiten** — aktuell nur Talente. Kandidaten: Klassen (z. B. Multiklassen-Regeln), sobald mehr Regellogik existiert.
+3. **Trefferpunkte/HP-Berechnung vertiefen** — TP-Basis ist noch ein reines manuelles Eingabefeld (kein Trefferwürfel-System, kein KO-Mod. pro Stufe). RK/Initiative/Zauberresistenz ebenso: alle Teilwerte (Rüstungsbonus, Naturrüstung, …) sind manuelle Felder ohne Ausrüstungs- oder Zaubersystem dahinter — bewusst so, siehe CLAUDE.md.
+4. **Tests** für `AttributeCalculator`/`FeatCalculator`/`ClassRules`/`FeatRules`/`BonusCalculator`/`ArmorClassCalculator` — reine Funktionen, aktuell keine Testabdeckung, lohnt sich vor weiterem Ausbau der Regellogik.
+5. **Kleinere offene Fäden** (siehe auch CLAUDE.md "Bekannte, bewusst unfertige Stellen"):
    - "verfügbar"-Feld bei Talenten zeigt nie etwas (nie verdrahtet).
    - "Talent durch Klasse gewährt"-Konzept fehlt komplett (bräuchte Talent-Slot-Buchhaltung: welcher gewählte Talent kam aus einem normalen Slot vs. einem Klassen-Bonusslot).
    - Rassen-Bonustalent (Menschen, Stufe 1) und Kämpfer-Bonustalentliste als eigene Filterregel fehlen noch.
    - Nur 4 Talente in `feats.yml` — Dateninhalt ist noch sehr dünn.
-7. **Später, auf Rückstellung:** Sprachumschalter DE/EN (echtes i18n-Setup nötig, aktueller Text noch zu instabil, um sich zu lohnen).
+6. **Später, auf Rückstellung:** Sprachumschalter DE/EN (echtes i18n-Setup nötig, aktueller Text noch zu instabil, um sich zu lohnen).
 
 ## Arbeitsweise, die sich bewährt hat
 

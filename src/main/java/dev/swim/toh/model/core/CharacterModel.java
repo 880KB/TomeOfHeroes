@@ -43,8 +43,6 @@ public class CharacterModel {
         this.feats = new Feats(featRepository, featRules);
         feats.init(this);
         featsValidation.setCharacter(this);
-
-        initTestData();
     }
 
     public void initTestData() {

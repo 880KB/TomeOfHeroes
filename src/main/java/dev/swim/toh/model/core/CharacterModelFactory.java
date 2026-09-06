@@ -16,6 +16,12 @@ public class CharacterModelFactory {
     }
 
     public CharacterModel createCharacter() {
+        CharacterModel characterModel = new CharacterModel(featRepository, featRules);
+        characterModel.initTestData();
+        return characterModel;
+    }
+
+    public CharacterModel createEmptyCharacter() {
         return new CharacterModel(featRepository, featRules);
     }
 }
