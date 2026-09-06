@@ -32,12 +32,12 @@
             <Insets top="5.0" />
          </BorderPane.margin>
          <children>
-            <Label text="Max Klasse" />
+            <Label text="Allg." />
             <TextField fx:id="maxClassFeatsTextField" alignment="CENTER" editable="false" prefWidth="40.0" styleClass="field-computed" />
-            <Label text="Max Kämpfer" />
+            <Label fx:id="maxFighterFeatsLabel" text="Kämpfer" />
             <TextField fx:id="maxFighterFeatsTextField" alignment="CENTER" editable="false" prefWidth="40.0" styleClass="field-computed" />
-            <Label text="verfügbar" />
-            <TextField fx:id="availableFeatsCountTextField" alignment="CENTER" editable="false" prefWidth="40.0" styleClass="field-computed" />
+            <Label fx:id="raceBonusFeatsLabel" text="Rasse" />
+            <TextField fx:id="raceBonusFeatsTextField" alignment="CENTER" editable="false" prefWidth="40.0" styleClass="field-computed" />
          </children>
       </HBox>
    </bottom>

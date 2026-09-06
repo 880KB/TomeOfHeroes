@@ -12,6 +12,8 @@ import dev.swim.toh.model.validation.Violation;
 import dev.swim.toh.translation.PrerequisiteFormatter;
 import dev.swim.toh.ui.controller.dialog.SelectionDialogController;
 import dev.swim.toh.ui.controller.dialog.SelectionItem;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.DoubleBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -49,8 +51,10 @@ public class FeatsViewController extends CharacterModelAware {
     public TableColumn<SelectedFeat, Void> removeFeatTableColumn;
     public Button addFeatButton;
     public TextField maxClassFeatsTextField;
+    public Label maxFighterFeatsLabel;
     public TextField maxFighterFeatsTextField;
-    public TextField availableFeatsCountTextField;
+    public Label raceBonusFeatsLabel;
+    public TextField raceBonusFeatsTextField;
 
     // featsTableView is bound to this instead of characterModel.feats.getFeatList() directly, so
     // the displayed order can group a feat under the feat it builds on (see refreshFeatOrder())
@@ -164,6 +168,15 @@ public class FeatsViewController extends CharacterModelAware {
         // int values
         Bind.bindIntegerPropertyToTextField(characterModel.feats.maxClassFeatsProperty(), maxClassFeatsTextField);
         Bind.bindIntegerPropertyToTextField(characterModel.feats.maxFighterBonusFeatsProperty(), maxFighterFeatsTextField);
+        Bind.bindIntegerPropertyToTextField(characterModel.feats.raceBonusFeatsProperty(), raceBonusFeatsTextField);
+
+        DoubleBinding fighterBonusFeatsOpacity = Bindings.when(characterModel.feats.maxFighterBonusFeatsProperty().greaterThan(0)).then(1.0).otherwise(0.35);
+        maxFighterFeatsLabel.opacityProperty().bind(fighterBonusFeatsOpacity);
+        maxFighterFeatsTextField.opacityProperty().bind(fighterBonusFeatsOpacity);
+
+        DoubleBinding raceBonusFeatsOpacity = Bindings.when(characterModel.feats.raceBonusFeatsProperty().greaterThan(0)).then(1.0).otherwise(0.35);
+        raceBonusFeatsLabel.opacityProperty().bind(raceBonusFeatsOpacity);
+        raceBonusFeatsTextField.opacityProperty().bind(raceBonusFeatsOpacity);
 
         // "add feat" button
         FontIcon addIcon = new FontIcon(FontAwesomeSolid.PLUS);

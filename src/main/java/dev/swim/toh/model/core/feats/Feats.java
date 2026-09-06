@@ -35,6 +35,10 @@ public class Feats extends CoreBase<FeatsInput, FeatsComputed> {
         return computed.maxFighterBonusFeatsProperty();
     }
 
+    public IntegerProperty raceBonusFeatsProperty() {
+        return computed.raceBonusFeatsProperty();
+    }
+
     public void addFeat(String id) {
         input.addFeat(featRepository.getFeat(id));
     }

@@ -13,6 +13,7 @@ public class FeatsComputed extends ComputedBase {
     private final IntegerProperty maxFeats = new SimpleIntegerProperty(0);
     private final IntegerProperty maxClassFeats = new SimpleIntegerProperty(0);
     private final IntegerProperty maxFighterBonusFeats = new SimpleIntegerProperty(0);
+    private final IntegerProperty raceBonusFeats = new SimpleIntegerProperty(0);
 
     @Override
     public void addListeners() {
@@ -21,6 +22,12 @@ public class FeatsComputed extends ComputedBase {
                 maxClassFeats.set(FeatCalculator.getMaxClassFeats(newLevel.intValue()))
         );
         maxClassFeats.set(FeatCalculator.getMaxClassFeats(characterModel.classes.getCharacterLevelProperty().get()));
+
+        // race bonus feats
+        characterModel.description.raceProperty().addListener((obs, oldRace, newRace) ->
+                raceBonusFeats.set(FeatCalculator.getRaceBonusFeats(newRace))
+        );
+        raceBonusFeats.set(FeatCalculator.getRaceBonusFeats(characterModel.description.raceProperty().get()));
 
         // max fighter bonus feats for already-present classes
         for (ChosenClass chosenClass : characterModel.classes.getClassList()) {
@@ -55,12 +62,15 @@ public class FeatsComputed extends ComputedBase {
 
         // max feats
         maxClassFeats.addListener((obs, oldMaxClassFeats, newMaxClassFeats) ->
-                maxFeats.set(newMaxClassFeats.intValue() + maxFighterBonusFeats.intValue())
+                maxFeats.set(newMaxClassFeats.intValue() + maxFighterBonusFeats.intValue() + raceBonusFeats.intValue())
         );
         maxFighterBonusFeats.addListener((obs, oldMaxFighterBonusFeats, newMaxFighterBonusFeats) ->
-                maxFeats.set(maxClassFeats.intValue() + newMaxFighterBonusFeats.intValue())
+                maxFeats.set(maxClassFeats.intValue() + newMaxFighterBonusFeats.intValue() + raceBonusFeats.intValue())
         );
-        maxFeats.set(maxClassFeats.get() + maxFighterBonusFeats.get());
+        raceBonusFeats.addListener((obs, oldRaceBonusFeats, newRaceBonusFeats) ->
+                maxFeats.set(maxClassFeats.intValue() + maxFighterBonusFeats.intValue() + newRaceBonusFeats.intValue())
+        );
+        maxFeats.set(maxClassFeats.get() + maxFighterBonusFeats.get() + raceBonusFeats.get());
     };
 
     protected IntegerProperty maxFeatsProperty() {
@@ -73,6 +83,10 @@ public class FeatsComputed extends ComputedBase {
 
     protected IntegerProperty maxFighterBonusFeatsProperty() {
         return maxFighterBonusFeats;
+    }
+
+    protected IntegerProperty raceBonusFeatsProperty() {
+        return raceBonusFeats;
     }
 
     private void updateMaxFighterBonusFeats(int fighterLevel) {

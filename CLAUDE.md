@@ -47,8 +47,7 @@ Kein `module-info.java` mehr (bewusst entfernt) — JPMS und Spring's reflection
 ## Bekannte, bewusst unfertige Stellen
 
 - **Magie-Mod bei Rettungswürfen** (`SavingThrowsComputed`) ist ein `Computed`-Platzhalter, immer 0 (`// TODO: magic mods`). Absichtlich nicht auf Input umgestellt, da unklar ist, ob es später aus einem Ausrüstungssystem berechnet werden soll.
-- **"verfügbar"-Feld** bei Talenten (`availableFeatsCountTextField`) ist nie an echte Daten gebunden.
-- **"durch Klasse"-Spalte** bei Talenten wurde entfernt statt zum Schein verdrahtet — die Daten dafür existieren nirgends (`Feat.isGrantedByClasses` war ein totes, nie befülltes Feld und wurde entfernt). Würde eine eigene Funktion brauchen: pro ausgewähltem Talent festhalten, ob es einen normalen Slot verbraucht oder über einen Klassen-Bonus (z.B. Kämpfer-Bonustalente) kostenlos war.
+- **Talent-Slot-Zeilen** unterhalb der Talente-Tabelle zeigen aktuell nur Maxima (Allg., Kämpfer, Rasse — letztere zwei ausgegraut über `opacityProperty()`, wenn ihr Maximum 0 ist, statt sie auszublenden, damit nicht eine einzelne verbleibende Position seltsam wirkt), kein "belegt/max" pro Zeile. Das erfordert, pro ausgewähltem Talent festzuhalten, welchen Pool es verbraucht hat (`SelectedFeat` hat dafür aktuell kein Feld) und — für den Kämpfer-Pool — eine echte Eignungsliste, welche Talente überhaupt als Kämpfer-Bonustalent zählen (`Feat.isGrantedByClasses` war ein früherer, nie befüllter Versuch in diese Richtung und wurde entfernt). Geplant: bei Mehrdeutigkeit hat der Kämpfer-Bonus-Pool Vorrang, wenn dort noch ein Slot frei ist, sonst zählt es als normales Talent — dieselbe Priorität soll ein Icon in der Talent-Tabelle sichtbar machen (Schwert-Icon bei Kämpfer-Bonustalenten).
 - Sprachumschalter (DE/EN) ist auf Nutzerwunsch zurückgestellt — würde ein echtes i18n-Ressourcen-Bundle-Setup brauchen, kein Quick-Fix.
 
 Details und Priorisierung der nächsten Schritte: [doc/ARBEITSPLAN.md](doc/ARBEITSPLAN.md).
