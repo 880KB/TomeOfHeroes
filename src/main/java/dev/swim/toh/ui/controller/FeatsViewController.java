@@ -16,6 +16,7 @@ import dev.swim.toh.ui.controller.dialog.SelectionItem;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.DoubleBinding;
+import javafx.beans.property.IntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -201,27 +202,24 @@ public class FeatsViewController extends CharacterModelAware {
         Bind.bindUsedMaxToTextField(characterModel.feats.usedWizardBonusFeatsProperty(), characterModel.feats.maxWizardBonusFeatsProperty(), maxWizardBonusFeatsTextField);
         Bind.bindUsedMaxToTextField(characterModel.feats.usedRaceBonusFeatsProperty(), characterModel.feats.raceBonusFeatsProperty(), raceBonusFeatsTextField);
 
-        // "Allg." is the catch-all pool, so unlike the other three it can go over its own
-        // maximum instead of being capped - flag that visually instead of picking one arbitrary
-        // offending feat to blame, since the player is the one who decides which feat "is" the
-        // extra one
-        BooleanBinding classFeatsExceeded = characterModel.feats.usedClassFeatsProperty()
-                .greaterThan(characterModel.feats.maxClassFeatsProperty());
-        classFeatsExceeded.addListener((obs, wasExceeded, isExceeded) ->
-                setStyleClassPresent(maxClassFeatsTextField, "field-exceeded", isExceeded));
-        setStyleClassPresent(maxClassFeatsTextField, "field-exceeded", classFeatsExceeded.get());
+        // every pool can end up with more used than max: "Allg." because it's the deliberately
+        // uncapped catch-all (the player decides which feat "is" the extra one, so there's no
+        // single offending feat to blame), Kämpfer/Magier/Rasse because a pool's max can shrink
+        // after a feat already froze itself into it (e.g. removing the Wizard class after a
+        // Wizard-bonus feat was chosen) - pool assignment is a historical fact that must not be
+        // undone retroactively (see FeatsComputed#assignPool), so the feat stays and only the
+        // status field flags the overhang
+        BooleanBinding classFeatsExceeded = bindExceeded(characterModel.feats.usedClassFeatsProperty(), characterModel.feats.maxClassFeatsProperty(), maxClassFeatsTextField);
+        BooleanBinding fighterBonusFeatsExceeded = bindExceeded(characterModel.feats.usedFighterBonusFeatsProperty(), characterModel.feats.maxFighterBonusFeatsProperty(), maxFighterFeatsTextField);
+        BooleanBinding wizardBonusFeatsExceeded = bindExceeded(characterModel.feats.usedWizardBonusFeatsProperty(), characterModel.feats.maxWizardBonusFeatsProperty(), maxWizardBonusFeatsTextField);
+        BooleanBinding raceBonusFeatsExceeded = bindExceeded(characterModel.feats.usedRaceBonusFeatsProperty(), characterModel.feats.raceBonusFeatsProperty(), raceBonusFeatsTextField);
 
-        DoubleBinding fighterBonusFeatsOpacity = Bindings.when(characterModel.feats.maxFighterBonusFeatsProperty().greaterThan(0)).then(1.0).otherwise(0.35);
-        maxFighterFeatsLabel.opacityProperty().bind(fighterBonusFeatsOpacity);
-        maxFighterFeatsTextField.opacityProperty().bind(fighterBonusFeatsOpacity);
-
-        DoubleBinding wizardBonusFeatsOpacity = Bindings.when(characterModel.feats.maxWizardBonusFeatsProperty().greaterThan(0)).then(1.0).otherwise(0.35);
-        maxWizardBonusFeatsLabel.opacityProperty().bind(wizardBonusFeatsOpacity);
-        maxWizardBonusFeatsTextField.opacityProperty().bind(wizardBonusFeatsOpacity);
-
-        DoubleBinding raceBonusFeatsOpacity = Bindings.when(characterModel.feats.raceBonusFeatsProperty().greaterThan(0)).then(1.0).otherwise(0.35);
-        raceBonusFeatsLabel.opacityProperty().bind(raceBonusFeatsOpacity);
-        raceBonusFeatsTextField.opacityProperty().bind(raceBonusFeatsOpacity);
+        // fade a bonus-pool row out only while it's both at max 0 and not exceeded - an exceeded
+        // pool (used > max, even at max 0) must stay fully visible, that's exactly the case
+        // field-exceeded is meant to surface
+        bindPoolOpacity(characterModel.feats.maxFighterBonusFeatsProperty(), fighterBonusFeatsExceeded, maxFighterFeatsLabel, maxFighterFeatsTextField);
+        bindPoolOpacity(characterModel.feats.maxWizardBonusFeatsProperty(), wizardBonusFeatsExceeded, maxWizardBonusFeatsLabel, maxWizardBonusFeatsTextField);
+        bindPoolOpacity(characterModel.feats.raceBonusFeatsProperty(), raceBonusFeatsExceeded, raceBonusFeatsLabel, raceBonusFeatsTextField);
 
         // "add feat" button
         FontIcon addIcon = new FontIcon(FontAwesomeSolid.PLUS);
@@ -349,6 +347,19 @@ public class FeatsViewController extends CharacterModelAware {
                 .map(prerequisite -> characterModel.feats.getFeatById(prerequisite.requiredFeat()))
                 .filter(candidates::contains)
                 .orElse(null);
+    }
+
+    private BooleanBinding bindExceeded(IntegerProperty used, IntegerProperty max, TextField field) {
+        BooleanBinding exceeded = used.greaterThan(max);
+        exceeded.addListener((obs, wasExceeded, isExceeded) -> setStyleClassPresent(field, "field-exceeded", isExceeded));
+        setStyleClassPresent(field, "field-exceeded", exceeded.get());
+        return exceeded;
+    }
+
+    private void bindPoolOpacity(IntegerProperty max, BooleanBinding exceeded, Label label, TextField field) {
+        DoubleBinding opacity = Bindings.when(max.greaterThan(0).or(exceeded)).then(1.0).otherwise(0.35);
+        label.opacityProperty().bind(opacity);
+        field.opacityProperty().bind(opacity);
     }
 
     private void setStyleClassPresent(Node node, String styleClass, boolean present) {
