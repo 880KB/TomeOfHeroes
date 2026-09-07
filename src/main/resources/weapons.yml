@@ -1,0 +1,826 @@
+# Waffenkatalog aus dem (korrekten D&D-3.5-)Spielerhandbuch, Kapitel 7 "Ausrüstung",
+# Tabelle 7-5: Waffen, Quelle: doc/datenquellen/Waffen.pdf.
+#
+# Bewusst nicht mit übertragen (siehe ARBEITSPLAN.md, Punkt 3a):
+# - Munition (Pfeile, Armbrustbolzen, Schleuderkugeln) - keine eigene Waffe, sondern Verbrauchsgut
+#   ohne eigenen Schaden/Kritisch-Wert.
+# - Netz - richtet keinen regulären Schaden an (reine Fesselwirkung), passt nicht ins aktuelle
+#   Schadensmodell.
+# - Schilde und Rüstungsstacheln (Leichter/Schwerer Schild, Leichter/Schwerer Stachelschild,
+#   Rüstungsstacheln) - eigener Ausrüstungsslot (RK-Bonus), keine Waffe im Sinne dieses Katalogs.
+# - Preis: aktuell kein Anwendungsfall (keine Kauf-/Wirtschaftslogik), daher kein Feld im Modell.
+#
+# Gewicht ist der Mittelgroß-Basiswert (Tabellen-Fußnote 1: halbiert für kleine, verdoppelt für
+# große Waffen) - noch nicht als Rechenfunktion umgesetzt, nur als Rohdaten hinterlegt.
+weapons:
+  weapons:
+    # Einfache Waffen - Waffenlose Angriffe
+    - id: PANZERHANDSCHUH
+      name: "Panzerhandschuh"
+      proficiency: SIMPLE
+      rangeType: MELEE
+      handedness: LIGHT
+      damageSmall: "1W2"
+      damageMedium: "1W3"
+      criticalMultiplier: 2
+      weight: 1
+      damageTypes: [BLUDGEONING]
+
+    - id: WAFFENLOSER_SCHLAG
+      name: "Waffenloser Schlag"
+      proficiency: SIMPLE
+      rangeType: MELEE
+      handedness: LIGHT
+      damageSmall: "1W2"
+      damageMedium: "1W3"
+      nonlethal: true
+      criticalMultiplier: 2
+      weight: 0
+      damageTypes: [BLUDGEONING]
+
+    # Einfache Waffen - Leichte Waffen (Nahkampf)
+    - id: DOLCH
+      name: "Dolch"
+      proficiency: SIMPLE
+      rangeType: MELEE
+      handedness: LIGHT
+      damageSmall: "1W3"
+      damageMedium: "1W4"
+      criticalThreatRange: 19
+      criticalMultiplier: 2
+      rangeIncrement: 3
+      weight: 1
+      damageTypes: [PIERCING, SLASHING]
+      damageTypeChoice: true
+
+    - id: LEICHTER_STREITKOLBEN
+      name: "Leichter Streitkolben"
+      proficiency: SIMPLE
+      rangeType: MELEE
+      handedness: LIGHT
+      damageSmall: "1W4"
+      damageMedium: "1W6"
+      criticalMultiplier: 2
+      weight: 4
+      damageTypes: [BLUDGEONING]
+
+    - id: SICHEL
+      name: "Sichel"
+      proficiency: SIMPLE
+      rangeType: MELEE
+      handedness: LIGHT
+      damageSmall: "1W4"
+      damageMedium: "1W6"
+      criticalMultiplier: 2
+      weight: 2
+      damageTypes: [SLASHING]
+
+    - id: STACHELHANDSCHUH
+      name: "Stachelhandschuh"
+      proficiency: SIMPLE
+      rangeType: MELEE
+      handedness: LIGHT
+      damageSmall: "1W3"
+      damageMedium: "1W4"
+      criticalMultiplier: 2
+      weight: 1
+      damageTypes: [PIERCING]
+
+    - id: STOSSDOLCH
+      name: "Stoßdolch"
+      proficiency: SIMPLE
+      rangeType: MELEE
+      handedness: LIGHT
+      damageSmall: "1W3"
+      damageMedium: "1W4"
+      criticalMultiplier: 3
+      weight: 1
+      damageTypes: [PIERCING]
+
+    # Einfache Waffen - Einhandwaffen (Nahkampf)
+    - id: KEULE
+      name: "Keule"
+      proficiency: SIMPLE
+      rangeType: MELEE
+      handedness: ONE_HANDED
+      damageSmall: "1W4"
+      damageMedium: "1W6"
+      criticalMultiplier: 2
+      rangeIncrement: 3
+      weight: 3
+      damageTypes: [BLUDGEONING]
+
+    - id: KURZSPEER
+      name: "Kurzspeer"
+      proficiency: SIMPLE
+      rangeType: MELEE
+      handedness: ONE_HANDED
+      damageSmall: "1W4"
+      damageMedium: "1W6"
+      criticalMultiplier: 2
+      rangeIncrement: 6
+      weight: 3
+      damageTypes: [PIERCING]
+
+    - id: MORGENSTERN
+      name: "Morgenstern"
+      proficiency: SIMPLE
+      rangeType: MELEE
+      handedness: ONE_HANDED
+      damageSmall: "1W6"
+      damageMedium: "1W8"
+      criticalMultiplier: 2
+      weight: 6
+      damageTypes: [BLUDGEONING, PIERCING]
+
+    - id: SCHWERER_STREITKOLBEN
+      name: "Schwerer Streitkolben"
+      proficiency: SIMPLE
+      rangeType: MELEE
+      handedness: ONE_HANDED
+      damageSmall: "1W6"
+      damageMedium: "1W8"
+      criticalMultiplier: 2
+      weight: 8
+      damageTypes: [BLUDGEONING]
+
+    # Einfache Waffen - Zweihandwaffen (Nahkampf)
+    - id: KAMPFSTAB
+      name: "Kampfstab"
+      proficiency: SIMPLE
+      rangeType: MELEE
+      handedness: TWO_HANDED
+      damageSmall: "1W4"
+      damageMedium: "1W6"
+      secondaryDamageSmall: "1W4"
+      secondaryDamageMedium: "1W6"
+      doubleWeapon: true
+      criticalMultiplier: 2
+      weight: 4
+      damageTypes: [BLUDGEONING]
+
+    - id: LANGSPEER
+      name: "Langspeer"
+      proficiency: SIMPLE
+      rangeType: MELEE
+      handedness: TWO_HANDED
+      damageSmall: "1W6"
+      damageMedium: "1W8"
+      criticalMultiplier: 3
+      reach: true
+      weight: 9
+      damageTypes: [PIERCING]
+
+    - id: SPEER
+      name: "Speer"
+      proficiency: SIMPLE
+      rangeType: MELEE
+      handedness: TWO_HANDED
+      damageSmall: "1W6"
+      damageMedium: "1W8"
+      criticalMultiplier: 3
+      rangeIncrement: 6
+      weight: 6
+      damageTypes: [PIERCING]
+
+    # Einfache Waffen - Fernkampfwaffen
+    - id: LEICHTE_ARMBRUST
+      name: "Leichte Armbrust"
+      proficiency: SIMPLE
+      rangeType: RANGED
+      damageSmall: "1W6"
+      damageMedium: "1W8"
+      criticalThreatRange: 19
+      criticalMultiplier: 2
+      rangeIncrement: 24
+      weight: 4
+      damageTypes: [PIERCING]
+
+    - id: SCHLEUDER
+      name: "Schleuder"
+      proficiency: SIMPLE
+      rangeType: RANGED
+      damageSmall: "1W3"
+      damageMedium: "1W4"
+      criticalMultiplier: 2
+      rangeIncrement: 15
+      weight: 0
+      damageTypes: [BLUDGEONING]
+
+    - id: SCHWERE_ARMBRUST
+      name: "Schwere Armbrust"
+      proficiency: SIMPLE
+      rangeType: RANGED
+      damageSmall: "1W8"
+      damageMedium: "1W10"
+      criticalThreatRange: 19
+      criticalMultiplier: 2
+      rangeIncrement: 36
+      weight: 8
+      damageTypes: [PIERCING]
+
+    - id: WURFPFEIL
+      name: "Wurfpfeil"
+      proficiency: SIMPLE
+      rangeType: RANGED
+      damageSmall: "1W3"
+      damageMedium: "1W4"
+      criticalMultiplier: 2
+      rangeIncrement: 6
+      weight: 0.5
+      damageTypes: [PIERCING]
+
+    - id: WURFSPEER
+      name: "Wurfspeer"
+      proficiency: SIMPLE
+      rangeType: RANGED
+      damageSmall: "1W4"
+      damageMedium: "1W6"
+      criticalMultiplier: 2
+      rangeIncrement: 9
+      weight: 2
+      damageTypes: [PIERCING]
+
+    # Kriegswaffen - Leichte Waffen (Nahkampf)
+    - id: BEIL
+      name: "Beil"
+      proficiency: MARTIAL
+      rangeType: MELEE
+      handedness: LIGHT
+      damageSmall: "1W4"
+      damageMedium: "1W6"
+      criticalMultiplier: 3
+      weight: 3
+      damageTypes: [SLASHING]
+
+    - id: KUKRI
+      name: "Kukri"
+      proficiency: MARTIAL
+      rangeType: MELEE
+      handedness: LIGHT
+      damageSmall: "1W3"
+      damageMedium: "1W4"
+      criticalThreatRange: 18
+      criticalMultiplier: 2
+      weight: 2
+      damageTypes: [SLASHING]
+
+    - id: KURZSCHWERT
+      name: "Kurzschwert"
+      proficiency: MARTIAL
+      rangeType: MELEE
+      handedness: LIGHT
+      damageSmall: "1W4"
+      damageMedium: "1W6"
+      criticalThreatRange: 19
+      criticalMultiplier: 2
+      weight: 2
+      damageTypes: [PIERCING]
+
+    - id: LEICHTE_KRIEGSHACKE
+      name: "Leichte Kriegshacke"
+      proficiency: MARTIAL
+      rangeType: MELEE
+      handedness: LIGHT
+      damageSmall: "1W3"
+      damageMedium: "1W4"
+      criticalMultiplier: 4
+      weight: 3
+      damageTypes: [PIERCING]
+
+    - id: LEICHTER_HAMMER
+      name: "Leichter Hammer"
+      proficiency: MARTIAL
+      rangeType: MELEE
+      handedness: LIGHT
+      damageSmall: "1W3"
+      damageMedium: "1W4"
+      criticalMultiplier: 2
+      rangeIncrement: 6
+      weight: 2
+      damageTypes: [BLUDGEONING]
+
+    - id: TOTSCHLAEGER
+      name: "Totschläger"
+      proficiency: MARTIAL
+      rangeType: MELEE
+      handedness: LIGHT
+      damageSmall: "1W4"
+      damageMedium: "1W6"
+      nonlethal: true
+      criticalMultiplier: 2
+      weight: 2
+      damageTypes: [BLUDGEONING]
+
+    - id: WURFBEIL
+      name: "Wurfbeil"
+      proficiency: MARTIAL
+      rangeType: MELEE
+      handedness: LIGHT
+      damageSmall: "1W4"
+      damageMedium: "1W6"
+      criticalMultiplier: 2
+      rangeIncrement: 3
+      weight: 2
+      damageTypes: [SLASHING]
+
+    # Kriegswaffen - Einhandwaffen (Nahkampf)
+    - id: DREIZACK
+      name: "Dreizack"
+      proficiency: MARTIAL
+      rangeType: MELEE
+      handedness: ONE_HANDED
+      damageSmall: "1W6"
+      damageMedium: "1W8"
+      criticalMultiplier: 2
+      rangeIncrement: 3
+      weight: 4
+      damageTypes: [PIERCING]
+
+    - id: STREITFLEGEL
+      name: "Streitflegel"
+      proficiency: MARTIAL
+      rangeType: MELEE
+      handedness: ONE_HANDED
+      damageSmall: "1W6"
+      damageMedium: "1W8"
+      criticalMultiplier: 2
+      weight: 5
+      damageTypes: [BLUDGEONING]
+
+    - id: KRUMMSAEBEL
+      name: "Krummsäbel"
+      proficiency: MARTIAL
+      rangeType: MELEE
+      handedness: ONE_HANDED
+      damageSmall: "1W4"
+      damageMedium: "1W6"
+      criticalThreatRange: 18
+      criticalMultiplier: 2
+      weight: 4
+      damageTypes: [SLASHING]
+
+    - id: LANGSCHWERT
+      name: "Langschwert"
+      proficiency: MARTIAL
+      rangeType: MELEE
+      handedness: ONE_HANDED
+      damageSmall: "1W6"
+      damageMedium: "1W8"
+      criticalThreatRange: 19
+      criticalMultiplier: 2
+      weight: 4
+      damageTypes: [SLASHING]
+
+    - id: RAPIER
+      name: "Rapier"
+      proficiency: MARTIAL
+      rangeType: MELEE
+      handedness: ONE_HANDED
+      damageSmall: "1W4"
+      damageMedium: "1W6"
+      criticalThreatRange: 18
+      criticalMultiplier: 2
+      weight: 2
+      damageTypes: [PIERCING]
+
+    - id: SCHWERE_KRIEGSHACKE
+      name: "Schwere Kriegshacke"
+      proficiency: MARTIAL
+      rangeType: MELEE
+      handedness: ONE_HANDED
+      damageSmall: "1W4"
+      damageMedium: "1W6"
+      criticalMultiplier: 4
+      weight: 6
+      damageTypes: [PIERCING]
+
+    - id: STREITAXT
+      name: "Streitaxt"
+      proficiency: MARTIAL
+      rangeType: MELEE
+      handedness: ONE_HANDED
+      damageSmall: "1W6"
+      damageMedium: "1W8"
+      criticalMultiplier: 3
+      weight: 6
+      damageTypes: [SLASHING]
+
+    - id: STREITHAMMER
+      name: "Streithammer"
+      proficiency: MARTIAL
+      rangeType: MELEE
+      handedness: ONE_HANDED
+      damageSmall: "1W6"
+      damageMedium: "1W8"
+      criticalMultiplier: 3
+      weight: 5
+      damageTypes: [BLUDGEONING]
+
+    # Kriegswaffen - Zweihandwaffen (Nahkampf)
+    - id: GLEFE
+      name: "Glefe"
+      proficiency: MARTIAL
+      rangeType: MELEE
+      handedness: TWO_HANDED
+      damageSmall: "1W8"
+      damageMedium: "1W10"
+      criticalMultiplier: 3
+      reach: true
+      weight: 10
+      damageTypes: [SLASHING]
+
+    - id: GUISARME
+      name: "Guisarme"
+      proficiency: MARTIAL
+      rangeType: MELEE
+      handedness: TWO_HANDED
+      damageSmall: "1W6"
+      damageMedium: "2W4"
+      criticalMultiplier: 3
+      reach: true
+      weight: 12
+      damageTypes: [SLASHING]
+
+    - id: HELLEBARDE
+      name: "Hellebarde"
+      proficiency: MARTIAL
+      rangeType: MELEE
+      handedness: TWO_HANDED
+      damageSmall: "1W8"
+      damageMedium: "1W10"
+      criticalMultiplier: 3
+      weight: 12
+      damageTypes: [PIERCING, SLASHING]
+      damageTypeChoice: true
+
+    - id: KRUMMSCHWERT
+      name: "Krummschwert"
+      proficiency: MARTIAL
+      rangeType: MELEE
+      handedness: TWO_HANDED
+      damageSmall: "1W6"
+      damageMedium: "2W4"
+      criticalThreatRange: 18
+      criticalMultiplier: 2
+      weight: 8
+      damageTypes: [SLASHING]
+
+    - id: LANZE
+      name: "Lanze"
+      proficiency: MARTIAL
+      rangeType: MELEE
+      handedness: TWO_HANDED
+      damageSmall: "1W6"
+      damageMedium: "1W8"
+      criticalMultiplier: 3
+      reach: true
+      weight: 10
+      damageTypes: [PIERCING]
+
+    - id: RANSEUR
+      name: "Ranseur"
+      proficiency: MARTIAL
+      rangeType: MELEE
+      handedness: TWO_HANDED
+      damageSmall: "1W6"
+      damageMedium: "2W4"
+      criticalMultiplier: 3
+      reach: true
+      weight: 12
+      damageTypes: [PIERCING]
+
+    - id: SCHWERER_STREITFLEGEL
+      name: "Schwerer Streitflegel"
+      proficiency: MARTIAL
+      rangeType: MELEE
+      handedness: TWO_HANDED
+      damageSmall: "1W8"
+      damageMedium: "1W10"
+      criticalThreatRange: 19
+      criticalMultiplier: 2
+      weight: 10
+      damageTypes: [BLUDGEONING]
+
+    - id: SENSE
+      name: "Sense"
+      proficiency: MARTIAL
+      rangeType: MELEE
+      handedness: TWO_HANDED
+      damageSmall: "1W6"
+      damageMedium: "2W4"
+      criticalMultiplier: 4
+      weight: 10
+      damageTypes: [PIERCING, SLASHING]
+      damageTypeChoice: true
+
+    - id: ZWEIHAENDER
+      name: "Zweihänder"
+      proficiency: MARTIAL
+      rangeType: MELEE
+      handedness: TWO_HANDED
+      damageSmall: "1W10"
+      damageMedium: "2W6"
+      criticalThreatRange: 19
+      criticalMultiplier: 2
+      weight: 8
+      damageTypes: [SLASHING]
+
+    - id: ZWEIHAENDIGE_AXT
+      name: "Zweihändige Axt"
+      proficiency: MARTIAL
+      rangeType: MELEE
+      handedness: TWO_HANDED
+      damageSmall: "1W10"
+      damageMedium: "1W12"
+      criticalMultiplier: 3
+      weight: 12
+      damageTypes: [SLASHING]
+
+    - id: ZWEIHAENDIGE_KEULE
+      name: "Zweihändige Keule"
+      proficiency: MARTIAL
+      rangeType: MELEE
+      handedness: TWO_HANDED
+      damageSmall: "1W8"
+      damageMedium: "1W10"
+      criticalMultiplier: 2
+      weight: 8
+      damageTypes: [BLUDGEONING]
+
+    # Kriegswaffen - Fernkampfwaffen
+    - id: LANGBOGEN
+      name: "Langbogen"
+      proficiency: MARTIAL
+      rangeType: RANGED
+      damageSmall: "1W6"
+      damageMedium: "1W8"
+      criticalMultiplier: 3
+      rangeIncrement: 30
+      weight: 3
+      damageTypes: [PIERCING]
+
+    - id: KOMPOSITBOGEN_KURZ
+      name: "Kompositbogen (kurz)"
+      proficiency: MARTIAL
+      rangeType: RANGED
+      damageSmall: "1W4"
+      damageMedium: "1W6"
+      criticalMultiplier: 3
+      rangeIncrement: 21
+      weight: 2
+      damageTypes: [PIERCING]
+
+    - id: KOMPOSITBOGEN_LANG
+      name: "Kompositbogen (lang)"
+      proficiency: MARTIAL
+      rangeType: RANGED
+      damageSmall: "1W6"
+      damageMedium: "1W8"
+      criticalMultiplier: 3
+      rangeIncrement: 33
+      weight: 3
+      damageTypes: [PIERCING]
+
+    - id: KURZBOGEN
+      name: "Kurzbogen"
+      proficiency: MARTIAL
+      rangeType: RANGED
+      damageSmall: "1W4"
+      damageMedium: "1W6"
+      criticalMultiplier: 3
+      rangeIncrement: 18
+      weight: 2
+      damageTypes: [PIERCING]
+
+    # Exotische Waffen - Leichte Waffen
+    - id: KAMA
+      name: "Kama"
+      proficiency: EXOTIC
+      rangeType: MELEE
+      handedness: LIGHT
+      damageSmall: "1W4"
+      damageMedium: "1W6"
+      criticalMultiplier: 2
+      weight: 2
+      damageTypes: [SLASHING]
+
+    - id: NUNCHAKU
+      name: "Nunchaku"
+      proficiency: EXOTIC
+      rangeType: MELEE
+      handedness: LIGHT
+      damageSmall: "1W4"
+      damageMedium: "1W6"
+      criticalMultiplier: 2
+      weight: 2
+      damageTypes: [BLUDGEONING]
+
+    - id: SAI
+      name: "Sai"
+      proficiency: EXOTIC
+      rangeType: MELEE
+      handedness: LIGHT
+      damageSmall: "1W3"
+      damageMedium: "1W4"
+      criticalMultiplier: 2
+      rangeIncrement: 3
+      weight: 1
+      damageTypes: [BLUDGEONING]
+
+    - id: SIANGHAM
+      name: "Siangham"
+      proficiency: EXOTIC
+      rangeType: MELEE
+      handedness: LIGHT
+      damageSmall: "1W4"
+      damageMedium: "1W6"
+      criticalMultiplier: 2
+      weight: 1
+      damageTypes: [PIERCING]
+
+    # Exotische Waffen - Einhandwaffen
+    - id: BASTARDSCHWERT
+      name: "Bastardschwert"
+      proficiency: EXOTIC
+      rangeType: MELEE
+      handedness: ONE_HANDED
+      damageSmall: "1W8"
+      damageMedium: "1W10"
+      criticalThreatRange: 19
+      criticalMultiplier: 2
+      weight: 6
+      damageTypes: [SLASHING]
+
+    - id: PEITSCHE
+      name: "Peitsche"
+      proficiency: EXOTIC
+      rangeType: MELEE
+      handedness: ONE_HANDED
+      damageSmall: "1W2"
+      damageMedium: "1W3"
+      nonlethal: true
+      reach: true
+      criticalMultiplier: 2
+      weight: 2
+      damageTypes: [SLASHING]
+
+    - id: ZWERGISCHE_STREITAXT
+      name: "Zwergische Streitaxt"
+      proficiency: EXOTIC
+      rangeType: MELEE
+      handedness: ONE_HANDED
+      damageSmall: "1W8"
+      damageMedium: "1W10"
+      criticalMultiplier: 3
+      weight: 8
+      damageTypes: [SLASHING]
+
+    # Exotische Waffen - Zweihandwaffen
+    - id: DOPPELKLINGENSCHWERT
+      name: "Doppelklingenschwert"
+      proficiency: EXOTIC
+      rangeType: MELEE
+      handedness: TWO_HANDED
+      damageSmall: "1W6"
+      damageMedium: "1W8"
+      secondaryDamageSmall: "1W6"
+      secondaryDamageMedium: "1W8"
+      doubleWeapon: true
+      criticalThreatRange: 19
+      criticalMultiplier: 2
+      weight: 10
+      damageTypes: [SLASHING]
+
+    - id: GNOMISCHER_HAKENHAMMER
+      name: "Gnomischer Hakenhammer"
+      proficiency: EXOTIC
+      rangeType: MELEE
+      handedness: TWO_HANDED
+      damageSmall: "1W6"
+      damageMedium: "1W8"
+      secondaryDamageSmall: "1W4"
+      secondaryDamageMedium: "1W6"
+      doubleWeapon: true
+      criticalMultiplier: 3
+      weight: 6
+      damageTypes: [BLUDGEONING, PIERCING]
+      description: >
+        Kritischer Treffer laut Tabelle 7-5: x3 für den Hammerkopf (Wuchtwaffe), x4 für die
+        Hakenspitze (Stichwaffe) - hier nur der Hammerkopf-Wert hinterlegt, da das Modell aktuell
+        nur einen Kritisch-Wert pro Waffe kennt.
+
+    - id: ORKISCHE_DOPPELAXT
+      name: "Orkische Doppelaxt"
+      proficiency: EXOTIC
+      rangeType: MELEE
+      handedness: TWO_HANDED
+      damageSmall: "1W6"
+      damageMedium: "1W8"
+      secondaryDamageSmall: "1W6"
+      secondaryDamageMedium: "1W8"
+      doubleWeapon: true
+      criticalMultiplier: 3
+      weight: 15
+      damageTypes: [SLASHING]
+
+    - id: SCHRECKENSFLEGEL
+      name: "Schreckensflegel"
+      proficiency: EXOTIC
+      rangeType: MELEE
+      handedness: TWO_HANDED
+      damageSmall: "1W6"
+      damageMedium: "1W8"
+      secondaryDamageSmall: "1W6"
+      secondaryDamageMedium: "1W8"
+      doubleWeapon: true
+      criticalMultiplier: 2
+      weight: 10
+      damageTypes: [BLUDGEONING]
+
+    - id: STACHELKETTE
+      name: "Stachelkette"
+      proficiency: EXOTIC
+      rangeType: MELEE
+      handedness: TWO_HANDED
+      damageSmall: "1W6"
+      damageMedium: "2W4"
+      criticalMultiplier: 2
+      reach: true
+      weight: 10
+      damageTypes: [PIERCING]
+
+    - id: ZWERGISCHE_URGROSCH
+      name: "Zwergische Urgrosch"
+      proficiency: EXOTIC
+      rangeType: MELEE
+      handedness: TWO_HANDED
+      damageSmall: "1W6"
+      damageMedium: "1W8"
+      secondaryDamageSmall: "1W4"
+      secondaryDamageMedium: "1W6"
+      doubleWeapon: true
+      criticalMultiplier: 3
+      weight: 12
+      damageTypes: [SLASHING, PIERCING]
+      damageTypeChoice: true
+
+    # Exotische Waffen - Fernkampfwaffen
+    - id: BOLAS
+      name: "Bolas"
+      proficiency: EXOTIC
+      rangeType: RANGED
+      damageSmall: "1W3"
+      damageMedium: "1W4"
+      nonlethal: true
+      criticalMultiplier: 2
+      rangeIncrement: 3
+      weight: 2
+      damageTypes: [BLUDGEONING]
+
+    - id: HANDARMBRUST
+      name: "Handarmbrust"
+      proficiency: EXOTIC
+      rangeType: RANGED
+      damageSmall: "1W3"
+      damageMedium: "1W4"
+      criticalThreatRange: 19
+      criticalMultiplier: 2
+      rangeIncrement: 9
+      weight: 2
+      damageTypes: [PIERCING]
+
+    - id: LEICHTE_REPETIERARMBRUST
+      name: "Leichte Repetierarmbrust"
+      proficiency: EXOTIC
+      rangeType: RANGED
+      damageSmall: "1W6"
+      damageMedium: "1W8"
+      criticalThreatRange: 19
+      criticalMultiplier: 2
+      rangeIncrement: 24
+      weight: 6
+      damageTypes: [PIERCING]
+
+    - id: SHURIKEN
+      name: "Shuriken"
+      proficiency: EXOTIC
+      rangeType: RANGED
+      damageSmall: "1"
+      damageMedium: "1W2"
+      criticalMultiplier: 2
+      rangeIncrement: 3
+      weight: 0.5
+      damageTypes: [PIERCING]
+
+    - id: SCHWERE_REPETIERARMBRUST
+      name: "Schwere Repetierarmbrust"
+      proficiency: EXOTIC
+      rangeType: RANGED
+      damageSmall: "1W8"
+      damageMedium: "1W10"
+      criticalThreatRange: 19
+      criticalMultiplier: 2
+      rangeIncrement: 36
+      weight: 12
+      damageTypes: [PIERCING]
