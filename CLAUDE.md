@@ -13,6 +13,12 @@ Kein `mvn spring-boot:run` — die Spring-Boot-Anwendung startet nur den DI-Cont
 
 Kein `module-info.java` mehr (bewusst entfernt) — JPMS und Spring's reflection-lastiges DI vertragen sich schlecht, und es gibt keinen jlink-Packaging-Bedarf, der die Reibung rechtfertigen würde.
 
+## Regelwerk-Basis
+
+Der Editor basiert einheitlich auf **D&D 3.5**, nicht 3.0 (Entscheidung 2026-09-07). Martins Gruppe spielt zwar mit den 3.0-Kernbüchern, nutzt aber Zusatzmaterial (u. a. Forgotten Realms), das es nur in 3.5 gibt, und bewegt sich damit ohnehin faktisch im 3.5-Rahmen; dazu soll der Editor perspektivisch auch an befreundete Gruppen weitergegeben werden, wo 3.5 die deutlich breitere Basis hat. Ein Mischbetrieb beider Regelwerke ist bewusst ausgeschlossen, obwohl die datengetriebene Struktur (`feats.yml`, `weapons.yml`, ...) ihn technisch erlauben würde — der doppelte Rechercheaufwand pro Talent/Waffe/Zauber lohnt sich erst, wenn ein Regelwerk vollständig steht.
+
+Praktische Konsequenz: alle Datenquellen (PDF-Scans, Tabellen, Talentbeschreibungen) müssen aus 3.5-Material stammen. Bereits bekannter Verdachtsfall: `feats.yml` stammt vermutlich aus einer 3.0-Quelle (siehe [doc/ARBEITSPLAN.md](doc/ARBEITSPLAN.md), Punkt 4) und muss gegen 3.5 gegengeprüft werden.
+
 ## Architektur
 
 **Schichtung** (siehe auch [doc/README.md](doc/README.md)):
