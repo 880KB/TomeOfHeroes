@@ -24,6 +24,11 @@ public class Bind {
         loseFocusOnEnter(textField);
     }
 
+    public static void bindUsedMaxToTextField(IntegerProperty used, IntegerProperty max, TextField textField) {
+        textField.textProperty().bind(Bindings.createStringBinding(
+                () -> used.get() + "/" + max.get(), used, max));
+    }
+
     /**
      * Selects the whole value when a field gains focus (click or tab-in), so typing immediately
      * replaces it instead of inserting at the click position - deferred a frame because the click

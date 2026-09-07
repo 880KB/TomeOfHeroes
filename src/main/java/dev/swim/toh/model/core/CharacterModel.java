@@ -6,6 +6,7 @@ import dev.swim.toh.model.core.bonus.BonusPool;
 import dev.swim.toh.model.core.classes.ChosenClass;
 import dev.swim.toh.model.core.classes.Classes;
 import dev.swim.toh.model.core.description.Description;
+import dev.swim.toh.model.core.feats.AutomaticFeatGrants;
 import dev.swim.toh.model.core.feats.Feats;
 import dev.swim.toh.model.core.feats.FeatsValidation;
 import dev.swim.toh.model.core.hitpoints.HitPoints;
@@ -25,6 +26,7 @@ public class CharacterModel {
     public final SavingThrows savingThrows = new SavingThrows();
     public final Classes classes  = new Classes();
     public final Feats feats;
+    public final AutomaticFeatGrants automaticFeatGrants = new AutomaticFeatGrants();
     public final FeatsValidation featsValidation = new FeatsValidation();
     public final ArmorClass armorClass = new ArmorClass();
     public final Initiative initiative = new Initiative();
@@ -42,6 +44,7 @@ public class CharacterModel {
         hitPoints.init(this);
         this.feats = new Feats(featRepository, featRules);
         feats.init(this);
+        automaticFeatGrants.setCharacter(this);
         featsValidation.setCharacter(this);
     }
 

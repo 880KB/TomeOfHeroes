@@ -21,6 +21,7 @@
       <TableView fx:id="featsTableView" editable="true" fixedCellSize="28.0" styleClass="no-header-table" BorderPane.alignment="TOP_CENTER">
         <columns>
             <TableColumn fx:id="nameColumn" editable="false" minWidth="120.0" prefWidth="200.0" text="Talent" />
+            <TableColumn fx:id="poolTableColumn" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" resizable="false" />
             <TableColumn fx:id="infoTableColumn" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" resizable="false" />
             <TableColumn fx:id="removeFeatTableColumn" maxWidth="35.0" minWidth="35.0" prefWidth="35.0" resizable="false" />
         </columns>
@@ -33,11 +34,13 @@
          </BorderPane.margin>
          <children>
             <Label text="Allg." />
-            <TextField fx:id="maxClassFeatsTextField" alignment="CENTER" editable="false" prefWidth="40.0" styleClass="field-computed" />
+            <TextField fx:id="maxClassFeatsTextField" alignment="CENTER" editable="false" prefWidth="46.0" styleClass="field-computed" />
             <Label fx:id="maxFighterFeatsLabel" text="Kämpfer" />
-            <TextField fx:id="maxFighterFeatsTextField" alignment="CENTER" editable="false" prefWidth="40.0" styleClass="field-computed" />
-            <Label fx:id="raceBonusFeatsLabel" text="Rasse" />
-            <TextField fx:id="raceBonusFeatsTextField" alignment="CENTER" editable="false" prefWidth="40.0" styleClass="field-computed" />
+            <TextField fx:id="maxFighterFeatsTextField" alignment="CENTER" editable="false" prefWidth="46.0" styleClass="field-computed" />
+            <Label fx:id="maxWizardBonusFeatsLabel" text="Magier" />
+            <TextField fx:id="maxWizardBonusFeatsTextField" alignment="CENTER" editable="false" prefWidth="46.0" styleClass="field-computed" />
+            <Label fx:id="raceBonusFeatsLabel" text="Mensch" />
+            <TextField fx:id="raceBonusFeatsTextField" alignment="CENTER" editable="false" prefWidth="46.0" styleClass="field-computed" />
          </children>
       </HBox>
    </bottom>

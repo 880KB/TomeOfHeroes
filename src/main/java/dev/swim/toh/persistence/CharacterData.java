@@ -1,5 +1,6 @@
 package dev.swim.toh.persistence;
 
+import dev.swim.toh.model.calculation.FeatSlotCalculator.FeatPool;
 import dev.swim.toh.model.data.attribute.AttributeName;
 import dev.swim.toh.model.data.clazz.Clazz;
 import dev.swim.toh.model.data.race.Race;
@@ -17,14 +18,14 @@ import java.util.Map;
  */
 public class CharacterData {
 
-    public static final int CURRENT_SCHEMA_VERSION = 1;
+    public static final int CURRENT_SCHEMA_VERSION = 2;
 
     public int schemaVersion = CURRENT_SCHEMA_VERSION;
     public DescriptionData description = new DescriptionData();
     public Map<AttributeName, Integer> attributes = new EnumMap<>(AttributeName.class);
     public Map<SavingThrow, Integer> savingThrowMiscMods = new EnumMap<>(SavingThrow.class);
     public List<ChosenClassData> classes = new ArrayList<>();
-    public List<String> featIds = new ArrayList<>();
+    public List<SelectedFeatData> feats = new ArrayList<>();
     public ArmorClassData armorClass = new ArmorClassData();
     public int initiativeMiscMod;
     public HitPointsData hitPoints = new HitPointsData();
@@ -41,6 +42,17 @@ public class CharacterData {
         public Clazz clazz;
         public int level;
         public boolean firstClass;
+    }
+
+    public static class SelectedFeatData {
+        public String featId;
+        // which pool this feat's selection was frozen into at the time it was chosen - null for
+        // an automatic grant, which never competes for a slot
+        public FeatPool pool;
+        // whether this feat was a free grant (e.g. a Wizard's 1st-level Scribe Scroll) rather
+        // than a player choice - kept separate from `pool` rather than inferring it from
+        // pool == null, so the two concepts ("which pool" vs. "was it free") don't get coupled
+        public boolean automatic;
     }
 
     public static class ArmorClassData {

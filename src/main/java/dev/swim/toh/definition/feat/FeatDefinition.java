@@ -1,5 +1,6 @@
 package dev.swim.toh.definition.feat;
 
+import dev.swim.toh.model.data.clazz.Clazz;
 import dev.swim.toh.model.data.feat.FeatType;
 import dev.swim.toh.model.data.feat.RepeatType;
 
@@ -14,6 +15,10 @@ public class FeatDefinition {
     private String description;
     private List<PrerequisiteDefinition> prerequisites;
     private List<BenefitDefinition> benefits;
+    // classes whose bonus-feat list explicitly includes this feat (e.g. Fighter's PHB list);
+    // empty/omitted for feats whose bonus-pool eligibility is derived structurally instead
+    // (e.g. Wizard bonus feats, derived from FeatType being ITEM_CREATION/METAMAGIC)
+    private List<Clazz> bonusFeatClasses;
 
     // getters / setters
     public String getId() {
@@ -78,5 +83,13 @@ public class FeatDefinition {
 
     public void setBenefits(List<BenefitDefinition> benefits) {
         this.benefits = benefits;
+    }
+
+    public List<Clazz> getBonusFeatClasses() {
+        return bonusFeatClasses;
+    }
+
+    public void setBonusFeatClasses(List<Clazz> bonusFeatClasses) {
+        this.bonusFeatClasses = bonusFeatClasses;
     }
 }

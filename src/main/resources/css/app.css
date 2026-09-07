@@ -5,6 +5,14 @@
     -fx-text-fill: #495057;
 }
 
+/* Combined with .field-computed on a used/max field once "used" exceeds "max" - e.g. the
+   catch-all "Allg." feat pool, which (unlike the restricted pools) accepts more feats than its
+   computed maximum rather than blocking the player; declared after .field-computed so it wins
+   the text-fill tie at equal specificity. */
+.field-exceeded {
+    -fx-text-fill: #c0392b;
+}
+
 /* Short attribute/stat abbreviation labels (ST, GE, RK, Initiative, ...), styled like
    the dark label bars on the paper character sheet so they stand out from the values
    next to them. Color is a placeholder navy — revisit once the overall palette is settled. */

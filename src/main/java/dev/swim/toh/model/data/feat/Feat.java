@@ -1,5 +1,6 @@
 package dev.swim.toh.model.data.feat;
 
+import dev.swim.toh.model.data.clazz.Clazz;
 import dev.swim.toh.model.data.prerequisites.Prerequisite;
 
 import java.util.List;
@@ -13,6 +14,7 @@ public class Feat {
     private final String description;
     private final List<Prerequisite> prerequisites;
     private final List<Benefit> benefits;
+    private final List<Clazz> bonusFeatClasses;
     // private final List<FeatOption> validOptions;
 
     public Feat(String id,
@@ -22,7 +24,8 @@ public class Feat {
                 String shortDescription,
                 String description,
                 List<Prerequisite> prerequisites,
-                List<Benefit> benefits
+                List<Benefit> benefits,
+                List<Clazz> bonusFeatClasses
                 // List<FeatOption> validOptions
     ) {
         this.id = id;
@@ -33,6 +36,7 @@ public class Feat {
         this.description = description;
         this.prerequisites = prerequisites;
         this.benefits = benefits;
+        this.bonusFeatClasses = bonusFeatClasses;
         // this.validOptions = validOptions;
     }
 
@@ -66,5 +70,9 @@ public class Feat {
 
     public List<Benefit> getBenefits() {
         return benefits;
+    }
+
+    public List<Clazz> getBonusFeatClasses() {
+        return bonusFeatClasses;
     }
 }

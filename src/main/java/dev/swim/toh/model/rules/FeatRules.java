@@ -1,8 +1,10 @@
 package dev.swim.toh.model.rules;
 
 import dev.swim.toh.model.core.CharacterModel;
+import dev.swim.toh.model.data.clazz.Clazz;
 import dev.swim.toh.model.data.feat.Feat;
 import dev.swim.toh.model.data.feat.FeatRepository;
+import dev.swim.toh.model.data.feat.FeatType;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -50,5 +52,13 @@ public class FeatRules {
 
     public boolean prerequisitesSatisfied(CharacterModel characterModel, Feat feat) {
         return feat.getPrerequisites().stream().allMatch(prerequisite -> prerequisite.isSatisfiedBy(characterModel));
+    }
+
+    public boolean isFighterBonusFeatEligible(Feat feat) {
+        return feat.getBonusFeatClasses().contains(Clazz.FIGHTER);
+    }
+
+    public boolean isWizardBonusFeatEligible(Feat feat) {
+        return feat.getType() == FeatType.ITEM_CREATION || feat.getType() == FeatType.METAMAGIC;
     }
 }

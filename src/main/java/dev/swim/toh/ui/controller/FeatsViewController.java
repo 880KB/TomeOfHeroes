@@ -1,5 +1,6 @@
 package dev.swim.toh.ui.controller;
 
+import dev.swim.toh.model.calculation.FeatSlotCalculator.FeatPool;
 import dev.swim.toh.model.core.CharacterModel;
 import dev.swim.toh.model.core.feats.SelectedFeat;
 import dev.swim.toh.model.data.feat.Feat;
@@ -12,6 +13,7 @@ import dev.swim.toh.model.validation.Violation;
 import dev.swim.toh.translation.PrerequisiteFormatter;
 import dev.swim.toh.ui.controller.dialog.SelectionDialogController;
 import dev.swim.toh.ui.controller.dialog.SelectionItem;
+import javafx.beans.binding.BooleanBinding;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.DoubleBinding;
 import javafx.collections.FXCollections;
@@ -19,6 +21,7 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -47,12 +50,15 @@ public class FeatsViewController extends CharacterModelAware {
 
     public TableView<SelectedFeat> featsTableView;
     public TableColumn<SelectedFeat, Feat> nameColumn;
+    public TableColumn<SelectedFeat, Void> poolTableColumn;
     public TableColumn<SelectedFeat, Void> infoTableColumn;
     public TableColumn<SelectedFeat, Void> removeFeatTableColumn;
     public Button addFeatButton;
     public TextField maxClassFeatsTextField;
     public Label maxFighterFeatsLabel;
     public TextField maxFighterFeatsTextField;
+    public Label maxWizardBonusFeatsLabel;
+    public TextField maxWizardBonusFeatsTextField;
     public Label raceBonusFeatsLabel;
     public TextField raceBonusFeatsTextField;
 
@@ -117,6 +123,30 @@ public class FeatsViewController extends CharacterModelAware {
         // re-check the red/black prerequisite highlighting whenever the validation result changes
         characterModel.featsValidation.violationsProperty().addListener((ListChangeListener<Violation>) c -> featsTableView.refresh());
 
+        // sword/wizard-hat icon marking which bonus-feat pool (if any) a selected feat consumed
+        poolTableColumn.setCellFactory(col -> new TableCell<>() {
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                    setTooltip(null);
+                    return;
+                }
+                FeatPool pool = getTableRow().getItem().getPool();
+                if (pool == FeatPool.FIGHTER_BONUS) {
+                    setGraphic(poolIcon(FontAwesomeSolid.FIST_RAISED));
+                    setTooltip(new Tooltip("Kämpfer-Bonustalent"));
+                } else if (pool == FeatPool.WIZARD_BONUS) {
+                    setGraphic(poolIcon(FontAwesomeSolid.HAT_WIZARD));
+                    setTooltip(new Tooltip("Magier-Bonustalent"));
+                } else {
+                    setGraphic(null);
+                    setTooltip(null);
+                }
+            }
+        });
+
         // "more info" button in each row - opens a popup with the feat's short and full
         // description, since that's too much text to read comfortably in a tooltip
         infoTableColumn.setCellFactory(col -> new TableCell<>() {
@@ -157,7 +187,7 @@ public class FeatsViewController extends CharacterModelAware {
             @Override
             protected void updateItem(Void item, boolean empty) {
                 super.updateItem(item, empty);
-                if (empty) {
+                if (empty || characterModel.feats.isAutomaticGrant(getTableRow().getItem())) {
                     setGraphic(null);
                 } else {
                     setGraphic(deleteButton);
@@ -165,14 +195,29 @@ public class FeatsViewController extends CharacterModelAware {
             }
         });
 
-        // int values
-        Bind.bindIntegerPropertyToTextField(characterModel.feats.maxClassFeatsProperty(), maxClassFeatsTextField);
-        Bind.bindIntegerPropertyToTextField(characterModel.feats.maxFighterBonusFeatsProperty(), maxFighterFeatsTextField);
-        Bind.bindIntegerPropertyToTextField(characterModel.feats.raceBonusFeatsProperty(), raceBonusFeatsTextField);
+        // used/max values
+        Bind.bindUsedMaxToTextField(characterModel.feats.usedClassFeatsProperty(), characterModel.feats.maxClassFeatsProperty(), maxClassFeatsTextField);
+        Bind.bindUsedMaxToTextField(characterModel.feats.usedFighterBonusFeatsProperty(), characterModel.feats.maxFighterBonusFeatsProperty(), maxFighterFeatsTextField);
+        Bind.bindUsedMaxToTextField(characterModel.feats.usedWizardBonusFeatsProperty(), characterModel.feats.maxWizardBonusFeatsProperty(), maxWizardBonusFeatsTextField);
+        Bind.bindUsedMaxToTextField(characterModel.feats.usedRaceBonusFeatsProperty(), characterModel.feats.raceBonusFeatsProperty(), raceBonusFeatsTextField);
+
+        // "Allg." is the catch-all pool, so unlike the other three it can go over its own
+        // maximum instead of being capped - flag that visually instead of picking one arbitrary
+        // offending feat to blame, since the player is the one who decides which feat "is" the
+        // extra one
+        BooleanBinding classFeatsExceeded = characterModel.feats.usedClassFeatsProperty()
+                .greaterThan(characterModel.feats.maxClassFeatsProperty());
+        classFeatsExceeded.addListener((obs, wasExceeded, isExceeded) ->
+                setStyleClassPresent(maxClassFeatsTextField, "field-exceeded", isExceeded));
+        setStyleClassPresent(maxClassFeatsTextField, "field-exceeded", classFeatsExceeded.get());
 
         DoubleBinding fighterBonusFeatsOpacity = Bindings.when(characterModel.feats.maxFighterBonusFeatsProperty().greaterThan(0)).then(1.0).otherwise(0.35);
         maxFighterFeatsLabel.opacityProperty().bind(fighterBonusFeatsOpacity);
         maxFighterFeatsTextField.opacityProperty().bind(fighterBonusFeatsOpacity);
+
+        DoubleBinding wizardBonusFeatsOpacity = Bindings.when(characterModel.feats.maxWizardBonusFeatsProperty().greaterThan(0)).then(1.0).otherwise(0.35);
+        maxWizardBonusFeatsLabel.opacityProperty().bind(wizardBonusFeatsOpacity);
+        maxWizardBonusFeatsTextField.opacityProperty().bind(wizardBonusFeatsOpacity);
 
         DoubleBinding raceBonusFeatsOpacity = Bindings.when(characterModel.feats.raceBonusFeatsProperty().greaterThan(0)).then(1.0).otherwise(0.35);
         raceBonusFeatsLabel.opacityProperty().bind(raceBonusFeatsOpacity);
@@ -304,6 +349,23 @@ public class FeatsViewController extends CharacterModelAware {
                 .map(prerequisite -> characterModel.feats.getFeatById(prerequisite.requiredFeat()))
                 .filter(candidates::contains)
                 .orElse(null);
+    }
+
+    private void setStyleClassPresent(Node node, String styleClass, boolean present) {
+        if (present) {
+            if (!node.getStyleClass().contains(styleClass))
+                node.getStyleClass().add(styleClass);
+        } else {
+            node.getStyleClass().remove(styleClass);
+        }
+    }
+
+    private FontIcon poolIcon(FontAwesomeSolid icon) {
+        FontIcon fontIcon = new FontIcon(icon);
+        fontIcon.setIconSize(14);
+        fontIcon.setIconColor(Paint.valueOf("gray"));
+        fontIcon.setTranslateY(-1);
+        return fontIcon;
     }
 
     private Violation findViolation(SelectedFeat selectedFeat) {

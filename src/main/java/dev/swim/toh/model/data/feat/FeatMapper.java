@@ -28,7 +28,8 @@ public class FeatMapper {
                 def.getShortDescription(),
                 def.getDescription(),
                 mapPrerequisites(def.getPrerequisites()),
-                mapBenefits(def.getBenefits())
+                mapBenefits(def.getBenefits()),
+                def.getBonusFeatClasses() == null ? List.of() : def.getBonusFeatClasses()
         );
     }
 
