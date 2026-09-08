@@ -20,7 +20,7 @@ feats:
       name: "Anführen"
       type: GENERAL
       repeatType: SINGLE
-      shortDescription:
+      shortDescription: "Gefolgsleute und Anhänger anziehen"
       description:
       prerequisites:
         - type: CHARACTER_LEVEL
@@ -31,7 +31,7 @@ feats:
       name: "Ausdauer"
       type: GENERAL
       repeatType: SINGLE
-      shortDescription:
+      shortDescription: "Bonus von +4 auf Würfe oder Rettungswürfe, um nichttödlichem Schaden zu widerstehen"
       description:
       prerequisites: []
       benefits: []
@@ -41,7 +41,7 @@ feats:
       type: GENERAL
       repeatType: SINGLE
       bonusFeatClasses: [FIGHTER]
-      shortDescription:
+      shortDescription: "Ausweichbonus von +1 gegen ausgewählten Gegner"
       description:
       prerequisites:
         - type: ATTRIBUTE
@@ -54,7 +54,7 @@ feats:
       type: GENERAL
       repeatType: SINGLE
       bonusFeatClasses: [FIGHTER]
-      shortDescription:
+      shortDescription: "Ausweichbonus von +4 gegen bestimmte Gelegenheitsangriffe"
       description:
       prerequisites:
         - type: ATTRIBUTE
@@ -69,7 +69,7 @@ feats:
       type: GENERAL
       repeatType: SINGLE
       bonusFeatClasses: [FIGHTER]
-      shortDescription:
+      shortDescription: "Sich vor und nach einem Nahkampfangriff bewegen"
       description:
       prerequisites:
         - type: ATTRIBUTE
@@ -83,24 +83,12 @@ feats:
           min: 4
       benefits: []
 
-    - id: BEIDHAENDIGKEIT
-      name: "Beidhändigkeit"
-      type: GENERAL
-      repeatType: SINGLE
-      shortDescription:
-      description:
-      prerequisites:
-        - type: ATTRIBUTE
-          attribute: DEXTERITY
-          min: 15
-      benefits: []
-
     - id: BERITTENER_KAMPF
       name: "Berittener Kampf"
       type: GENERAL
       repeatType: SINGLE
       bonusFeatClasses: [FIGHTER]
-      shortDescription:
+      shortDescription: "Treffer am Reittier durch Würfe für Reiten verhindern"
       description:
       prerequisites:
         - type: SKILL
@@ -112,7 +100,7 @@ feats:
       type: GENERAL
       repeatType: SINGLE
       bonusFeatClasses: [FIGHTER]
-      shortDescription:
+      shortDescription: "Sich vor und nach einem berittenen Sturmangriff bewegen"
       description:
       prerequisites:
         - type: SKILL
@@ -126,7 +114,7 @@ feats:
       type: GENERAL
       repeatType: SINGLE
       bonusFeatClasses: [FIGHTER]
-      shortDescription:
+      shortDescription: "Bei Fernkampfangriffen während des Reitens nur halber Malus"
       description:
       prerequisites:
         - type: SKILL
@@ -139,7 +127,8 @@ feats:
       name: "Niederreiten"
       type: GENERAL
       repeatType: SINGLE
-      shortDescription:
+      bonusFeatClasses: [FIGHTER]
+      shortDescription: "Ziel kann berittenem Überrennen nicht ausweichen"
       description:
       prerequisites:
         - type: SKILL
@@ -153,7 +142,7 @@ feats:
       type: GENERAL
       repeatType: SINGLE
       bonusFeatClasses: [FIGHTER]
-      shortDescription:
+      shortDescription: "Doppelter Schaden bei berittenem Sturmangriff"
       description:
       prerequisites:
         - type: SKILL
@@ -168,7 +157,8 @@ feats:
       name: "Blind kämpfen"
       type: GENERAL
       repeatType: SINGLE
-      shortDescription:
+      bonusFeatClasses: [FIGHTER]
+      shortDescription: "Prozentwurf für Fehlschlag aufgrund Tarnung darf erneut gewürfelt werden"
       description:
       prerequisites: []
       benefits: []
@@ -177,7 +167,7 @@ feats:
       name: "Blitzschnelle Reflexe"
       type: GENERAL
       repeatType: SINGLE
-      shortDescription:
+      shortDescription: "Bonus von +2 auf Reflexwürfe"
       description:
       prerequisites: []
       benefits: []
@@ -187,7 +177,7 @@ feats:
       type: GENERAL
       repeatType: SINGLE
       bonusFeatClasses: [FIGHTER]
-      shortDescription: "Angriffsbonus gegen RK eintauschen (max. 5 Punkte)"
+      shortDescription: "Angriffsbonus gegen Bonus auf RK eintauschen (maximal 5 Punkte)"
       description: >
         Du kannst einen Teil deines Angriffs zur Verteidigung nutzen. Zu
         Beginn deines Zuges legst du einen Wert von mindestens 1 fest, um den
@@ -205,7 +195,7 @@ feats:
       type: GENERAL
       repeatType: SINGLE
       bonusFeatClasses: [FIGHTER]
-      shortDescription: "+4 auf Entwaffnen-Versuche; kein Gelegenheitsangriff"
+      shortDescription: "Bonus von +4 auf Versuche, den Gegner zu entwaffnen; keine Gelegenheitsangriffe"
       description: >
         Du bist darin geübt, Gegnern die Waffe aus der Hand zu schlagen. Bei
         einem Entwaffnen-Versuch erhältst du einen Bonus von +4 auf die
@@ -223,7 +213,7 @@ feats:
       type: GENERAL
       repeatType: SINGLE
       bonusFeatClasses: [FIGHTER]
-      shortDescription:
+      shortDescription: "Bonus von +4 auf Versuche, den Gegner zu Fall zu bringen; keine Gelegenheitsangriffe"
       description:
       prerequisites:
         - type: ATTRIBUTE
@@ -238,7 +228,7 @@ feats:
       type: GENERAL
       repeatType: SINGLE
       bonusFeatClasses: [FIGHTER]
-      shortDescription:
+      shortDescription: "Ein Nahkampfangriff gegen jeden Gegner innerhalb von 1,50 m ausführen"
       description:
       prerequisites:
         - type: ATTRIBUTE
@@ -263,7 +253,7 @@ feats:
       name: "Durchschlagende Zauber"
       type: GENERAL
       repeatType: SINGLE
-      shortDescription:
+      shortDescription: "Bonus von +2 auf Zauberstufenwürfe, um Zauberresistenz zu überwinden"
       description:
       prerequisites: []
       benefits: []
@@ -272,7 +262,7 @@ feats:
       name: "Eiserner Wille"
       type: GENERAL
       repeatType: SINGLE
-      shortDescription:
+      shortDescription: "Bonus von +2 auf Willenswürfe"
       description:
       prerequisites: []
       benefits: []
@@ -281,7 +271,7 @@ feats:
       name: "Fertigkeitsfokus"
       type: GENERAL
       repeatType: MULTIPLE
-      shortDescription:
+      shortDescription: "Bonus von +3 auf Würfe für gewählte Fertigkeit"
       description:
       prerequisites: []
       benefits: []
@@ -290,7 +280,7 @@ feats:
       name: "Große Zähigkeit"
       type: GENERAL
       repeatType: SINGLE
-      shortDescription:
+      shortDescription: "Bonus von +2 auf Zähigkeitswürfe"
       description:
       prerequisites: []
       benefits: []
@@ -300,7 +290,7 @@ feats:
       type: GENERAL
       repeatType: SINGLE
       bonusFeatClasses: [FIGHTER]
-      shortDescription:
+      shortDescription: "Angriffsbonus für zusätzlichen Schaden eintauschen (bis maximal Grund-Angriffsbonus)"
       description:
       prerequisites:
         - type: ATTRIBUTE
@@ -312,7 +302,8 @@ feats:
       name: "Doppelschlag"
       type: GENERAL
       repeatType: SINGLE
-      shortDescription:
+      bonusFeatClasses: [FIGHTER]
+      shortDescription: "Zusätzlicher Nahkampfangriff, nachdem das Ziel ausgeschaltet wurde"
       description:
       prerequisites:
         - type: ATTRIBUTE
@@ -327,7 +318,7 @@ feats:
       type: GENERAL
       repeatType: SINGLE
       bonusFeatClasses: [FIGHTER]
-      shortDescription:
+      shortDescription: "Bonus von +4 auf Ansturmversuche; keine Gelegenheitsangriffe"
       description:
       prerequisites:
         - type: ATTRIBUTE
@@ -338,11 +329,11 @@ feats:
       benefits: []
 
     - id: WAFFE_ZERSCHMETTERN
-      name: "Waffe zerschmettern"
+      name: "Verbessertes Waffe zerschmettern"
       type: GENERAL
       repeatType: SINGLE
       bonusFeatClasses: [FIGHTER]
-      shortDescription:
+      shortDescription: "Bonus von +4 auf Versuche, die Waffe des Gegners zu zerschmettern; keine Gelegenheitsangriffe"
       description:
       prerequisites:
         - type: ATTRIBUTE
@@ -357,7 +348,7 @@ feats:
       type: GENERAL
       repeatType: SINGLE
       bonusFeatClasses: [FIGHTER]
-      shortDescription:
+      shortDescription: "Keine Begrenzung der Doppelschläge pro Runde"
       description:
       prerequisites:
         - type: ATTRIBUTE
@@ -375,7 +366,7 @@ feats:
       name: "Im Kampf zaubern"
       type: GENERAL
       repeatType: SINGLE
-      shortDescription:
+      shortDescription: "Bonus von +4 auf Würfe für Konzentration, um defensiv zu zaubern"
       description:
       prerequisites: []
       benefits: []
@@ -385,9 +376,12 @@ feats:
       type: GENERAL
       repeatType: SINGLE
       bonusFeatClasses: [FIGHTER]
-      shortDescription:
+      shortDescription: "Die Mali für den Kampf mit zwei Waffen um -2 reduzieren"
       description:
-      prerequisites: []
+      prerequisites:
+        - type: ATTRIBUTE
+          attribute: DEXTERITY
+          min: 15
       benefits: []
 
     - id: VERBESSERTER_KAMPF_MIT_ZWEI_WAFFEN
@@ -395,15 +389,16 @@ feats:
       type: GENERAL
       repeatType: SINGLE
       bonusFeatClasses: [FIGHTER]
-      shortDescription:
+      shortDescription: "Zweiter Angriff mit Zweithand"
       description:
       prerequisites:
+        - type: ATTRIBUTE
+          attribute: DEXTERITY
+          min: 17
         - type: FEAT
           feat: KAMPF_MIT_ZWEI_WAFFEN
-        - type: FEAT
-          feat: BEIDHAENDIGKEIT
         - type: BASE_ATTACK_BONUS
-          min: 9
+          min: 6
       benefits: []
 
     - id: KAMPFREFLEXE
@@ -411,7 +406,7 @@ feats:
       type: GENERAL
       repeatType: SINGLE
       bonusFeatClasses: [FIGHTER]
-      shortDescription:
+      shortDescription: "Zusätzliche Gelegenheitsangriffe"
       description:
       prerequisites: []
       benefits: []
@@ -421,7 +416,7 @@ feats:
       type: GENERAL
       repeatType: SINGLE
       bonusFeatClasses: [FIGHTER]
-      shortDescription:
+      shortDescription: "Bonus von +1 auf Angriffs- und Schadenswürfe im Fernkampf innerhalb von 9 m"
       description:
       prerequisites: []
       benefits: []
@@ -431,7 +426,7 @@ feats:
       type: GENERAL
       repeatType: SINGLE
       bonusFeatClasses: [FIGHTER]
-      shortDescription:
+      shortDescription: "Grundreichweite um 50% oder 100% erhöhen"
       description:
       prerequisites:
         - type: FEAT
@@ -443,7 +438,7 @@ feats:
       type: GENERAL
       repeatType: SINGLE
       bonusFeatClasses: [FIGHTER]
-      shortDescription:
+      shortDescription: "Kein Malus von -4, wenn in den Nahkampf geschossen wird"
       description:
       prerequisites:
         - type: FEAT
@@ -455,7 +450,7 @@ feats:
       type: GENERAL
       repeatType: SINGLE
       bonusFeatClasses: [FIGHTER]
-      shortDescription:
+      shortDescription: "Ein zusätzlicher Fernkampfangriff pro Runde"
       description:
       prerequisites:
         - type: FEAT
@@ -470,7 +465,7 @@ feats:
       type: GENERAL
       repeatType: SINGLE
       bonusFeatClasses: [FIGHTER]
-      shortDescription:
+      shortDescription: "Sich vor und nach einem Fernkampfangriff bewegen"
       description:
       prerequisites:
         - type: FEAT
@@ -488,7 +483,7 @@ feats:
       name: "Rennen"
       type: GENERAL
       repeatType: SINGLE
-      shortDescription:
+      shortDescription: "Mit fünffacher Bewegungsrate rennen, Bonus von +4 auf Würfe für Springen, die mit einem Anlauf durchgeführt werden"
       description:
       prerequisites: []
       benefits: []
@@ -498,7 +493,7 @@ feats:
       type: GENERAL
       repeatType: SINGLE
       bonusFeatClasses: [FIGHTER]
-      shortDescription:
+      shortDescription: "Eine Waffe als Freie Aktion ziehen"
       description:
       prerequisites:
         - type: BASE_ATTACK_BONUS
@@ -509,7 +504,7 @@ feats:
       name: "Spuren lesen"
       type: GENERAL
       repeatType: SINGLE
-      shortDescription:
+      shortDescription: "Die Fertigkeit Überlebenskunst einsetzen können, um Spuren zu folgen"
       description:
       prerequisites: []
       benefits: []
@@ -518,7 +513,7 @@ feats:
       name: "Umgang mit einfachen Waffen"
       type: GENERAL
       repeatType: SINGLE
-      shortDescription:
+      shortDescription: "Kein Malus von -4 auf Angriffswürfe mit einfachen Waffen"
       description:
       prerequisites: []
       benefits: []
@@ -528,7 +523,7 @@ feats:
       type: GENERAL
       repeatType: MULTIPLE
       bonusFeatClasses: [FIGHTER]
-      shortDescription:
+      shortDescription: "Kein Angriffsmalus mit bestimmter exotischer Waffe"
       description:
       prerequisites:
         - type: BASE_ATTACK_BONUS
@@ -539,7 +534,7 @@ feats:
       name: "Umgang mit Kriegswaffen"
       type: GENERAL
       repeatType: MULTIPLE
-      shortDescription:
+      shortDescription: "Kein Angriffsmalus mit bestimmter Kriegswaffe"
       description:
       prerequisites: []
       benefits: []
@@ -548,7 +543,7 @@ feats:
       name: "Umgang mit Rüstungen (leichte)"
       type: GENERAL
       repeatType: SINGLE
-      shortDescription:
+      shortDescription: "Kein Rüstungsmalus auf Angriffswürfe"
       description:
       prerequisites: []
       benefits: []
@@ -557,7 +552,7 @@ feats:
       name: "Umgang mit Rüstungen (mittelschwere)"
       type: GENERAL
       repeatType: SINGLE
-      shortDescription:
+      shortDescription: "Kein Rüstungsmalus auf Angriffswürfe"
       description:
       prerequisites:
         - type: FEAT
@@ -568,7 +563,7 @@ feats:
       name: "Umgang mit Rüstungen (schwere)"
       type: GENERAL
       repeatType: SINGLE
-      shortDescription:
+      shortDescription: "Kein Rüstungsmalus auf Angriffswürfe"
       description:
       prerequisites:
         - type: FEAT
@@ -581,7 +576,7 @@ feats:
       name: "Umgang mit Schilden"
       type: GENERAL
       repeatType: SINGLE
-      shortDescription:
+      shortDescription: "Kein Rüstungsmalus auf Angriffswürfe"
       description:
       prerequisites: []
       benefits: []
@@ -590,7 +585,8 @@ feats:
       name: "Verbesserte Initiative"
       type: GENERAL
       repeatType: SINGLE
-      shortDescription:
+      bonusFeatClasses: [FIGHTER]
+      shortDescription: "Bonus von +4 auf Initiativewürfe"
       description:
       prerequisites: []
       benefits: []
@@ -600,7 +596,7 @@ feats:
       type: GENERAL
       repeatType: MULTIPLE
       bonusFeatClasses: [FIGHTER]
-      shortDescription:
+      shortDescription: "Bedrohungschance der Waffe verdoppeln"
       description:
       prerequisites:
         - type: WEAPON_PROFICIENCY
@@ -613,7 +609,7 @@ feats:
       type: GENERAL
       repeatType: SINGLE
       bonusFeatClasses: [FIGHTER]
-      shortDescription:
+      shortDescription: "Unbewaffnet als bewaffnet gelten"
       description:
       prerequisites: []
       benefits: []
@@ -622,7 +618,8 @@ feats:
       name: "Geschosse abwehren"
       type: GENERAL
       repeatType: SINGLE
-      shortDescription:
+      bonusFeatClasses: [FIGHTER]
+      shortDescription: "Einen Fernkampfangriff pro Runde abwehren"
       description:
       prerequisites:
         - type: ATTRIBUTE
@@ -636,7 +633,8 @@ feats:
       name: "Betäubender Schlag"
       type: GENERAL
       repeatType: SINGLE
-      shortDescription:
+      bonusFeatClasses: [FIGHTER]
+      shortDescription: "Einen Gegner durch einen Waffenlosen Schlag betäuben"
       description:
       prerequisites:
         - type: ATTRIBUTE
@@ -655,7 +653,7 @@ feats:
       name: "Wachsamkeit"
       type: GENERAL
       repeatType: SINGLE
-      shortDescription: "+2 auf Zuhören- und Entdecken-Proben"
+      shortDescription: "Bonus von +2 auf Würfe für Entdecken und Lauschen"
       description: >
         Du bist aufmerksamer als die meisten und schenkst deiner Umgebung mehr
         Beachtung. Du erhältst einen Bonus von +2 auf Zuhören- und
@@ -666,9 +664,9 @@ feats:
     - id: WAFFENFINESSE
       name: "Waffenfinesse"
       type: GENERAL
-      repeatType: MULTIPLE
+      repeatType: SINGLE
       bonusFeatClasses: [FIGHTER]
-      shortDescription:
+      shortDescription: "Auf Angriffswürfe mit leichten Nahkampfwaffen den GE- statt den ST-Modifikator anrechnen"
       description:
       prerequisites:
         - type: WEAPON_PROFICIENCY
@@ -679,7 +677,7 @@ feats:
       type: GENERAL
       repeatType: MULTIPLE
       bonusFeatClasses: [FIGHTER]
-      shortDescription:
+      shortDescription: "Bonus von +1 auf Angriffswürfe mit gewählter Waffe"
       description:
       prerequisites:
         - type: WEAPON_PROFICIENCY
@@ -691,7 +689,7 @@ feats:
       name: "Zauberfokus"
       type: GENERAL
       repeatType: MULTIPLE
-      shortDescription:
+      shortDescription: "Bonus von +1 auf SG der Rettungswürfe gegen eine bestimmte Schule der Magie"
       description:
       prerequisites: []
       benefits: []
@@ -700,7 +698,7 @@ feats:
       name: "Magische Waffen und Rüstungen herstellen"
       type: ITEM_CREATION
       repeatType: SINGLE
-      shortDescription:
+      shortDescription: "Magische Waffen, Rüstungen und Schilde erschaffen"
       description:
       prerequisites:
         - type: CASTER_LEVEL
@@ -711,7 +709,7 @@ feats:
       name: "Ring schmieden"
       type: ITEM_CREATION
       repeatType: SINGLE
-      shortDescription:
+      shortDescription: "Magische Ringe erschaffen"
       description:
       prerequisites:
         - type: CASTER_LEVEL
@@ -722,7 +720,7 @@ feats:
       name: "Schriftrolle anfertigen"
       type: ITEM_CREATION
       repeatType: SINGLE
-      shortDescription:
+      shortDescription: "Magische Schriftrollen erschaffen"
       description:
       prerequisites:
         - type: CASTER_LEVEL
@@ -733,7 +731,7 @@ feats:
       name: "Trank brauen"
       type: ITEM_CREATION
       repeatType: SINGLE
-      shortDescription:
+      shortDescription: "Zaubertränke erschaffen"
       description:
       prerequisites:
         - type: CASTER_LEVEL
@@ -744,7 +742,7 @@ feats:
       name: "Wundersamen Gegenstand herstellen"
       type: ITEM_CREATION
       repeatType: SINGLE
-      shortDescription:
+      shortDescription: "Magische wundersame Gegenstände erschaffen"
       description:
       prerequisites:
         - type: CASTER_LEVEL
@@ -755,7 +753,7 @@ feats:
       name: "Zauberstab herstellen"
       type: ITEM_CREATION
       repeatType: SINGLE
-      shortDescription:
+      shortDescription: "Zauberstäbe erschaffen"
       description:
       prerequisites:
         - type: CASTER_LEVEL
@@ -766,7 +764,7 @@ feats:
       name: "Zauberstecken herstellen"
       type: ITEM_CREATION
       repeatType: SINGLE
-      shortDescription:
+      shortDescription: "Zauberstecken erschaffen"
       description:
       prerequisites:
         - type: CASTER_LEVEL
@@ -777,7 +775,7 @@ feats:
       name: "Zauberzepter herstellen"
       type: ITEM_CREATION
       repeatType: SINGLE
-      shortDescription:
+      shortDescription: "Zauberzepter erschaffen"
       description:
       prerequisites:
         - type: CASTER_LEVEL
@@ -788,7 +786,7 @@ feats:
       name: "Gestenlos zaubern"
       type: METAMAGIC
       repeatType: SINGLE
-      shortDescription:
+      shortDescription: "Zauber ohne Gestenkomponente wirken"
       description:
       prerequisites: []
       benefits: []
@@ -797,7 +795,7 @@ feats:
       name: "Lautlos zaubern"
       type: METAMAGIC
       repeatType: SINGLE
-      shortDescription:
+      shortDescription: "Zauber ohne verbale Komponente wirken"
       description:
       prerequisites: []
       benefits: []
@@ -806,7 +804,7 @@ feats:
       name: "Schnell zaubern"
       type: METAMAGIC
       repeatType: SINGLE
-      shortDescription:
+      shortDescription: "Zauber als Freie Aktion wirken"
       description:
       prerequisites: []
       benefits: []
@@ -815,7 +813,7 @@ feats:
       name: "Zauber ausdehnen"
       type: METAMAGIC
       repeatType: SINGLE
-      shortDescription:
+      shortDescription: "Die Wirkungsdauer von Zaubern verdoppeln"
       description:
       prerequisites: []
       benefits: []
@@ -824,7 +822,7 @@ feats:
       name: "Zauber verstärken"
       type: METAMAGIC
       repeatType: SINGLE
-      shortDescription:
+      shortDescription: "Alle variablen, numerischen Effekte von Zaubern um 50% erhöhen"
       description:
       prerequisites: []
       benefits: []
@@ -833,7 +831,7 @@ feats:
       name: "Zaubereffekt maximieren"
       type: METAMAGIC
       repeatType: SINGLE
-      shortDescription:
+      shortDescription: "Alle variablen, numerischen Effekte von Zaubern maximieren"
       description:
       prerequisites: []
       benefits: []
@@ -842,7 +840,7 @@ feats:
       name: "Zaubergrad erhöhen"
       type: METAMAGIC
       repeatType: SINGLE
-      shortDescription:
+      shortDescription: "Zauber als Zauber höheren Grades wirken"
       description:
       prerequisites: []
       benefits: []
@@ -851,7 +849,7 @@ feats:
       name: "Zauberreichweite erhöhen"
       type: METAMAGIC
       repeatType: SINGLE
-      shortDescription:
+      shortDescription: "Reichweite von Zaubern verdoppeln"
       description:
       prerequisites: []
       benefits: []
@@ -861,9 +859,12 @@ feats:
       type: SPECIAL
       repeatType: MULTIPLE
       bonusFeatClasses: [FIGHTER]
-      shortDescription:
+      shortDescription: "Bonus von +2 auf Schadenswürfe mit gewählter Waffe"
       description:
       prerequisites:
+        - type: WEAPON_PROFICIENCY
+        - type: FEAT
+          feat: WAFFENFOKUS
         - type: CLASS_LEVEL
           classes: [FIGHTER]
           min: 4
@@ -873,7 +874,7 @@ feats:
       name: "Zaubermeisterschaft"
       type: SPECIAL
       repeatType: MULTIPLE
-      shortDescription:
+      shortDescription: "Einige Zauber ohne Zauberbuch vorbereiten können"
       description:
       prerequisites:
         - type: CLASS_LEVEL
@@ -885,7 +886,7 @@ feats:
       name: "Zusätzliches Vertreiben"
       type: SPECIAL
       repeatType: STACKS
-      shortDescription:
+      shortDescription: "Pro Tag 4 weitere Male vertreiben oder beeindrucken"
       description:
       prerequisites:
         - type: CLASS_LEVEL
