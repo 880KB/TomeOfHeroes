@@ -2,6 +2,7 @@ package dev.swim.toh.model.core.feats;
 
 import dev.swim.toh.definition.feat.FeatConfig;
 import dev.swim.toh.definition.feat.FeatDefinition;
+import dev.swim.toh.definition.weapon.WeaponConfig;
 import dev.swim.toh.model.calculation.FeatSlotCalculator.FeatPool;
 import dev.swim.toh.model.core.CharacterModel;
 import dev.swim.toh.model.core.classes.ChosenClass;
@@ -10,6 +11,7 @@ import dev.swim.toh.model.data.feat.Feat;
 import dev.swim.toh.model.data.feat.FeatRepository;
 import dev.swim.toh.model.data.feat.FeatType;
 import dev.swim.toh.model.data.feat.RepeatType;
+import dev.swim.toh.model.data.weapon.WeaponRepository;
 import dev.swim.toh.model.rules.FeatRules;
 import dev.swim.toh.persistence.CharacterData;
 import dev.swim.toh.persistence.CharacterDataMapper;
@@ -42,7 +44,12 @@ class FeatPoolFreezeTest {
         config.setFeats(List.of(scribeScroll, extendSpell));
         FeatRepository featRepository = new FeatRepository(config);
         FeatRules featRules = new FeatRules(featRepository);
-        return new CharacterModel(featRepository, featRules);
+
+        WeaponConfig weaponConfig = new WeaponConfig();
+        weaponConfig.setWeapons(List.of());
+        WeaponRepository weaponRepository = new WeaponRepository(weaponConfig);
+
+        return new CharacterModel(featRepository, featRules, weaponRepository);
     }
 
     private static FeatDefinition featDefinition(String id, FeatType type) {

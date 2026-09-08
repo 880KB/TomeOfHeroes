@@ -16,6 +16,7 @@ public class SelectionItem<T> {
     private final String unavailableReason;
     private final String infoTitle;
     private final String infoBody;
+    private final boolean header;
     private final SimpleBooleanProperty selected = new SimpleBooleanProperty(false);
     // nesting depth for display, e.g. a feat shown indented under the feat it builds on - 0
     // (the default) means "top level", set by the caller after construction since it depends on
@@ -34,12 +35,31 @@ public class SelectionItem<T> {
      */
     public SelectionItem(T value, String name, boolean available, String unavailableReason,
                           String infoTitle, String infoBody) {
+        this(value, name, available, unavailableReason, infoTitle, infoBody, false);
+    }
+
+    private SelectionItem(T value, String name, boolean available, String unavailableReason,
+                           String infoTitle, String infoBody, boolean header) {
         this.value = value;
         this.name = name;
         this.available = available;
         this.unavailableReason = unavailableReason;
         this.infoTitle = infoTitle;
         this.infoBody = infoBody;
+        this.header = header;
+    }
+
+    /**
+     * A non-selectable section heading row, e.g. "Kriegswaffen" grouping a weapon catalog the
+     * same way the PHB table does - has no value, never ends up in
+     * {@link SelectionDialogController#getSelectedValues()}.
+     */
+    public static <T> SelectionItem<T> header(String label) {
+        return new SelectionItem<>(null, label, false, null, null, null, true);
+    }
+
+    public boolean isHeader() {
+        return header;
     }
 
     public T getValue() {

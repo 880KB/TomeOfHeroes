@@ -3,6 +3,7 @@ package dev.swim.toh.persistence;
 import dev.swim.toh.model.core.CharacterModel;
 import dev.swim.toh.model.core.classes.ChosenClass;
 import dev.swim.toh.model.core.feats.SelectedFeat;
+import dev.swim.toh.model.core.weapons.SelectedWeaponSlot;
 import dev.swim.toh.model.data.attribute.AttributeName;
 import dev.swim.toh.model.data.savingthrow.SavingThrow;
 
@@ -50,6 +51,14 @@ public class CharacterDataMapper {
         data.hitPoints.current = model.hitPoints.getCurrentHitPointsProperty().get();
 
         data.spellResistance = model.spellResistance.spellResistanceProperty().get();
+
+        for (SelectedWeaponSlot selectedWeaponSlot : model.weapons.getSlots()) {
+            CharacterData.WeaponSlotData weaponSlotData = new CharacterData.WeaponSlotData();
+            weaponSlotData.slot = selectedWeaponSlot.getSlot();
+            weaponSlotData.weaponId = model.weapons.getWeaponId(selectedWeaponSlot.getSlot());
+            weaponSlotData.note = selectedWeaponSlot.noteProperty().get();
+            data.weapons.add(weaponSlotData);
+        }
 
         return data;
     }
@@ -101,5 +110,10 @@ public class CharacterDataMapper {
         model.hitPoints.getCurrentHitPointsProperty().set(data.hitPoints.current);
 
         model.spellResistance.spellResistanceProperty().set(data.spellResistance);
+
+        for (CharacterData.WeaponSlotData weaponSlotData : data.weapons) {
+            model.weapons.setWeapon(weaponSlotData.slot, weaponSlotData.weaponId);
+            model.weapons.noteProperty(weaponSlotData.slot).set(weaponSlotData.note);
+        }
     }
 }

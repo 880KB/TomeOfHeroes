@@ -13,10 +13,12 @@ import dev.swim.toh.model.core.hitpoints.HitPoints;
 import dev.swim.toh.model.core.initiative.Initiative;
 import dev.swim.toh.model.core.savingthrows.SavingThrows;
 import dev.swim.toh.model.core.spellresistance.SpellResistance;
+import dev.swim.toh.model.core.weapons.Weapons;
 import dev.swim.toh.model.data.attribute.AttributeName;
 import dev.swim.toh.model.data.clazz.Clazz;
 import dev.swim.toh.model.data.feat.FeatRepository;
 import dev.swim.toh.model.data.savingthrow.SavingThrow;
+import dev.swim.toh.model.data.weapon.WeaponRepository;
 import dev.swim.toh.model.rules.FeatRules;
 
 public class CharacterModel {
@@ -33,8 +35,9 @@ public class CharacterModel {
     public final HitPoints hitPoints = new HitPoints();
     public final SpellResistance spellResistance = new SpellResistance();
     public final BonusPool bonusPool = new BonusPool();
+    public final Weapons weapons;
 
-    public CharacterModel(FeatRepository featRepository, FeatRules featRules) {
+    public CharacterModel(FeatRepository featRepository, FeatRules featRules, WeaponRepository weaponRepository) {
         description.init(this);
         classes.init(this);
         attributes.init(this);
@@ -46,6 +49,8 @@ public class CharacterModel {
         feats.init(this);
         automaticFeatGrants.setCharacter(this);
         featsValidation.setCharacter(this);
+        this.weapons = new Weapons(weaponRepository);
+        weapons.init(this);
     }
 
     public void initTestData() {

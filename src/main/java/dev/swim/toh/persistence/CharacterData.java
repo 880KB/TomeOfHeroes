@@ -1,6 +1,7 @@
 package dev.swim.toh.persistence;
 
 import dev.swim.toh.model.calculation.FeatSlotCalculator.FeatPool;
+import dev.swim.toh.model.core.weapons.WeaponSlot;
 import dev.swim.toh.model.data.attribute.AttributeName;
 import dev.swim.toh.model.data.clazz.Clazz;
 import dev.swim.toh.model.data.race.Race;
@@ -18,7 +19,7 @@ import java.util.Map;
  */
 public class CharacterData {
 
-    public static final int CURRENT_SCHEMA_VERSION = 2;
+    public static final int CURRENT_SCHEMA_VERSION = 3;
 
     public int schemaVersion = CURRENT_SCHEMA_VERSION;
     public DescriptionData description = new DescriptionData();
@@ -30,6 +31,7 @@ public class CharacterData {
     public int initiativeMiscMod;
     public HitPointsData hitPoints = new HitPointsData();
     public int spellResistance;
+    public List<WeaponSlotData> weapons = new ArrayList<>();
 
     public static class DescriptionData {
         public String name;
@@ -66,5 +68,12 @@ public class CharacterData {
     public static class HitPointsData {
         public int baseMax;
         public int current;
+    }
+
+    public static class WeaponSlotData {
+        public WeaponSlot slot;
+        // null if the slot was empty when saved
+        public String weaponId;
+        public String note;
     }
 }

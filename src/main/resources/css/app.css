@@ -61,6 +61,13 @@
     visibility: hidden;
 }
 
+/* Non-selectable section heading row in a SelectionDialogController table (e.g. "Kriegswaffen"
+   grouping a weapon catalog like the PHB table does) - light background so it visually separates
+   from the selectable rows around it. */
+.selection-dialog-header-row {
+    -fx-background-color: #f1f3f5;
+}
+
 /* Card-like framing for InfoPopup content, so it reads as a distinct floating element rather
    than blending into whatever is behind it. */
 .info-popup {

@@ -11,9 +11,11 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
@@ -53,10 +55,50 @@ public class SelectionDialogController<T> {
     private final ObservableList<SelectionItem<T>> items = FXCollections.observableArrayList();
     private Stage dialogStage;
     private List<T> selectedValues = new ArrayList<>();
+    // classes/feats let the player pick several at once (checkboxes, one dialog covers the whole
+    // add-flow); a fixed weapon slot instead holds exactly one value, so for that caller clicking
+    // a row is the selection - no checkbox needed
+    private boolean singleSelect = false;
 
     public void initialize() {
+        // header rows (e.g. "Kriegswaffen") are display-only - mouse-transparent so clicking one
+        // can't select it (there is nothing behind it to fall through to, so the click is simply
+        // swallowed), tagged for the CSS that gives them a distinct background
+        itemsTableView.setRowFactory(tv -> new TableRow<>() {
+            @Override
+            protected void updateItem(SelectionItem<T> item, boolean empty) {
+                super.updateItem(item, empty);
+                boolean header = !empty && item != null && item.isHeader();
+                setMouseTransparent(header);
+                getStyleClass().remove("selection-dialog-header-row");
+                if (header)
+                    getStyleClass().add("selection-dialog-header-row");
+            }
+        });
+
         isSelectedColumn.setCellValueFactory(cellData -> cellData.getValue().selectedProperty());
-        isSelectedColumn.setCellFactory(CheckBoxTableCell.forTableColumn(isSelectedColumn));
+        isSelectedColumn.setCellFactory(col -> new TableCell<>() {
+            private final CheckBox checkBox = new CheckBox();
+            {
+                checkBox.setOnAction(event -> {
+                    SelectionItem<T> row = getTableRow().getItem();
+                    if (row != null)
+                        row.selectedProperty().set(checkBox.isSelected());
+                });
+            }
+
+            @Override
+            protected void updateItem(Boolean selected, boolean empty) {
+                super.updateItem(selected, empty);
+                SelectionItem<T> row = empty ? null : getTableRow().getItem();
+                if (row == null || row.isHeader()) {
+                    setGraphic(null);
+                } else {
+                    checkBox.setSelected(Boolean.TRUE.equals(selected));
+                    setGraphic(checkBox);
+                }
+            }
+        });
 
         nameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
         nameColumn.setCellFactory(col -> new TableCell<>() {
@@ -71,9 +113,11 @@ public class SelectionDialogController<T> {
                     setGraphic(null);
                 } else {
                     SelectionItem<T> row = getTableRow().getItem();
+                    boolean header = row != null && row.isHeader();
                     indent.setPrefWidth(row == null ? 0 : row.getDepth() * INDENT_PER_DEPTH);
                     label.setText(name);
-                    label.setTextFill(row == null || row.isAvailable() ? Color.BLACK : Color.RED);
+                    label.setTextFill(header || row == null || row.isAvailable() ? Color.BLACK : Color.RED);
+                    label.setStyle(header ? "-fx-font-weight: bold;" : null);
                     setGraphic(content);
                 }
             }
@@ -114,6 +158,32 @@ public class SelectionDialogController<T> {
     }
 
     /**
+     * Switches from the default "check any number of rows" behaviour to "exactly one row,
+     * selected by clicking it" - hides the checkbox column and drives {@link #onOk} off the
+     * table's own row selection instead of each item's {@code selectedProperty}.
+     */
+    public void setSingleSelect(boolean singleSelect) {
+        this.singleSelect = singleSelect;
+        isSelectedColumn.setVisible(!singleSelect);
+        itemsTableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+    }
+
+    /**
+     * Highlights the row for the given value as the initial selection - e.g. the weapon
+     * currently in a slot, when reopening the dialog to change it. Only meaningful together with
+     * {@link #setSingleSelect}; must be called after {@link #setItems}.
+     */
+    public void preselect(T value) {
+        items.stream()
+                .filter(item -> item.getValue() == value)
+                .findFirst()
+                .ifPresent(item -> {
+                    itemsTableView.getSelectionModel().select(item);
+                    itemsTableView.scrollTo(item);
+                });
+    }
+
+    /**
      * Items are shown in exactly the order given - e.g. feats grouped under the feat they build
      * on. The caller is responsible for sorting/grouping before calling this.
      */
@@ -148,10 +218,17 @@ public class SelectionDialogController<T> {
     }
 
     public void onOk(ActionEvent actionEvent) {
-        selectedValues = items.stream()
-                .filter(SelectionItem::isSelected)
-                .map(SelectionItem::getValue)
-                .toList();
+        if (singleSelect) {
+            SelectionItem<T> selected = itemsTableView.getSelectionModel().getSelectedItem();
+            // a header can't be clicked (see the row factory in initialize()), but keyboard
+            // navigation still walks over it as a row, so guard against it landing as "selected"
+            selectedValues = (selected == null || selected.isHeader()) ? List.of() : List.of(selected.getValue());
+        } else {
+            selectedValues = items.stream()
+                    .filter(item -> !item.isHeader() && item.isSelected())
+                    .map(SelectionItem::getValue)
+                    .toList();
+        }
         dialogStage.close();
     }
 

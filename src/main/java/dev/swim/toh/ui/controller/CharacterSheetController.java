@@ -34,8 +34,9 @@ public class CharacterSheetController {
         HBox talente = new HBox(15, getNode("classes-view"), getNode("feats-view"));
         talente.setFillHeight(false);
         talente.setAlignment(Pos.TOP_LEFT);
+        Node weapons = getNode("weapons-view");
 
-        sectionsContainer.getChildren().addAll(kampf, savingThrows, talente);
+        sectionsContainer.getChildren().addAll(kampf, savingThrows, talente, weapons);
     }
 
     private Node getNode(String cardName) {
@@ -74,6 +75,8 @@ public class CharacterSheetController {
                 return new ClassesViewController(characterModel);
             if (controllerClass == FeatsViewController.class)
                 return new FeatsViewController(characterModel);
+            if (controllerClass == WeaponsViewController.class)
+                return new WeaponsViewController(characterModel);
             try {
                 return controllerClass.getDeclaredConstructor().newInstance();
             } catch (ReflectiveOperationException e) {
