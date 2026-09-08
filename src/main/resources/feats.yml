@@ -16,6 +16,24 @@ feats:
           bonusType: UNTYPED
           value: 3
 
+    - id: AGIL
+      name: "Agil"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription: "Bonus von +2 auf Würfe für Balancieren und Entfesselungskunst"
+      description:
+      prerequisites: []
+      benefits: []
+
+    - id: AKROBAT
+      name: "Akrobat"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription: "Bonus von +2 auf Würfe für Springen und Turnen"
+      description:
+      prerequisites: []
+      benefits: []
+
     - id: ANFUEHREN
       name: "Anführen"
       type: GENERAL
@@ -27,6 +45,15 @@ feats:
           min: 6
       benefits: []
 
+    - id: ATHLET
+      name: "Athlet"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription: "Bonus von +2 auf Würfe für Klettern und Schwimmen"
+      description:
+      prerequisites: []
+      benefits: []
+
     - id: AUSDAUER
       name: "Ausdauer"
       type: GENERAL
@@ -34,6 +61,17 @@ feats:
       shortDescription: "Bonus von +4 auf Würfe oder Rettungswürfe, um nichttödlichem Schaden zu widerstehen"
       description:
       prerequisites: []
+      benefits: []
+
+    - id: UNVERWUESTLICH
+      name: "Unverwüstlich"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription: "Im Bereich -1 bis -9 TP bei Bewußtsein bleiben"
+      description:
+      prerequisites:
+        - type: FEAT
+          feat: AUSDAUER
       benefits: []
 
     - id: AUSWEICHEN
@@ -81,6 +119,15 @@ feats:
           feat: BEWEGLICHKEIT
         - type: BASE_ATTACK_BONUS
           min: 4
+      benefits: []
+
+    - id: BEREDSAMKEIT
+      name: "Beredsamkeit"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription: "Bonus von +2 auf Würfe für Bluffen und Einschüchtern"
+      description:
+      prerequisites: []
       benefits: []
 
     - id: BERITTENER_KAMPF
@@ -208,6 +255,21 @@ feats:
           feat: COMBAT_EXPERTISE
       benefits: []
 
+    - id: VERBESSERTE_FINTE
+      name: "Verbesserte Finte"
+      type: GENERAL
+      repeatType: SINGLE
+      bonusFeatClasses: [FIGHTER]
+      shortDescription: "Finten im Kampf als Bewegungs-Aktionen machen"
+      description:
+      prerequisites:
+        - type: ATTRIBUTE
+          attribute: INTELLIGENCE
+          min: 13
+        - type: FEAT
+          feat: COMBAT_EXPERTISE
+      benefits: []
+
     - id: VERBESSERTES_ZU_FALL_BRINGEN
       name: "Verbessertes „Zu Fall bringen“"
       type: GENERAL
@@ -258,6 +320,17 @@ feats:
       prerequisites: []
       benefits: []
 
+    - id: MAECHTIGE_DURCHSCHLAGENDE_ZAUBER
+      name: "Mächtige durchschlagende Zauber"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription: "Bonus von +4 auf Zauberstufenwürfe, um Zauberresistenz zu überwinden"
+      description:
+      prerequisites:
+        - type: FEAT
+          feat: DURCHSCHLAGENDE_ZAUBER
+      benefits: []
+
     - id: EISERNER_WILLE
       name: "Eiserner Wille"
       type: GENERAL
@@ -272,6 +345,24 @@ feats:
       type: GENERAL
       repeatType: MULTIPLE
       shortDescription: "Bonus von +3 auf Würfe für gewählte Fertigkeit"
+      description:
+      prerequisites: []
+      benefits: []
+
+    - id: FLINKE_FINGER
+      name: "Flinke Finger"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription: "Bonus von +2 auf Würfe für Mechanismus ausschalten und Schlösser öffnen"
+      description:
+      prerequisites: []
+      benefits: []
+
+    - id: GESCHICKTE_HAENDE
+      name: "Geschickte Hände"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription: "Bonus von +2 auf Würfe für Fingerfertigkeit und Seil benutzen"
       description:
       prerequisites: []
       benefits: []
@@ -328,6 +419,21 @@ feats:
           feat: HEFTIGER_ANGRIFF
       benefits: []
 
+    - id: VERBESSERTES_UEBERRENNEN
+      name: "Verbessertes Überrennen"
+      type: GENERAL
+      repeatType: SINGLE
+      bonusFeatClasses: [FIGHTER]
+      shortDescription: "Bonus von +4 auf Versuche zum Überrennen"
+      description:
+      prerequisites:
+        - type: ATTRIBUTE
+          attribute: STRENGTH
+          min: 13
+        - type: FEAT
+          feat: HEFTIGER_ANGRIFF
+      benefits: []
+
     - id: WAFFE_ZERSCHMETTERN
       name: "Verbessertes Waffe zerschmettern"
       type: GENERAL
@@ -371,6 +477,18 @@ feats:
       prerequisites: []
       benefits: []
 
+    - id: IN_TIERGESTALT_ZAUBERN
+      name: "In Tiergestalt zaubern"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription: "In der Tiergestalt Zauber wirken"
+      description:
+      prerequisites:
+        - type: ATTRIBUTE
+          attribute: WISDOM
+          min: 13
+      benefits: []
+
     - id: KAMPF_MIT_ZWEI_WAFFEN
       name: "Kampf mit zwei Waffen"
       type: GENERAL
@@ -382,6 +500,18 @@ feats:
         - type: ATTRIBUTE
           attribute: DEXTERITY
           min: 15
+      benefits: []
+
+    - id: VERTEIDIGUNG_MIT_ZWEI_WAFFEN
+      name: "Verteidigung mit zwei Waffen"
+      type: GENERAL
+      repeatType: SINGLE
+      bonusFeatClasses: [FIGHTER]
+      shortDescription: "Zweithand verleiht einen Schildbonus von +1 auf die RK"
+      description:
+      prerequisites:
+        - type: FEAT
+          feat: KAMPF_MIT_ZWEI_WAFFEN
       benefits: []
 
     - id: VERBESSERTER_KAMPF_MIT_ZWEI_WAFFEN
@@ -399,6 +529,25 @@ feats:
           feat: KAMPF_MIT_ZWEI_WAFFEN
         - type: BASE_ATTACK_BONUS
           min: 6
+      benefits: []
+
+    - id: MAECHTIGER_KAMPF_MIT_ZWEI_WAFFEN
+      name: "Mächtiger Kampf mit zwei Waffen"
+      type: GENERAL
+      repeatType: SINGLE
+      bonusFeatClasses: [FIGHTER]
+      shortDescription: "Dritter Angriff mit Zweithand"
+      description:
+      prerequisites:
+        - type: ATTRIBUTE
+          attribute: DEXTERITY
+          min: 19
+        - type: FEAT
+          feat: KAMPF_MIT_ZWEI_WAFFEN
+        - type: FEAT
+          feat: VERBESSERTER_KAMPF_MIT_ZWEI_WAFFEN
+        - type: BASE_ATTACK_BONUS
+          min: 11
       benefits: []
 
     - id: KAMPFREFLEXE
@@ -460,6 +609,25 @@ feats:
           min: 13
       benefits: []
 
+    - id: MEHRFACHSCHUSS
+      name: "Mehrfachschuss"
+      type: GENERAL
+      repeatType: SINGLE
+      bonusFeatClasses: [FIGHTER]
+      shortDescription: "Zwei oder mehr Pfeile gleichzeitig verschießen"
+      description:
+      prerequisites:
+        - type: ATTRIBUTE
+          attribute: DEXTERITY
+          min: 17
+        - type: FEAT
+          feat: KERNSCHUSS
+        - type: FEAT
+          feat: SCHNELLES_SCHIESSEN
+        - type: BASE_ATTACK_BONUS
+          min: 6
+      benefits: []
+
     - id: AUS_VOLLEM_LAUF_SCHIESSEN
       name: "Aus vollem Lauf schießen"
       type: GENERAL
@@ -477,6 +645,41 @@ feats:
           feat: AUSWEICHEN
         - type: FEAT
           feat: BEWEGLICHKEIT
+      benefits: []
+
+    - id: VERBESSERTER_PRAEZISIONSSCHUSS
+      name: "Verbesserter Präzisionsschuss"
+      type: GENERAL
+      repeatType: SINGLE
+      bonusFeatClasses: [FIGHTER]
+      shortDescription: "Weniger als 100% Deckung/100% Tarnung bei Fernkampfangriffen ignorieren"
+      description:
+      prerequisites:
+        - type: ATTRIBUTE
+          attribute: DEXTERITY
+          min: 19
+        - type: FEAT
+          feat: KERNSCHUSS
+        - type: FEAT
+          feat: PRAEZISIONSSCHUSS
+      benefits: []
+
+    - id: MATERIALKOMPONENTENLOS_ZAUBERN
+      name: "Materialkomponentenlos zaubern"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription: "Zauber ohne Materialkomponenten wirken"
+      description:
+      prerequisites: []
+      benefits: []
+
+    - id: NEIGUNG_ZUR_MAGIE
+      name: "Neigung zur Magie"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription: "Bonus von +2 auf Würfe für Magischen Gegenstand benutzen und Zauberkunde"
+      description:
+      prerequisites: []
       benefits: []
 
     - id: RENNEN
@@ -500,11 +703,58 @@ feats:
           min: 1
       benefits: []
 
+    - id: SCHNELLES_NACHLADEN
+      name: "Schnelles Nachladen"
+      type: GENERAL
+      repeatType: SINGLE
+      bonusFeatClasses: [FIGHTER]
+      shortDescription: "Armbrust schneller nachladen"
+      description:
+      prerequisites:
+        - type: WEAPON_PROFICIENCY
+      benefits: []
+
+    - id: SELBSTERHALTUNG
+      name: "Selbsterhaltung"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription: "Bonus von +2 auf Würfe für Heilkunde und Überlebenskunst"
+      description:
+      prerequisites: []
+      benefits: []
+
+    - id: SORGFALT
+      name: "Sorgfalt"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription: "Bonus von +2 auf Würfe für Schätzen und Schriftzeichen entschlüsseln"
+      description:
+      prerequisites: []
+      benefits: []
+
     - id: SPUREN_LESEN
       name: "Spuren lesen"
       type: GENERAL
       repeatType: SINGLE
       shortDescription: "Die Fertigkeit Überlebenskunst einsetzen können, um Spuren zu folgen"
+      description:
+      prerequisites: []
+      benefits: []
+
+    - id: SPUERNASE
+      name: "Spürnase"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription: "Bonus von +2 auf Würfe für Informationen sammeln und Suchen"
+      description:
+      prerequisites: []
+      benefits: []
+
+    - id: TAEUSCHER
+      name: "Täuscher"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription: "Bonus von +2 auf Würfe für Fälschen und Verkleiden"
       description:
       prerequisites: []
       benefits: []
@@ -581,12 +831,53 @@ feats:
       prerequisites: []
       benefits: []
 
+    - id: VERBESSERTER_SCHILDSTOSS
+      name: "Verbesserter Schildstoß"
+      type: GENERAL
+      repeatType: SINGLE
+      bonusFeatClasses: [FIGHTER]
+      shortDescription: "Schildbonus auf die RK bei einem Schildstoß behalten"
+      description:
+      prerequisites:
+        - type: FEAT
+          feat: UMGANG_MIT_SCHILDEN
+      benefits: []
+
+    - id: UMGANG_MIT_TURMSCHILDEN
+      name: "Umgang mit Turmschilden"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription: "Kein Rüstungsmalus auf Angriffswürfe"
+      description:
+      prerequisites:
+        - type: FEAT
+          feat: UMGANG_MIT_SCHILDEN
+      benefits: []
+
+    - id: UNTERHAENDLER
+      name: "Unterhändler"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription: "Bonus von +2 auf Würfe für Diplomatie und Motiv erkennen"
+      description:
+      prerequisites: []
+      benefits: []
+
     - id: VERBESSERTE_INITIATIVE
       name: "Verbesserte Initiative"
       type: GENERAL
       repeatType: SINGLE
       bonusFeatClasses: [FIGHTER]
       shortDescription: "Bonus von +4 auf Initiativewürfe"
+      description:
+      prerequisites: []
+      benefits: []
+
+    - id: VERBESSERTER_GEGENZAUBER
+      name: "Verbesserter Gegenzauber"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription: "Gegenzauber mit einem Zauber aus derselben Schule der Magie"
       description:
       prerequisites: []
       benefits: []
@@ -614,6 +905,21 @@ feats:
       prerequisites: []
       benefits: []
 
+    - id: VERBESSERTER_RINGKAMPF
+      name: "Verbesserter Ringkampf"
+      type: GENERAL
+      repeatType: SINGLE
+      bonusFeatClasses: [FIGHTER]
+      shortDescription: "Bonus von +4 auf Ringkampfwürfe; keine Gelegenheitsangriffe"
+      description:
+      prerequisites:
+        - type: ATTRIBUTE
+          attribute: DEXTERITY
+          min: 13
+        - type: FEAT
+          feat: VERBESSERTER_WAFFENLOSER_SCHLAG
+      benefits: []
+
     - id: GESCHOSSE_ABWEHREN
       name: "Geschosse abwehren"
       type: GENERAL
@@ -625,6 +931,23 @@ feats:
         - type: ATTRIBUTE
           attribute: DEXTERITY
           min: 13
+        - type: FEAT
+          feat: VERBESSERTER_WAFFENLOSER_SCHLAG
+      benefits: []
+
+    - id: GESCHOSSE_FANGEN
+      name: "Geschosse fangen"
+      type: GENERAL
+      repeatType: SINGLE
+      bonusFeatClasses: [FIGHTER]
+      shortDescription: "Einen abgewehrten Fernkampfangriff auffangen"
+      description:
+      prerequisites:
+        - type: ATTRIBUTE
+          attribute: DEXTERITY
+          min: 15
+        - type: FEAT
+          feat: GESCHOSSE_ABWEHREN
         - type: FEAT
           feat: VERBESSERTER_WAFFENLOSER_SCHLAG
       benefits: []
@@ -647,6 +970,47 @@ feats:
           min: 13
         - type: BASE_ATTACK_BONUS
           min: 8
+      benefits: []
+
+    - id: VERBESSERTES_VERTREIBEN
+      name: "Verbessertes Vertreiben"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription: "Bonus von +1 auf Vertreibungswürfe"
+      description:
+      prerequisites:
+        - type: CLASS_LEVEL
+          classes: [CLERIC, PALADIN]
+          min: 1
+      benefits: []
+
+    - id: VERBUNDENHEIT_MIT_TIEREN
+      name: "Verbundenheit mit Tieren"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription: "Bonus von +2 auf Würfe für Mit Tieren umgehen und Reiten"
+      description:
+      prerequisites: []
+      benefits: []
+
+    - id: VERSTAERKTE_HERBEIZAUBERUNG
+      name: "Verstärkte Herbeizauberung"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription: "Herbeigezauberte Kreaturen erhalten einen Bonus von +4 auf ST und KO"
+      description:
+      prerequisites:
+        - type: FEAT
+          feat: ZAUBERFOKUS
+      benefits: []
+
+    - id: VERSTOHLENHEIT
+      name: "Verstohlenheit"
+      type: GENERAL
+      repeatType: SINGLE
+      shortDescription: "Bonus von +2 auf Würfe für Leise bewegen und Verstecken"
+      description:
+      prerequisites: []
       benefits: []
 
     - id: ALERTNESS
@@ -685,6 +1049,22 @@ feats:
           min: 1
       benefits: []
 
+    - id: MAECHTIGER_WAFFENFOKUS
+      name: "Mächtiger Waffenfokus"
+      type: GENERAL
+      repeatType: MULTIPLE
+      bonusFeatClasses: [FIGHTER]
+      shortDescription: "Bonus von +2 auf Angriffswürfe mit gewählter Waffe"
+      description:
+      prerequisites:
+        - type: WEAPON_PROFICIENCY
+        - type: FEAT
+          feat: WAFFENFOKUS
+        - type: CLASS_LEVEL
+          classes: [FIGHTER]
+          min: 8
+      benefits: []
+
     - id: ZAUBERFOKUS
       name: "Zauberfokus"
       type: GENERAL
@@ -692,6 +1072,17 @@ feats:
       shortDescription: "Bonus von +1 auf SG der Rettungswürfe gegen eine bestimmte Schule der Magie"
       description:
       prerequisites: []
+      benefits: []
+
+    - id: MAECHTIGER_ZAUBERFOKUS
+      name: "Mächtiger Zauberfokus"
+      type: GENERAL
+      repeatType: MULTIPLE
+      shortDescription: "Bonus von +2 auf SG der Rettungswürfe gegen eine bestimmte Schule der Magie"
+      description:
+      prerequisites:
+        - type: FEAT
+          feat: ZAUBERFOKUS
       benefits: []
 
     - id: MAGISCHE_WAFFEN_UND_RUESTUNGEN_HERSTELLEN
@@ -868,6 +1259,26 @@ feats:
         - type: CLASS_LEVEL
           classes: [FIGHTER]
           min: 4
+      benefits: []
+
+    - id: MAECHTIGE_WAFFENSPEZIALISIERUNG
+      name: "Mächtige Waffenspezialisierung"
+      type: SPECIAL
+      repeatType: MULTIPLE
+      bonusFeatClasses: [FIGHTER]
+      shortDescription: "Bonus von +4 auf Schadenswürfe mit gewählter Waffe"
+      description:
+      prerequisites:
+        - type: WEAPON_PROFICIENCY
+        - type: FEAT
+          feat: WAFFENFOKUS
+        - type: FEAT
+          feat: MAECHTIGER_WAFFENFOKUS
+        - type: FEAT
+          feat: WAFFENSPEZIALISIERUNG
+        - type: CLASS_LEVEL
+          classes: [FIGHTER]
+          min: 12
       benefits: []
 
     - id: ZAUBERMEISTERSCHAFT
