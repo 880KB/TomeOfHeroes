@@ -2,6 +2,8 @@ package dev.swim.toh.ui.controller.dialog;
 
 import javafx.beans.property.SimpleBooleanProperty;
 
+import java.util.List;
+
 /**
  * One row in {@link SelectionDialogController}: a value the user can pick, its display name,
  * and - if it isn't currently allowed (e.g. an unmet feat prerequisite) - a reason why. Rows are
@@ -22,6 +24,9 @@ public class SelectionItem<T> {
     // (the default) means "top level", set by the caller after construction since it depends on
     // where the item ends up among the other items, not on the item itself
     private int depth = 0;
+    // extra read-only columns after the name column (e.g. a weapon's damage/critical/range/type)
+    // - see SelectionDialogController#setDetailColumns; empty for callers that don't need any
+    private List<String> details = List.of();
 
     public SelectionItem(T value, String name, boolean available, String unavailableReason) {
         this(value, name, available, unavailableReason, null, null);
@@ -96,6 +101,14 @@ public class SelectionItem<T> {
 
     public void setDepth(int depth) {
         this.depth = depth;
+    }
+
+    public void setDetails(List<String> details) {
+        this.details = details;
+    }
+
+    public String getDetail(int index) {
+        return index < details.size() ? details.get(index) : "";
     }
 
     public boolean isSelected() {

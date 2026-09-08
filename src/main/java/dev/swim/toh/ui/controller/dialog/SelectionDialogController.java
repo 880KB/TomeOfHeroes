@@ -59,6 +59,9 @@ public class SelectionDialogController<T> {
     // add-flow); a fixed weapon slot instead holds exactly one value, so for that caller clicking
     // a row is the selection - no checkbox needed
     private boolean singleSelect = false;
+    // how many extra detail columns setDetailColumns() has already added, so each one's
+    // cellValueFactory closes over its own, distinct index into SelectionItem.getDetail(int)
+    private int detailColumnCount = 0;
 
     public void initialize() {
         // header rows (e.g. "Kriegswaffen") are display-only - mouse-transparent so clicking one
@@ -181,6 +184,26 @@ public class SelectionDialogController<T> {
                     itemsTableView.getSelectionModel().select(item);
                     itemsTableView.scrollTo(item);
                 });
+    }
+
+    /**
+     * Adds extra read-only columns right after the name column, one per header, populated from
+     * each row's {@link SelectionItem#getDetail(int)} at the matching position - e.g. a weapon's
+     * damage/critical/range/type, so the player can compare candidates without opening every
+     * "more info" popup. Classes/feats never call this, so they keep their current column set.
+     * Must be called before {@link #setItems} so the dialog sizes itself around the full table.
+     */
+    public void setDetailColumns(List<String> headers) {
+        int insertIndex = itemsTableView.getColumns().indexOf(nameColumn) + 1 + detailColumnCount;
+        for (String header : headers) {
+            int detailIndex = detailColumnCount++;
+            TableColumn<SelectionItem<T>, String> column = new TableColumn<>(header);
+            column.setSortable(false);
+            column.setResizable(false);
+            column.setPrefWidth(70);
+            column.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDetail(detailIndex)));
+            itemsTableView.getColumns().add(insertIndex++, column);
+        }
     }
 
     /**

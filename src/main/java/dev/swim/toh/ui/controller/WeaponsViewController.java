@@ -106,8 +106,7 @@ public class WeaponsViewController extends CharacterModelAware {
             @Override
             protected void updateItem(Weapon weapon, boolean empty) {
                 super.updateItem(weapon, empty);
-                setText(empty || weapon == null ? null :
-                        (weapon.getRangeIncrement() == null ? "–" : weapon.getRangeIncrement() + "m"));
+                setText(empty || weapon == null ? null : formatRange(weapon));
             }
         });
 
@@ -189,6 +188,10 @@ public class WeaponsViewController extends CharacterModelAware {
         return range + "/x" + weapon.getCriticalMultiplier();
     }
 
+    private String formatRange(Weapon weapon) {
+        return weapon.getRangeIncrement() == null ? "–" : weapon.getRangeIncrement() + "m";
+    }
+
     private String formatDamageTypes(Weapon weapon) {
         String joiner = weapon.isDamageTypeChoice() ? " oder " : " und ";
         return weapon.getDamageTypes().stream()
@@ -217,6 +220,7 @@ public class WeaponsViewController extends CharacterModelAware {
             SelectionDialogController<Weapon> dialogController = loader.getController();
             dialogController.setDialogStage(dialogStage);
             dialogController.setSingleSelect(true);
+            dialogController.setDetailColumns(List.of("Schaden", "Krit.", "Reichweite", "Art"));
             dialogController.setItems(items);
             if (currentWeapon != null)
                 dialogController.preselect(currentWeapon);
@@ -265,6 +269,7 @@ public class WeaponsViewController extends CharacterModelAware {
             SelectionItem<Weapon> item = new SelectionItem<>(weapon, weapon.getName(), true, null,
                     weapon.getShortDescription(), weapon.getDescription());
             item.setDepth(weapon.getHandedness() != null ? 2 : 1);
+            item.setDetails(List.of(weapon.getDamageMedium(), formatCritical(weapon), formatRange(weapon), formatDamageTypes(weapon)));
             items.add(item);
         }
         return items;
